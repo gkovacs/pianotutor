@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="jquery-1.10.2.min.js"></script>
+<script src="substitution.js"></script>
+<script src="corpus.js"></script>
+<script src="keypresstochar.js"></script>
+<script src="index.js"></script>
+<body>
+
+<span id="textDisplay_entered" style="color: lightgrey; font-size: x-large; font-family: sans-serif"></span><span id="textDisplay_todo" style="font-size: x-large; font-family: sans-serif"></span>
+<textarea id="textInput" lang="en" autocorrect="on" autocapitalize="off" spellcheck="true" type="text" style="width: 100%; font-size: x-large; font-family: sans-serif"></textarea>
+
+<div id="lineTimes"></div>
+<button onClick="sendLogs()">Send Logs</button>
+<a href="" id="logLink" style="display: none">Link to Logs</a>
+<br/><br/>
+<img src="dvorak.png" />
+</body>
+</html>
+
