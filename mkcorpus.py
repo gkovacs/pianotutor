@@ -66,7 +66,6 @@ class CurriculumGenerator:
   target_substrings = frozenset()
   learner_model = None
   language_model = None
-  difficulty_weight = 2.0 # amount that is dedicated to keeping the sequence easy. increase to make easier. should be at least 1
   def __init__(self, target_word, learner_model, language_model):
     self.target_word = target_word
     self.learner_model = learner_model
@@ -85,6 +84,13 @@ class CurriculumGenerator:
         else:
           usefulness += 1.0
     return sqrt(usefulness)
+  def get_next_word_to_practice(self):
+    return max(self.language_model.common_words, key=self.get_word_score_for_practice)
+  def practice_word(self, word):
+    self.learner_model.practice_word(word)
+
+class CurriculumGeneratorThreshold(CurriculumGenerator):
+  difficulty_threshold = 1.3 
   def get_word_score_for_practice(self, word):
     if word in self.learner_model.substrings_practiced:
       return -sys.maxint
@@ -92,11 +98,20 @@ class CurriculumGenerator:
     difficulty = self.learner_model.get_word_difficulty(word)
     if usefulness <= 0:
       return -sys.maxint
-    return log(usefulness) - self.difficulty_weight*log(difficulty)
-  def get_next_word_to_practice(self):
-    return max(self.language_model.common_words, key=self.get_word_score_for_practice)
-  def practice_word(self, word):
-    self.learner_model.practice_word(word)
+    if log(difficulty) > self.difficulty_threshold:
+      return -sys.maxint
+    return log(usefulness)
+
+class CurriculumGeneratorRatio(CurriculumGenerator):
+  difficulty_ratio = 1.3 # amount that is dedicated to keeping the sequence easy. increase to make easier. should be at least 1
+  def get_word_score_for_practice(self, word):
+    if word in self.learner_model.substrings_practiced:
+      return -sys.maxint
+    usefulness = self.get_word_usefulness_target(word)
+    difficulty = self.learner_model.get_word_difficulty(word)
+    if usefulness <= 0:
+      return -sys.maxint
+    return log(usefulness) - self.difficulty_ratio * log(difficulty)
 
 def main():
   target_word = 'somewhere'
@@ -105,7 +120,7 @@ def main():
   for letter in 'abcdefghijklmnopqrstuvwxyz':
     language_model.add_word(letter)
   learner_model = LearnerModel()
-  curriculum_generator = CurriculumGenerator(target_word, learner_model, language_model)
+  curriculum_generator = CurriculumGeneratorRatio(target_word, learner_model, language_model)
   while not curriculum_generator.is_target_reached():
     newword = curriculum_generator.get_next_word_to_practice()
     print newword
