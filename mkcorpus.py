@@ -55,7 +55,7 @@ class LearnerModel:
       num_substrings += 1
       if substring in self.substrings_practiced:
         substrings_learned += 1
-    return num_substrings - substrings_learned
+    return sqrt(num_substrings - substrings_learned)
   def practice_word(self, word):
     self.words_practiced[word] += 1
     for substring in generate_substrings(word):
@@ -66,7 +66,7 @@ class CurriculumGenerator:
   target_substrings = frozenset()
   learner_model = None
   language_model = None
-  difficulty_weight = 1.3 # amount that is dedicated to keeping the sequence easy. increase to make easier. should be at least 1
+  difficulty_weight = 2.0 # amount that is dedicated to keeping the sequence easy. increase to make easier. should be at least 1
   def __init__(self, target_word, learner_model, language_model):
     self.target_word = target_word
     self.learner_model = learner_model
@@ -81,10 +81,10 @@ class CurriculumGenerator:
     for substring in generate_substrings(word):
       if substring in self.target_substrings:
         if substring in self.learner_model.substrings_practiced:
-          usefulness += 0.5 #max(0.1, 1.0 - 0.1*self.learner_model.substrings_practiced[substring])
+          usefulness += max(0, 1.0 - 0.3*self.learner_model.substrings_practiced[substring])
         else:
           usefulness += 1.0
-    return usefulness
+    return sqrt(usefulness)
   def get_word_score_for_practice(self, word):
     if word in self.learner_model.substrings_practiced:
       return -sys.maxint
