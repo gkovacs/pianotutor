@@ -136,7 +136,7 @@ root.sendLogs = () ->
     $('#logLink').show()
   )
 
-root.wasDeletePressed = false
+root.numTimesDeletePressed = 0
 
 root.lastText = ''
 updateText = () ->
@@ -165,11 +165,15 @@ updateText = () ->
       root.currentLineStartTime = 0
       if root.targetText == 'you are now done typing'
         root.sendLogs()
-      if !root.wasDeletePressed
-        nextLine()
-      else
-        root.wasDeletePressed = false
+      if root.numTimesDeletePressed >= 1
+        root.numTimesDeletePressed = 0
         showLine()
+      #else if root.numTimesDeletePressed > 1
+      #  root.numTimesDeletePressed = 0
+      #  root.currentLineNum = Math.max(0, root.currentLineNum - 1)
+      #  showLine()
+      else
+        nextLine()
 
 root.hashname_to_index = {}
 
@@ -205,7 +209,7 @@ $(document).ready ->
     if evt.which?
         console.log evt.which
         if evt.which == 8
-          root.wasDeletePressed = true
+          root.numTimesDeletePressed += 1
         origChar = root.mapKeyPressToActualCharacter(evt.shiftKey, evt.which)
         console.log origChar
         transformedChar = transformTypedChar(origChar)

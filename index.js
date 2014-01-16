@@ -199,7 +199,7 @@
     });
   };
 
-  root.wasDeletePressed = false;
+  root.numTimesDeletePressed = 0;
 
   root.lastText = '';
 
@@ -233,11 +233,11 @@
       if (root.targetText === 'you are now done typing') {
         root.sendLogs();
       }
-      if (!root.wasDeletePressed) {
-        return nextLine();
-      } else {
-        root.wasDeletePressed = false;
+      if (root.numTimesDeletePressed >= 1) {
+        root.numTimesDeletePressed = 0;
         return showLine();
+      } else {
+        return nextLine();
       }
     }
   };
@@ -287,7 +287,7 @@
       if (evt.which != null) {
         console.log(evt.which);
         if (evt.which === 8) {
-          root.wasDeletePressed = true;
+          root.numTimesDeletePressed += 1;
         }
         origChar = root.mapKeyPressToActualCharacter(evt.shiftKey, evt.which);
         console.log(origChar);
