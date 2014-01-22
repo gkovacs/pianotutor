@@ -113,8 +113,16 @@ class CurriculumGeneratorRatio(CurriculumGenerator):
       return -sys.maxint
     return log(usefulness) - self.difficulty_ratio * log(difficulty)
 
+'''
+import random
+
+class ErrorModelLength:
+  def makes_error(self, word):
+    return random.random() < min(float(len(word)) / 10.0, .5)
+'''
+
 def main():
-  target_word = 'somewhere'
+  target_word = 'stanford'
   language_model = LanguageModel()
   language_model.add_word(target_word)
   for letter in 'abcdefghijklmnopqrstuvwxyz':
