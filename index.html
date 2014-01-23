@@ -5,6 +5,45 @@
 <script src="corpus.js"></script>
 <script src="keypresstochar.js"></script>
 <script src="index.js"></script>
+<style>
+div.keybase {
+  float: left;
+  background-color: white;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
+  height: 30px;
+  margin: 3px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+div.key {
+  width: 30px;
+}
+
+div.tab {
+  width: 50px;
+}
+
+div.caps {
+  width: 60px;
+}
+
+div.shift {
+  width: 80px;
+}
+
+div.delete {
+  width: 50px;
+}
+
+div.return {
+  width: 60px;
+}
+
+</style>
 <body>
 
 <span id="textDisplay_entered" style="color: lightgrey; font-size: x-large; font-family: sans-serif"></span><span id="textDisplay_todo" style="font-size: x-large; font-family: sans-serif"></span>
@@ -14,7 +53,9 @@
 <button onClick="sendLogs()">Send Logs</button>
 <a href="" id="logLink" style="display: none">Link to Logs</a>
 <br/><br/>
-<img src="dvorak.png" />
+<div id="keyboard">
+</div>
+<!--<img src="dvorak.png" />-->
 </body>
 </html>
 

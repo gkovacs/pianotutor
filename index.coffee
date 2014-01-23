@@ -189,6 +189,28 @@ do () ->
     #console.log x
   #break
 
+makeButton = (name) ->
+  button = $('<div>').text(name).addClass('keybase')
+  if name in ['tab', 'caps', 'shift', 'delete', 'return']
+    button.addClass name
+  else
+    button.addClass 'key'
+  return button
+
+displayKeyboard = ->
+  for letter in ['`'].concat '1234567890'.split('').concat '-='.split('').concat ['delete']
+    $('#keyboard').append makeButton(transformTypedChar letter)
+  $('#keyboard').append $('<div>').css('clear', 'both')
+  for letter in ['tab'].concat 'QWERTYUIOP'.split('').concat '[]\\'.split('')
+    $('#keyboard').append makeButton(transformTypedChar letter)
+  $('#keyboard').append $('<div>').css('clear', 'both')
+  for letter in ['caps'].concat 'ASDFGHJKL'.split('').concat ";'".split('').concat ['return']
+    $('#keyboard').append makeButton(transformTypedChar letter)
+  $('#keyboard').append $('<div>').css('clear', 'both')
+  for letter in ['shift'].concat 'ZXCVBNM'.split('').concat ',./'.split('').concat ['shift']
+    $('#keyboard').append makeButton(transformTypedChar letter)
+  console.log 'keyboard displayed'
+
 $(document).ready ->
   if window.location.hash?
     hashstring = window.location.hash.split('#').join('')
@@ -200,7 +222,7 @@ $(document).ready ->
         root.currentLineNum = hashstringAsInt
   
   showLine()
-  
+
   $('#textInput').focus()
   $('#textInput').bind 'propertychange keyup input paste', (event) ->
     updateText()
@@ -210,49 +232,88 @@ $(document).ready ->
         console.log evt.which
         if evt.which == 8
           root.numTimesDeletePressed += 1
+          if root.isMusic
+            start = this.selectionStart
+            end = this.selectionEnd
+            val = this.value
+            lastSpace = start-2
+            while lastSpace > 0
+              if val[lastSpace] == ' '
+                break
+              lastSpace -= 1
+            this.value = val.slice(0, lastSpace) + ' ' + val.slice(end)
+            return false
         origChar = root.mapKeyPressToActualCharacter(evt.shiftKey, evt.which)
         console.log origChar
         transformedChar = transformTypedChar(origChar)
         #console.log transformedChar
         if transformedChar != origChar
+            if root.isMusic
+              transformedChar = transformedChar + ' '
             start = this.selectionStart
             end = this.selectionEnd
             val = this.value
             this.value = val.slice(0, start) + transformedChar + val.slice(end)
             # Move the caret
-            this.selectionStart = this.selectionEnd = start + 1
+            this.selectionStart = this.selectionEnd = start + transformedChar.length
             return false
+  displayKeyboard()
 
 make_key_mapping = (qwerty_rows, dvorak_rows) ->
   output = {}
   for i in [0...qwerty_rows.length]
     qwerty_row = qwerty_rows[i]
+    if not qwerty_row?
+      continue
     dvorak_row = dvorak_rows[i]
+    if not dvorak_row?
+      continue
     for j in [0...qwerty_row.length]
       qwerty_key = qwerty_row[j]
+      if not qwerty_key?
+        continue
       dvorak_key = dvorak_row[j]
+      if not dvorak_key?
+        continue
       output[qwerty_key] = dvorak_key
   console.log output
   return output
 
 q_rows = [
-  'qwertyuiop[]',
-  "asdfghjkl;'",
-  'zxcvbnm,./'
-  'QWERTYUIOP{}',
-  'ASDFGHJKL:"',
-  'ZXCVBNM<>?'
+  '`1234567890-='.split(''),
+  'qwertyuiop[]\\'.split(''),
+  "asdfghjkl;'".split(''),
+  'zxcvbnm,./'.split(''),
+  '~!@#$%^&*()_+'.split(''),
+  'QWERTYUIOP{}'.split(''),
+  'ASDFGHJKL:"'.split(''),
+  'ZXCVBNM<>?'.split('')
+]
+m_rows = [
+  ['c3', 'c#3', 'd3', 'd#3', 'e3', 'f3', 'f#3', 'g3', 'g#3', 'a3', 'a#3', 'b3', 'c4'],
+  ['b1', 'c2', 'c#2', 'd2', 'd#2', 'e2', 'f2', 'f#2', 'g2', 'g#2', 'a2', 'a#2', 'b2'],
+  ['c1', 'c#1', 'd1', 'd#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'a#1'],
+  ['d0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'a0', 'a#0', 'b0'],
+  ['c3', 'c#3', 'd3', 'd#3', 'e3', 'f3', 'f#3', 'g3', 'g#3', 'a3', 'a#3', 'b3', 'c4'],
+  ['b1', 'c2', 'c#2', 'd2', 'd#2', 'e2', 'f2', 'f#2', 'g2', 'g#2', 'a2', 'a#2', 'b2'],
+  ['c1', 'c#1', 'd1', 'd#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'a#1'],
+  ['d0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'a0', 'a#0', 'b0']
 ]
 d_rows = [
-  "',.pyfgcrl/=",
-  'aoeuidhtns-',
-  ';qjkxbmwvz',
-  '"<>PYFGCRL?+',
-  'AOEUIDHTNS_',
-  ':QJKXBMWVZ'
+  '`1234567890-='.split(''),
+  "',.pyfgcrl/=\\".split(''),
+  'aoeuidhtns-'.split(''),
+  ';qjkxbmwvz'.split(''),
+  '~!@#$%^&*()_+'.split(''),
+  '"<>PYFGCRL?+'.split(''),
+  'AOEUIDHTNS_'.split(''),
+  ':QJKXBMWVZ'.split('')
 ]
 to_dvorak = make_key_mapping(q_rows, d_rows)
-substitution_table = to_dvorak
+to_piano = make_key_mapping(q_rows, m_rows)
+substitution_table = to_piano
+
+root.isMusic = true
 
 transformTypedChar = (origChar) ->
   #return origChar
