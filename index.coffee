@@ -189,6 +189,39 @@ do () ->
     #console.log x
   #break
 
+sharpToFlat = (basenote) ->
+  return {
+    'g#': 'Ab',
+    'a#': 'Bb',
+    'c#': 'Db',
+    'd#': 'Eb',
+    'f#': 'Gb'
+  }[basenote.toLowerCase()]
+
+addNotes = () ->
+  for notenode in $('.key')
+    note = $(notenode).text()
+    noteFile = getMusicFileForNote note
+    noteAlpha = note.split('#').join('s')
+    $('#notes').append $('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha)
+
+playNote = root.playNote = (note) ->
+  noteAlpha = note.split('#').join('s')
+  audioTag = $('#note_' + noteAlpha)[0]
+  audioTag.pause()
+  audioTag.currentTime = 0
+  audioTag.play()
+  
+
+getMusicFileForNote = root.getMusicFileForNote = (note) ->
+  octave = parseInt(note[-1..]) + 2
+  basenote = note[...-1]
+  if basenote[-1..] == '#'
+    basenote = sharpToFlat basenote
+  else
+    basenote = basenote.toUpperCase()
+  return 'piano/Piano.ff.' + basenote + octave + '.m4a'
+
 makeButton = (name) ->
   button = $('<div>').text(name).addClass('keybase')
   if name in ['tab', 'caps', 'shift', 'delete', 'return']
@@ -258,6 +291,8 @@ $(document).ready ->
             this.selectionStart = this.selectionEnd = start + transformedChar.length
             return false
   displayKeyboard()
+  if root.isMusic
+    addNotes()
 
 make_key_mapping = (qwerty_rows, dvorak_rows) ->
   output = {}
@@ -300,11 +335,11 @@ m_rows = [
   ['d0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'a0', 'a#0', 'b0']
 ]
 d_rows = [
-  '`1234567890-='.split(''),
+  '`1234567890[]'.split(''),
   "',.pyfgcrl/=\\".split(''),
   'aoeuidhtns-'.split(''),
   ';qjkxbmwvz'.split(''),
-  '~!@#$%^&*()_+'.split(''),
+  '~!@#$%^&*(){}'.split(''),
   '"<>PYFGCRL?+'.split(''),
   'AOEUIDHTNS_'.split(''),
   ':QJKXBMWVZ'.split('')
