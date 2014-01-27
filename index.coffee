@@ -115,6 +115,7 @@ showLine = () ->
   root.targetText = root.corpus_lines[root.currentLineNum].toLowerCase()
   $('#textDisplay_entered').text('')
   $('#textDisplay_todo').text(root.targetText)
+  updateText(true)
 
 root.formValueIncludesInputted = false
 root.haveCheckedFormValueIncludesInputted = false
@@ -138,10 +139,13 @@ root.sendLogs = () ->
 
 root.numTimesDeletePressed = 0
 
+root.nextNote = ''
 root.lastText = ''
-updateText = () ->
+updateText = (forced) ->
+    if not forced?
+      forced = false
     ntext = $('#textInput').val()
-    if ntext == root.lastText
+    if ntext == root.lastText and not forced
       return
     root.lastText = ntext
     
@@ -155,10 +159,21 @@ updateText = () ->
     numMatched = matchLength(ntext.trim(), root.targetText)
     reftext_entered = root.targetText[0...numMatched]
     reftext_todo = root.targetText[numMatched..]
-    
+
     $('#textDisplay_entered').text(reftext_entered)
     $('#textDisplay_todo').text(reftext_todo)
     
+    if root.isMusic
+      console.log reftext_todo
+      nextNote = reftext_todo.trim().split(' ')[0]
+      if nextNote? and nextNote.length?
+        nextNote = nextNote.trim()
+        if nextNote.trim().length > 0
+          console.log 'next note is:' + nextNote
+          root.nextNote = nextNote
+          highlightButtonTarget nextNote
+
+
     if numMatched == root.targetText.length
       $('#textInput').val('')
       root.lineFinishLogs.push {'targetText': root.targetText, 'startedAt': new Date(root.currentLineStartTime).toString(), 'completedAt': new Date().toString()}
@@ -205,13 +220,49 @@ addNotes = () ->
     noteAlpha = note.split('#').join('s')
     $('#notes').append $('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha)
 
+getNoteAlpha = (note) ->
+  return note.split('#').join('s')
+
 playNote = root.playNote = (note) ->
-  noteAlpha = note.split('#').join('s')
-  audioTag = $('#note_' + noteAlpha)[0]
+  highlightButton note
+  noteAlpha = getNoteAlpha note
+  audioTagJquery = $('#note_' + noteAlpha)
+  currentTime = (new Date).getTime()
+  audioTagJquery.attr('playEnd', currentTime + 2000)
+  audioTagJquery.attr('highlightEnd', currentTime + 100)
+  audioTag = audioTagJquery[0]
   audioTag.pause()
-  audioTag.currentTime = 0
+  audioTag.currentTime = 1.0
+  #audioTag.playbackRate = 1.5
   audioTag.play()
-  
+  setTimeout () ->
+    playEnd = parseInt(audioTagJquery.attr('playEnd'))
+    if (new Date).getTime() >= playEnd
+      audioTagJquery[0].pause()
+  , 2001
+  setTimeout () ->
+    highlightEnd = parseInt(audioTagJquery.attr('highlightEnd'))
+    if (new Date).getTime() >= highlightEnd
+      unhighlightButton note
+  , 101
+
+unhighlightButton = root.unhighlightButton = (note) ->
+  button = $('#button_' + getNoteAlpha(note))
+  button.attr 'highlighted', false
+  if note == root.nextNote
+    button.css 'background-color', 'yellow'
+  else
+    button.css 'background-color', 'white'
+
+highlightButton = root.highlightButton = (note) ->
+  button = $('#button_' + getNoteAlpha(note))
+  button.attr 'highlighted', true
+  button.attr 'isTarget', false
+  button.css 'background-color', 'lightblue'
+
+highlightButtonTarget = root.highlightButtonTarget = (note) ->
+  button = $('#button_' + getNoteAlpha(note))
+  button.css 'background-color', 'yellow'
 
 getMusicFileForNote = root.getMusicFileForNote = (note) ->
   octave = parseInt(note[-1..]) + 2
@@ -224,6 +275,7 @@ getMusicFileForNote = root.getMusicFileForNote = (note) ->
 
 makeButton = (name) ->
   button = $('<div>').text(name).addClass('keybase')
+  button.attr 'id', 'button_' + getNoteAlpha(name)
   if name in ['tab', 'caps', 'shift', 'delete', 'return']
     button.addClass name
   else
@@ -282,17 +334,23 @@ $(document).ready ->
         #console.log transformedChar
         if transformedChar != origChar
             if root.isMusic
+              playNote transformedChar
               transformedChar = transformedChar + ' '
             start = this.selectionStart
             end = this.selectionEnd
             val = this.value
-            this.value = val.slice(0, start) + transformedChar + val.slice(end)
+            newvalue = val.slice(0, start) + transformedChar + val.slice(end)
+            if targetText.indexOf(newvalue.trim()) != 0 and targetText != 'freestyle'
+              numTimesDeletePressed += 1
+              return false
+            this.value = newvalue
             # Move the caret
             this.selectionStart = this.selectionEnd = start + transformedChar.length
             return false
   displayKeyboard()
   if root.isMusic
     addNotes()
+    updateText(true)
 
 make_key_mapping = (qwerty_rows, dvorak_rows) ->
   output = {}

@@ -1,6 +1,8 @@
 root = exports ? this
 
 corpus = root.corpus = """
+c1 e1 c1 e1 g1 g1
+freestyle
 a
 an
 ann
