@@ -1,0 +1,9 @@
+{
+  "name": "pianotutor",
+  "version": "0.0.0",
+  "description": "pianotutor",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~3.4.8"
+  }
+}
