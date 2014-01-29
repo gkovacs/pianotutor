@@ -171,6 +171,7 @@ updateText = (forced) ->
         if nextNote.trim().length > 0
           console.log 'next note is:' + nextNote
           root.nextNote = nextNote
+          $('.targetButton').css('background-color', 'white').removeClass('targetButton')
           highlightButtonTarget nextNote
 
 
@@ -196,9 +197,9 @@ corpus_lines = root.corpus_lines = root.corpus.split('\n')
 do () ->
   for idx in [0...corpus_lines.length]
     line = corpus_lines[idx]
-    hashidx = line.indexOf('#')
+    hashidx = line.indexOf(' # ')
     if hashidx != -1
-      hashname = line[hashidx+1..].trim()
+      hashname = line[hashidx+2..].trim()
       root.hashname_to_index[hashname] = idx
       corpus_lines[idx] = line[...hashidx].trim()
     #console.log x
@@ -228,7 +229,7 @@ playNote = root.playNote = (note) ->
   noteAlpha = getNoteAlpha note
   audioTagJquery = $('#note_' + noteAlpha)
   currentTime = (new Date).getTime()
-  audioTagJquery.attr('playEnd', currentTime + 2000)
+  audioTagJquery.attr('playEnd', currentTime + 500)
   audioTagJquery.attr('highlightEnd', currentTime + 100)
   audioTag = audioTagJquery[0]
   audioTag.pause()
@@ -239,7 +240,7 @@ playNote = root.playNote = (note) ->
     playEnd = parseInt(audioTagJquery.attr('playEnd'))
     if (new Date).getTime() >= playEnd
       audioTagJquery[0].pause()
-  , 2001
+  , 501
   setTimeout () ->
     highlightEnd = parseInt(audioTagJquery.attr('highlightEnd'))
     if (new Date).getTime() >= highlightEnd
@@ -253,6 +254,7 @@ unhighlightButton = root.unhighlightButton = (note) ->
     button.css 'background-color', 'yellow'
   else
     button.css 'background-color', 'white'
+    button.removeClass 'targetButton'
 
 highlightButton = root.highlightButton = (note) ->
   button = $('#button_' + getNoteAlpha(note))
@@ -262,6 +264,7 @@ highlightButton = root.highlightButton = (note) ->
 
 highlightButtonTarget = root.highlightButtonTarget = (note) ->
   button = $('#button_' + getNoteAlpha(note))
+  button.addClass 'targetButton'
   button.css 'background-color', 'yellow'
 
 getMusicFileForNote = root.getMusicFileForNote = (note) ->
@@ -271,7 +274,7 @@ getMusicFileForNote = root.getMusicFileForNote = (note) ->
     basenote = sharpToFlat basenote
   else
     basenote = basenote.toUpperCase()
-  return 'piano/Piano.ff.' + basenote + octave + '.m4a'
+  return 'piano/Piano.mf.' + basenote + octave + '.m4a'
 
 makeButton = (name) ->
   button = $('<div>').text(name).addClass('keybase')
