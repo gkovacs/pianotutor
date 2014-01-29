@@ -1,23 +1,25 @@
 root = exports ? this
 
 corpus = root.corpus = """
-e1 # littlelamb
+e1
 e1 e1 e1
-e1 e1 e1 e1
 d1
-d1 d1 d1
-d1 e1 d1
-d1 d1 e1 d1
+e1 d1
+c1
+d1 c1 d1
 e1 d1 c1 d1
-d1 d1 e1 d1 c1
+e1 d1 c1 d1 e1 e1 e1
+d1 d1 d1
 g1
 e1 g1 g1
-d1 d1 d1 e1 g1 g1
 e1 e1 e1 d1 d1 d1
-e1 e1 e1 d1 d1 d1 e1 g1 g1
-e1 d1 c1 d1 e1 e1 e1 e1
 e1 d1 c1 d1 e1 e1 e1 d1 d1 d1
+d1 d1 d1 e1 g1 g1
+e1 e1 e1 d1 d1 d1 e1 g1 g1
 e1 d1 c1 d1 e1 e1 e1 d1 d1 d1 e1 g1 g1
+d1 d1 e1 d1 c1
+e1 e1 e1 e1
+e1 d1 c1 d1 e1 e1 e1 e1
 e1 e1 e1 e1 d1 d1 e1 d1 c1
 e1 g1 g1 e1 d1 c1 d1
 d1 d1 d1 e1 g1 g1 e1 d1 c1 d1
@@ -30,117 +32,45 @@ e1 d1 c1 d1 e1 e1 e1 e1 d1 d1 e1 d1 c1
 e1 g1 g1 e1 d1 c1 d1 e1 e1 e1 e1 d1 d1 e1 d1 c1
 e1 e1 e1 d1 d1 d1 e1 g1 g1 e1 d1 c1 d1 e1 e1 e1 e1 d1 d1 e1 d1 c1
 e1 d1 c1 d1 e1 e1 e1 d1 d1 d1 e1 g1 g1 e1 d1 c1 d1 e1 e1 e1 e1 d1 d1 e1 d1 c1
-
-e2 # shortfurelise
-e2 d#2
-e2 d#2 e2 d#2
-e2 d#2 e2 d#2 e2
+e2
+b1
 e2 b1
-e2 d#2 e2 d#2 e2 b1
-b1 d2
-e2 d#2 e2 d#2 e2 b1 d2
-e2 d#2 e2 d#2 e2 b1 d2 c2 a1
+a1
+c2
 c2 a1
-d2 c2 a1
-b1 d2 c2 a1
-e2 b1 d2 c2 a1
-d#2 e2 b1 d2 c2 a1
-e2 d#2 e2 b1 d2 c2 a1
-d#2 e2 d#2 e2 b1 d2 c2 a1
-e2 d#2 e2 d#2 e2 b1 d2 c2 a1
-
-e2 # furelise
-b1
-e2 b1
-c2
-b1 c2
-c2 b1
-d2
-b1 d2 c2
-c2 d2 e2
-e2 d2 c2
-e2 b1 d2 c2
-b1 c2 d2 e2
-d2 c2 b1
-a1
-e2 b1 d2 c2 a1
-a1 b1 c2
-c2 b1 a1
-e1
-e1 a1 b1 c2
-e1 c2 b1 a1
-e1 e2 d2 c2
-e1 d2 c2 b1
 e2 d#2
 e2 d#2 e2 d#2
-d#2 e2 d#2 e2 b1 d2
+e2 d#2 e2 d#2 e2 b1
+d2
+e2 d#2 e2 d#2 e2 b1 d2
+d#2 e2 d#2 e2 b1 d2 c2
 e2 d#2 e2 d#2 e2 b1 d2 c2 a1
+e1 a1 b1
 c1 e1 a1 b1
+e1 a1 b1 c2
+c1 e1 a1 b1 e1 a1 b1 c2
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2
+e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1
+c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1
+e1 c2 b1
+e1 c2 b1 a1
+c1 e1 a1 b1 e1 c2 b1 a1
+c2 d2 e2
+e2 d2
+b1 c2 d2 e2
 g1 f2 e2 d2
 e1 c2 b1 a1 b1 c2 d2 e2
-c1 e1 a1 b1 e1 a1 b1 c2
-c1 e1 a1 b1 e1 c2 b1 a1
 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2
 b1 c2 d2 e2 g1 f2 e2 d2
 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2
 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2
-g1 f2 e2 d2 e1 e2 d2 c2
-b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2
-e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2
-c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2
-e1 e2 d2 c2 e1 d2 c2 b1
-g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
-b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
-c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
-c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
-e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2
-e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
-
-e2 # slowfurelise
-b1
-e2 b1
-c2
-b1 c2
-c2 b1
-d2
-e2 b1 d2
-b1 d2 c2
-b1 c2 d2
-c2 d2 e2
-e2 d2 c2
-d2 c2 b1
-e2 b1 d2 c2
-b1 c2 d2 e2
-a1
-d2 c2 a1
-a1 b1 c2
-c2 b1 a1
-e2 b1 d2 c2 a1
-e1
-e1 a1 b1
-e1 c2 b1
-e1 e2 d2
-e1 d2 c2
-e1 a1 b1 c2
-e1 c2 b1 a1
 e1 e2 d2 c2
 e1 d2 c2 b1
-e2 d#2
-e2 d#2 e2
-d#2 e2 b1 d2 c2 a1
-e2 d#2 e2 b1 d2 c2 a1
-d#2 e2 d#2 e2 b1 d2
-e2 d#2 e2 d#2 e2 b1 d2 c2
-e2 d#2 e2 d#2 e2 b1 d2 c2 a1
-c1 e1 a1 b1
-g1 f2 e2 d2
-e1 c2 b1 a1 b1 c2 d2 e2
-c1 e1 a1 b1 e1 a1 b1 c2
-c1 e1 a1 b1 e1 c2 b1 a1
-c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2
-b1 c2 d2 e2 g1 f2 e2 d2
-e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2
-c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2
+e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1
+c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1
 g1 f2 e2 d2 e1 e2 d2 c2
 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2
 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2
@@ -148,53 +78,19 @@ c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2
 e1 e2 d2 c2 e1 d2 c2 b1
 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
-e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1
+c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1
+c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2
+c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2
+c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2
+e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
 c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
-e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2
+e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2
 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 a1 b1 c2 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 c2 b1 a1 b1 c2 d2 e2 g1 f2 e2 d2 e1 e2 d2 c2 e1 d2 c2 b1
-
-g1 # oldmcdonald
-g1 g1 g1
-a1
-g1 a1 a1
-g1 g1 a1 a1 a1
-b1
-a1 b1 g1
-a1 a1 b1 b1
-g1 g1 a1 a1 b1 g1
-a1 a1 b1 b1 b1
-d1
-g1 g1 g1 d1
-d1 d1
-e1
-d1 e1 e1
-e1 e1 d1 d1
-g1 g1 d1 e1 e1 d1
-g1 g1 g1 d1 e1 e1 d1 d1
-c2
-b1 c2 c2
-b1 b1 c2 c2 c2
-f#1
-g1 f#1 d1
-f#1 d1 e1 f#1
-e1 f#1 g1 g1
-g1 f#1 d1 e1 f#1 g1 g1
-a1 a1 b1 b1 b1 g1 g1 a1 a1 a1
-b1 b1 c2 c2 c2 a1 a1 b1 b1 b1
-b1 b1 c2 c2 c2 a1 a1 b1 b1 b1 g1 g1 a1 a1 a1
-g1 g1 a1 a1 b1 g1 b1 b1 c2 c2 c2
-g1 g1 a1 a1 b1 g1 b1 b1 c2 c2 c2 a1 a1 b1 b1 b1
-g1 g1 a1 a1 b1 g1 b1 b1 c2 c2 c2 a1 a1 b1 b1 b1 g1 g1 a1 a1 a1
-g1 g1 a1 a1 a1 g1 f#1 d1 e1 f#1 g1 g1
-a1 a1 b1 b1 b1 g1 g1 a1 a1 a1 g1 f#1 d1 e1 f#1 g1 g1
-b1 b1 c2 c2 c2 a1 a1 b1 b1 b1 g1 g1 a1 a1 a1 g1 f#1 d1 e1 f#1 g1 g1
-g1 g1 a1 a1 b1 g1 b1 b1 c2 c2 c2 a1 a1 b1 b1 b1 g1 g1 a1 a1 a1 g1 f#1 d1 e1 f#1 g1 g1
-g1 g1 g1 d1 e1 e1 d1 d1 g1 g1 a1 a1 b1 g1
-g1 g1 g1 d1 e1 e1 d1 d1 g1 g1 a1 a1 b1 g1 b1 b1 c2 c2 c2
-g1 g1 g1 d1 e1 e1 d1 d1 g1 g1 a1 a1 b1 g1 b1 b1 c2 c2 c2 a1 a1 b1 b1 b1
-g1 g1 g1 d1 e1 e1 d1 d1 g1 g1 a1 a1 b1 g1 b1 b1 c2 c2 c2 a1 a1 b1 b1 b1 g1 g1 a1 a1 a1
-g1 g1 g1 d1 e1 e1 d1 d1 g1 g1 a1 a1 b1 g1 b1 b1 c2 c2 c2 a1 a1 b1 b1 b1 g1 g1 a1 a1 a1 g1 f#1 d1 e1 f#1 g1 g1
 
 freestyle # freestyle
 a
