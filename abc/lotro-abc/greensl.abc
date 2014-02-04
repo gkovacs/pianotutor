@@ -1,0 +1,71 @@
+X: 1
+T:GreenSleeves Melody
+M:3/4
+L:1/8
+Q:1/4=37
+N:Last note suggests minor mode tune
+K:G
+z4
+E/2GA/2|B/2z/2[c/2B/2]AF/2 D/2z/2[F/2E/2]GE/2|E/2z/2[E/2^D/2]F^D/2 B,E/2GA/2|B/2z/2[c/2B/2]AF/2 =D/2z/2[F/2E/2]G/2z/2[F/2E/2]|
+^D/2z/2[^D/2^C/2]E3d3/2|d/2z/2[^c/2B/2]AF/2 =D/2z/2[F/2E/2]GE/2|E/2z/2[E/2^D/2]F^D/2 B,3/2d3/2|d/2z/2[^c/2B/2]AF/2 =D/2z/2[F/2E/2]G/2z/2[F/2E/2]|
+^D/2z/2[^D/2^C/2]E2-E/2E/2GA/2|B/2z/2[=c/2B/2]AF/2 =D/2z/2[F/2E/2]GE/2|E/2z/2[E/2^D/2]F^D/2 B,E/2GA/2|B/2z/2[c/2B/2]AF/2 =D/2z/2[F/2E/2]G/2z/2[F/2E/2]|
+^D/2z/2[^D/2^C/2]E3d3/2|d/2z/2[^c/2B/2]AF/2 =D/2z/2[F/2E/2]GE/2|E/2z/2[E/2^D/2]F^D/2 B,3/2d3/2|d/2z/2[^c/2B/2]AF/2 =D/2z/2[F/2E/2]G/2z/2[F/2E/2]|
+^D/2z/2[^D/2^C/2]E2-E/2E/2GA/2|B/2z/2[=c/2B/2]AF/2 =D/2z/2[F/2E/2]GE/2|E/2z/2[E/2^D/2]F^D/2 B,E/2GA/2|B/2z/2[c/2B/2]AF/2 =D/2z/2[F/2E/2]G/2z/2[F/2E/2]|
+^D/2z/2[^D/2^C/2]E3d3/2|d/2z/2[^c/2B/2]AF/2 =D/2z/2[F/2E/2]GE/2|E/2z/2[E/2^D/2]F^D/2 B,3/2d3/2|d/2z/2[^c/2B/2]AF/2 =D/2z/2[F/2E/2]G/2z/2[F/2E/2]|
+^D/2z/2[^D/2^C/2]E2-E/2E/2GA/2|B/2z/2[=c/2B/2]AF/2 =D/2z/2[F/2E/2]GE/2|E/2z/2[E/2^D/2]F^D/2 B,E/2GA/2|B/2z/2[c/2B/2]AF/2 =D/2z/2[F/2E/2]G/2z/2[F/2E/2]|
+^D/2z/2[^D/2^C/2]E3d3/2|d/2z/2[^c/2B/2]AF/2 =D/2z/2[F/2E/2]GE/2|E/2z/2[E/2^D/2]F^D/2 B,3/2d3/2|d/2z/2[^c/2B/2]AF/2 =D/2z/2[F/2E/2]G/2z/2[F/2E/2]|
+^D/2z/2[^D/2^C/2]E2-E/2
+
+X: 2
+T:GreenSleeves Melody Begeleiding Accoorden
+M:3/4
+L:1/8
+Q:1/4=37
+N:Last note suggests minor mode tune
+K:G
+z4z/2
+[GEB,]z/2|[GEB,]z/2[AFD]z/2 [AFD]z/2[GEB,]z/2|[ECA,]z/2[F^DB,]z/2 [F^DB,]z/2[GEB,]z/2|[GEB,]z/2[AF=D]z/2 [AFD]z/2[GEB,]z/2|
+[^DB,F,]z/2[EB,G,]z/2 [EB,G,]z/2[=dBG]z/2|[dBG]z/2[AF=D]z/2 [FDA,]z/2[GEB,]z/2|[ECA,]z/2[F^DB,]z/2 [F^DB,]z/2[dBG]z/2|[dBG]z/2[AF=D]z/2 [FDA,]z/2[GEB,]z/2|
+[^DB,F,]z/2[GEB,]z/2 [GEB,]z/2[GEB,]z/2|[GEB,]z/2[AF=D]z/2 [AFD]z/2[GEB,]z/2|[ECA,]z/2[F^DB,]z/2 [F^DB,]z/2[GEB,]z/2|[GEB,]z/2[AF=D]z/2 [AFD]z/2[GEB,]z/2|
+[^DB,F,]z/2[EB,G,]z/2 [EB,G,]z/2[dBG]z/2|[dBG]z/2[AF=D]z/2 [FDA,]z/2[GEB,]z/2|[ECA,]z/2[F^DB,]z/2 [F^DB,]z/2[dBG]z/2|[dBG]z/2[AF=D]z/2 [FDA,]z/2[GEB,]z/2|
+[^DB,F,]z/2[GEB,]z/2 [GEB,]z/2Gz/2|[GEB,]z/2[AF=D]z/2 [AFD]z/2[GEB,]z/2|[ECA,]z/2[F^DB,]z/2 [F^DB,]z/2[GEB,]z/2|[GEB,]z/2[AF=D]z/2 [AFD]z/2[GEB,]z/2|
+[^DB,F,]z/2[EB,G,]z/2 [EB,G,]z/2[dBG]z/2|[dBG]z/2[AF=D]z/2 [FDA,]z/2[GEB,]z/2|[ECA,]z/2[F^DB,]z/2 [F^DB,]z/2[dBG]z/2|[dBG]z/2[AF=D]z/2 [FDA,]z/2[GEB,]z/2|
+[^DB,F,]z/2[GEB,]z/2 [GEB,]z/2Gz/2|[GEB,]z/2[AF=D]z/2 [AFD]z/2[GEB,]z/2|[ECA,]z/2[F^DB,]z/2 [F^DB,]z/2[GEB,]z/2|[GEB,]z/2[AF=D]z/2 [AFD]z/2[GEB,]z/2|
+[^DB,F,]z/2[EB,G,]z/2 [EB,G,]z/2[dBG]z/2|[dBG]z/2[AF=D]z/2 [FDA,]z/2[GEB,]z/2|[ECA,]z/2[F^DB,]z/2 [F^DB,]z/2[dBG]z/2|[dBG]z/2[AF=D]z/2 [FDA,]z/2[GEB,]z/2|
+[^DB,F,]z/2[GEB,]z/2 [GEB,]
+
+X: 3
+T:GreenSleeves Àlt Melody 
+M:3/4
+L:1/8
+Q:1/4=37
+N:Last note suggests minor mode tune
+K:G
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z4
+B/2ef/2|g/2z/2[a/2g/2]fd/2 A/2z/2[d/2^c/2]eB/2|=c/2z/2[c/2B/2]^dB/2 FB/2ef/2|g/2z/2[a/2g/2]f=d/2 A/2z/2[d/2^c/2]e/2z/2[d/2B/2]|
+B/2z/2[B/2A/2]B3b3/2|b/2z/2[a/2g/2]fA/2 A/2z/2[d/2^c/2]eB/2|=c/2z/2[c/2B/2]^dB/2 F3/2b3/2|b/2z/2[a/2g/2]fA/2 A/2z/2[=d/2^c/2]e/2z/2[d/2B/2]|
+B/2z/2[B/2A/2]B2-B/2B/2ef/2|g/2z/2[a/2g/2]fd/2 A/2z/2[d/2^c/2]eB/2|=c/2z/2[c/2B/2]^dB/2 FB/2ef/2|g/2z/2[a/2g/2]f=d/2 A/2z/2[d/2^c/2]e/2z/2[d/2B/2]|
+B/2z/2[B/2A/2]B3b3/2|b/2z/2[a/2g/2]fA/2 A/2z/2[d/2^c/2]eB/2|=c/2z/2[c/2B/2]^dB/2 F3/2b3/2|b/2z/2[a/2g/2]fA/2 A/2z/2[=d/2^c/2]e/2z/2[d/2B/2]|
+B/2z/2[B/2A/2]B2-B/2B/2ef/2|g/2z/2[a/2g/2]fd/2 A/2z/2[d/2^c/2]eB/2|=c/2z/2[c/2B/2]^dB/2 FB/2ef/2|g/2z/2[a/2g/2]f=d/2 A/2z/2[d/2^c/2]e/2z/2[d/2B/2]|
+B/2z/2[B/2A/2]B3b3/2|b/2z/2[a/2g/2]fA/2 A/2z/2[d/2^c/2]eB/2|=c/2z/2[c/2B/2]^dB/2 F3/2b3/2|b/2z/2[a/2g/2]fA/2 A/2z/2[=d/2^c/2]e/2z/2[d/2B/2]|
+B/2z/2[B/2A/2]B2-B/2
+
+X: 4
+T:GreenSleeves Bas
+M:3/4
+L:1/8
+Q:1/4=37
+N:Last note suggests minor mode tune
+K:G
+z4z/2
+E3/2|E3/2D3/2 D3/2E3/2|A3/2B3/2 B3/2E3/2|E3/2D3/2 D3/2E3/2|
+B3/2E3/2 E3/2G3/2|G3/2D3/2 D3/2E3/2|A3/2B3/2 B3/2G3/2|G3/2D3/2 D3/2E3/2|
+B3/2E3/2 E3/2E3/2|E3/2D3/2 D3/2E3/2|A3/2B3/2 B,-[^D/2B,/2]E3/2|E/2z/2[G/2E/2]=D3/2 D-[F/2E/2D/2]EE/2|
+B/2z/2[A/2G/2]E3/2 E3/2G3/2|G/2z/2[B/2A/2]D3/2 D/2z/2[F/2E/2]E3/2|A/2z/2[c/2B/2]B3/2 B3/2G3/2|G/2z/2[F/2E/2]D3/2 D/2z/2[F/2E/2]E3/2|
+B/2z/2[B/2A/2]E3/2 E3/2E3/2|E3/2D3/2 D3/2E3/2|A3/2B3/2 B,-[^D/2B,/2]E3/2|E/2z/2[G/2E/2]=D3/2 D-[F/2E/2D/2]EE/2|
+B/2z/2[A/2G/2]E3/2 E3/2G3/2|G/2z/2[B/2A/2]D3/2 D/2z/2[F/2E/2]E3/2|A/2z/2[c/2B/2]B3/2 B3/2G3/2|G/2z/2[F/2E/2]D3/2 D/2z/2[F/2E/2]E3/2|
+B/2z/2[B/2A/2]E3/2 E3/2E3/2|E3/2D3/2 D3/2E3/2|A3/2B3/2 B,-[^D/2B,/2]E3/2|E/2z/2[G/2E/2]=D3/2 D-[F/2E/2D/2]EE/2|
+B/2z/2[A/2G/2]E3/2 E3/2G3/2|G/2z/2[B/2A/2]D3/2 D/2z/2[F/2E/2]E3/2|A/2z/2[c/2B/2]B3/2 B3/2G3/2|G/2z/2[F/2E/2]D3/2 D/2z/2[F/2E/2]E3/2|
+B/2z/2[B/2A/2]E3/2 E3/2

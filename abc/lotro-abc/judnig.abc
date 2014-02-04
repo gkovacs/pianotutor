@@ -1,0 +1,90 @@
+X:1
+T:judas priest : Night crawler [lute][X-command]
+Z: X-command 
+M:4/4
+L:1/8
+Q:1/4=192
+K:D
+% MIDI Key signature, sharp/flats=2  minor=0
+E,B, E=F, E,B, ED,|E,B, B,^F, D,A, DD,|E,B, E=F, E,B, ED,|E,B, B,^F, D,A, DD,|
+[E2B,2E,2] E,E, E,E, [=F2=C2=F,2]|[E2B,2E,2] E,E, E,E, [D2A,2D,2]|[E2B,2E,2] E,E, [B,2B,2^F,2] E,E,|[D2A,2D,2] E,E, E,E, E,E,|
+[E2B,2E,2] E,E, E,E, [=F2=C2=F,2]|[E2B,2E,2] E,E, E,E, [D2A,2D,2]|[E2B,2E,2] E,E, [B,2B,2^F,2] E,E,|B,B, [^F2D2A,2] B,B, [F2D2A,2]|
+B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|
+A,A, A,A, A,A, A,A,|A,A, A,A, A,A, A,A,|D,C, B,2 B,B, [D2A,2D,2]|B,B, B,B, [E2B,2E,2] [E2B,2E,2]|
+B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|
+A,A, A,A, A,A, A,A,|A,A, A,A, A,A, A,A,|D,C, B,2 B,B, [D2A,2D,2]|B,B, B,B, [E2B,2E,2] [E2B,2E,2]|
+[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[G,D,][F,C,] E,2 [=C4G,4=C,4]|
+[F,2F,2^C,2] E,E, [F,2F,2C,2] E,E,|[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|F,F, F,F, C,B, A,2|
+B,B, F,B, B,G, B,B,|F,B, B,E, B,B, F,B,|A,A, E,A, A,C, F,F,|F,F, C,F, D,F, C,F,|
+B,B, F,B, B,G, B,B,|F,B, B,E, B,B, F,B,|A,A, E,E, E,2<C,2|F,F, C,F, D,2<C,2|
+[E2B,2E,2] E,E, [=F4=C4=F,4]|[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|
+[E2B,2E,2] E,E, [=F4=C4=F,4]|[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4B,4^F,4]|B,B, [^F2D2A,2] B,B, [F2D2A,2]|
+B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|
+A,A, A,A, A,A, A,A,|A,A, A,A, A,A, A,A,|D,C, B,2 B,B, [D2A,2D,2]|B,B, B,B, [E2B,2E,2] [E2B,2E,2]|
+B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|B,B, B,B, B,B, B,B,|B,B, B,B, [DA,D,][D3A,3D,3]|
+A,A, A,A, A,A, A,A,|A,A, A,A, A,A, A,A,|D,C, B,2 B,B, [D2A,2D,2]|B,B, B,B, [E2B,2E,2] [E2B,2E,2]|
+[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[G,D,][F,C,] E,2 [=C4G,4=C,4]|
+[F,2F,2^C,2] E,E, [F,2F,2C,2] E,E,|[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|F,F, F,F, C,B, A,2|
+B,B, F,B, B,G, B,B,|F,B, B,E, B,B, F,B,|A,A, E,A, A,C, F,F,|F,F, C,F, D,F, C,F,|
+B,B, F,B, B,G, B,B,|F,B, B,E, B,B, F,B,|A,A, E,E, E,2<C,2|F,F, C,F, D,2<C,2|
+[E2B,2E,2] E,E, [=F4=C4=F,4]|[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|
+[E2B,2E,2] E,E, [=F4=C4=F,4]|[E2B,2E,2] E,E, [D4A,4D,4]|[E4B,4E,4] [B,4B,4^F,4]|[=C4G,4=C,4] [G,4G,4D,4]|
+E,/2E,/2E,/2E,/2 F,/2F,/2F,/2F,/2 G,/2G,/2G,/2G,/2 A,/2A,/2A,/2A,/2|B,/2B,/2B,/2B,/2 ^C/2C/2C/2C/2 D/2D/2D/2D/2 E/2E/2E/2E/2|[^F4F,4] [G4G,4]|[F4F,4] [E4E,4]|
+[F4F,4] [B,4B,4]|[D8D,8]|[C4^C,4] [D4D,4]|[E4E,4] [C4C,4]|
+[DD,][CC,] [B,6-B,6-]|[B,8B,8]|[F4F,4] [G4G,4]|[F4F,4] [E4E,4]|
+[F4F,4] [B,4B,4]|[D8D,8]|[C4C,4] [D4D,4]|[E4E,4] [C4C,4]|
+[DD,][CC,] [B,6B,6]|[DD,][CC,] [B,6B,6]|[C4C,4] [F4F,4]|[C4C,4] [B,4B,4]|
+[D4D,4] [C4C,4]|[B,4B,4] [C4C,4]|[B,4B,4] [D4D,4]|[C4C,4] [D4D,4]|
+[B,4B,4] [D4D,4]|[C4C,4] [C4C,4]|[B,4B,4] [D4D,4]|[C4C,4] [B,4B,4]|
+[B,4B,4] [D4D,4]|[C4C,4] [B,4B,4]|[F4F,4] [A4A,4]|[F4F,4] [G4G,4]|
+[^A,4^A,4] [C4C,4]|[F8F,8]|z8|z8|
+z8|z8|[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|
+[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[G,D,]F, E,E, [=C4G,4=C,4]|[F,2F,2^C,2] E,E, [F,2F,2C,2] E,E,|[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|
+[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[G,D,]F, E,E, [=C4G,4=C,4]|[F,2F,2^C,2] E,E, [F,2F,2C,2] E,E,|[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|
+[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[G,D,]F, E,2 =C,B, =A,2|[B,8B,8F,8]|E,B, E=F, E,B, ED,|
+E,B, B,^F, D,A, DD,|E,B, E=F, E,B, ED,|E,B, B,^F, D,A, DD,|E,B, E=F, E,B, ED,|
+E,B, B,^F, D,A, DD,|E,B, E=F, E,B, ED,|E,B, B,^F, D,A, DD,|E,B, E=F, E,B, ED,|
+E,B, B,^F, D,A, DD,|E,B, E=F, E,B, ED,|E,B, B,^F, D,A, DD,|E,B, E=F, E,B, ED,|
+E,B, B,^F, D,A, DD,|E,B, E=F, E,B, ED,|E,B, B,^F, D,A, DD,|[E2B,2E,2] E,E, E,E, [=F2=C2=F,2]|
+[E2B,2E,2] E,E, E,E, [D2A,2D,2]|[E2B,2E,2] E,E, [B,2B,2^F,2] E,E,|[D8A,8D,8]|[E2B,2E,2] E,E, E,E, [=F2=C2=F,2]|
+[E2B,2E,2] E,E, E,E, [D2A,2D,2]|[E2B,2E,2] E,E, [B,2B,2^F,2] E,E,|D8|[F,2F,2^C,2] E,E, [F,2F,2C,2] E,E,|
+[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|[G,D,][F,C,] E,2 [=C4G,4=C,4]|[F,2F,2^C,2] E,E, [F,2F,2C,2] E,E,|
+[F,2F,2C,2] E,E, E,F, [G,2G,2D,2]|[F,2F,2C,2] E,E, [F,2F,2C,2] E,E,|F,F, F,F, C,B, A,2|B,B, F,B, B,G, B,B,|
+F,B, B,E, B,B, F,B,|A,A, E,A, A,C, F,F,|F,F, C,F, D,F, C,F,|B,B, F,B, B,G, B,B,|
+F,B, B,E, B,B, F,B,|A,A, E,E, E,2<C,2|F,F, C,F, D,2<C,2|B,B, F,B, B,G, B,B,|
+F,B, B,E, B,B, F,B,|A,A, E,A, A,C, F,F,|F,F, C,F, D,F, C,F,|B,B, F,B, B,G, B,B,|
+F,B, B,E, B,B, F,B,|A,A, E,E, E,2<C,2|F,F, C,F, D,2<C,2|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[E2B,2E,2] E,E, [=F4=C4=F,4]|
+[E2B,2E,2] E,E, [D4A,4D,4]|[E2B,2E,2] E,E, [B,4^F,4]|[D8A,8D,8]|[B,8-E,8-E,8-]|
+[B,8-E,8-E,8-]|[B,8-E,8-E,8-]|[B,8-E,8-E,8-]|[B,8-E,8-E,8-]|
+[B,8-E,8-E,8-]|[B,8-E,8-E,8-]|[B,8E,8E,8]|
+
+X:2
+T:judas priest : Night crawler [flute][X-command]
+Z: X-command 
+M:4/4
+L:1/8
+Q:1/4=48
+K:D
+z8|z8|z8|fg f/2e/2e fB d/2B/2z|
+cd ec z/2B/2z3|fg fe fB d/2B/2z|cd ec z/2B3/2 z2|z/2f/2f/2z/2 f/2B/2z3/2c/2d/2z/2 cz|
+z/2f/2f/2f/2 gf c/2c/2c/2d/2 c/2z/2d|c/2B/2z2z/2z/2 e/2z/2c/2c/2 F/2z/2z/2d/2|c/2B/2z2z/2d/2 e/2c/2z/2c/2 F/2z/2z/2d/2|c/2B6-B3/2|
+z8|fg f/2e/2e fB d/2z3/2|[ec][fd] [ge][ec] z/2B/2z3|fg fe fB d/2z3/2|
+cd ec z/2B3/2 z2|z/2f/2f/2z/2 f/2B/2z3/2c/2d/2z/2 cz|z/2f/2f/2f/2 gf c/2c/2c/2d/2 c/2z/2d|c/2B/2z2z/2z/2 e/2z/2c/2c/2 F/2z/2z/2d/2|
+c/2B/2z2z/2d/2 e/2c/2z/2c/2 F/2z/2z/2d/2|c/2B6-B3/2|z8|z8|
+z8|z8|z8|z4 zf cd|
+c3/2b/2 b2 z3d|ed cd dz2d|z/2d/2z2d ed cd|cc c6-|
+c/2z6z3/2|z8|z8|z6 z/2z/2z/2B,/2|
+E/2z/2D z/2z/2z/2E/2 z/2z/2B,/2z/2 z/2E/2z/2B,/2|z/2E/2E/2B,/2 z/2E/2z/2B,/2 z/2E/2B, z/2E/2z/2z/2|E/2E/2B, E/2z/2E/2z/2 E/2D/2B, E/2z/2z/2z/2|z/2z/2D/2z/2 z/2z/2B,/2z/2 E/2E/2E z2|
+z8|z6 z/2f/2f/2z/2|f/2B/2z3/2c/2d/2z/2 cz3/2f/2f/2f/2|gf c/2c/2c/2d/2 c/2z/2d c/2B/2z|
+z3/2z/2 e/2z/2c/2c/2 F/2z/2z/2d/2>c/2B/2z|z3/2d/2 e/2c/2z/2c/2 F/2z/2z/2d/2 c/2B/2z|z3/2d/2 e/2z/2c/2A/2 F/2z/2z/2d/2 B/2B/2z|z3/2d/2 B/2c/2z/2d/2 F/2z/2z/2d/2 z/2B/2B-|
+B6 z2|z4 z/2z/2z/2d/2 z2|z4 z/2z/2d/2z/2 d/2z3/2|z4 zz/2d/2 c/2b3/2|
+z4 zz/2d/2 c/2b3/2|z4 zz/2d/2 c/2b3/2|z4 zz/2d/2 c/2b3/2|z4 zz/2d/2 c/2b3/2|
+z4 zz/2d/2 c<b|

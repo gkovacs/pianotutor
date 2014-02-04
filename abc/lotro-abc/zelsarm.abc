@@ -1,0 +1,63 @@
+X:1
+T:Saria's Song, Melody Flute/Clarinet
+Z:Charbonneau, Brandywine AIM: The Caviarmy
+M:2/2
+L:1/4
+Q:1/4=149
+K:C
+%z8
+FA B2 FA B2|FA Be d2 Bc|BG E4 zD|EG E6|
+FA B2 FA B2|FA Be d2 Bc|ec G4 zB|GD E2- E/2F/2E/2F/2 E2|
+DE F2 GA B2|cB E6|DE F2 GA B2|cd e6|DE F2 GA B2|cB E6|
+DC ED FE GF|AG BA cB e/2fd/2|
+e8-|e8|
+FA B2 FA B2|FA Be d2 Bc|BG E4 zD|EG E6|
+FA B2 FA B2|FA Be d2 Bc|ec G4 zB|GD E2- E/2F/2E/2F/2 E2|
+DE F2 GA B2|cB E6|DE F2 GA B2|cd e6|
+DE F2 GA B2|cB E6|DC ED FE GF|AG BA cB e/2fd/2|
+e8-|e8|
+
+X:2
+T:Saria Accompaniment, Lute/Harp
+z:Charbonneau, Brandywine AIM: The Caviarmy
+M:2/2
+L:1/4
+Q:1/4=149
+K:C
+%z8
+F,[A,C][A,C][A,C] F,[A,C][A,C][A,C]
+F,[A,C][A,C][A,C] F,[A,C][A,C][A,C]
+[C,E,][G,C][G,C][G,C] [C,E,][G,C][G,C]C,
+[C,E,][G,C][G,C][G,C] [C,E,][G,C][G,C]C,
+F,[A,C][A,C][A,C] F,[A,C][A,C][A,C]
+F,[A,C][A,C][A,C] F,[A,C][A,C][A,C]
+[C,E,][G,C][G,C][G,C] [C,E,][G,C][G,C]C,
+[C,E,][G,C][G,C][G,C] [C,E,][G,C][G,C]C,
+D,[F,A,]D,[F,A,] D,G,D,G,
+C,[G,C]C,[G,C] E,A,E,A,
+D,[F,A,]D,[F,A,] D,G,D,G,
+C,[G,C]C,[G,C] E,A,E,A,
+D,[F,A,]D,[F,A,] D,G,D,G,
+C,[G,C]C,[G,C] E,A,E,A,
+D,[F,A,][F,2A,2] D,[F,A,][F,2A,2]
+C,[G,B,][G,2B,2] C,[G,B,][G,2B,2]
+E,[A,B,] z [A,B,] E,[A,B,] z [A,B,]
+E,[^G,B,][^G,B,][E,^G,B,][E,6^G,6B,4]
+F,[A,C][A,C][A,C] F,[A,C][A,C][A,C]
+F,[A,C][A,C][A,C] F,[A,C][A,C][A,C]
+[C,E,][=G,C][=G,C][=G,C] [C,E,][=G,C][=G,C]C,
+[C,E,][=G,C][=G,C][=G,C] [C,E,][=G,C][=G,C]C,
+F,[A,C][A,C][A,C] F,[A,C][A,C][A,C]
+F,[A,C][A,C][A,C] F,[A,C][A,C][A,C]
+[C,E,][=G,C][=G,C][=G,C] [C,E,][=G,C][=G,C]C,
+[C,E,][=G,C][=G,C][=G,C] [C,E,][=G,C][=G,C]C,
+D,[F,A,]D,[F,A,] D,=G,D,=G,
+C,[=G,C]C,[=G,C] E,A,E,A,
+D,[F,A,]D,[F,A,] D,=G,D,=G,
+C,[=G,C]C,[=G,C] E,A,E,A,
+D,[F,A,]D,[F,A,] D,=G,D,=G,
+C,[=G,C]C,[=G,C] E,A,E,A,
+D,[F,A,][F,2A,2] D,[F,A,][F,2A,2]
+C,[=G,B,][=G,2B,2] C,[=G,B,][=G,2B,2]
+E,[A,B,] z [A,B,] E,[A,B,] z [A,B,]
+E,[^G,B,][^G,B,][E,^G,B,][E,6^G,6B,4]

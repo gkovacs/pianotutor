@@ -1,0 +1,101 @@
+X: 1
+T: Scarborough Fair Melody
+N: Instrument Channel 1 ... [Acoustic Grand Piano]
+N: Instrument Channel 2 ... [Xylophone]
+N: Instrument Channel 3 ... [FX 5 (Brightness)]
+N: Instrument Channel 4 ... [Pad 1 (New Age)]
+M: 3/4
+L: 1/8
+Q:1/4=60
+N: Last note suggests Dorian mode tune
+K:D
+%untitled
+%Scarborough Fair
+%%MIDI program 1 0
+z6|z6|E3/2z/2E/2z/2 [B/2G/2][BG]z/2[B/2G/2]B/2|Fz/2G/2F/2z/2 E3-|
+E2z2[B/2G/2]z/2[d/2B/2]z/2|[e3/2G3/2]z/2[d/2G/2]z/2 [B/2G/2]z/2[c/2A/2]z/2A/2z/2|[B6-G6-]|[B3-G3-] [B/2G/2]z3/2e/2z/2|
+[e3/2G3/2]z/2[e/2G/2]z/2 [d3/2B3/2]z/2B/2z/2|B/2z/2A/2z/2G/2z/2 F3-|F2z E3/2z/2B/2z/2|A3/2z/2G/2z/2 F/2z/2E/2z/2D/2z/2|
+E6-|E4-Ez|E/2z/2E/2z/2E/2z/2 [B/2E/2]z/2B/2z/2B/2z/2|F/2z/2G/2z/2F/2z/2 E3-|
+E2z2[B/2G/2]z/2[d/2B/2]z/2|[e3/2G3/2]z/2[d/2F/2]z/2 [B/2G/2]z/2[c/2A/2]z/2A/2z/2|[d/2B/2-]B/2-[e/2B/2-]B/2-[d/2B/2-]B/2- [e/2B/2-]B/2-[e/2B/2-]B/2-[e/2B/2-]B/2-|[f/2B/2]z/2f/2z/2f/2z/2 e2e/2z/2|
+[e3/2G3/2]z/2[e/2G/2]z/2 [d3/2B3/2]z/2B/2z/2|B/2z/2A/2z/2G/2z/2 F3-|F2z E3/2z/2B/2z/2|A3/2z/2G/2z/2 F/2z/2E/2z/2D/2z/2|
+[G/2E/2-]E/2-[F/2E/2-]E/2-[G/2E/2-]E/2- [A/2E/2]z/2G/2z/2F/2z/2|G/2z/2F/2z/2D/2z/2 E2z|E/2z/2E/2z/2E/2z/2 [B/2E/2]z/2B/2z/2B/2z/2|F/2z/2G/2z/2F/2z/2 E3-|
+E2z2[B/2G/2]z/2[d/2B/2]z/2|[e3/2G3/2]z/2[d/2F/2]z/2 [B/2G/2]z/2[c/2A/2]z/2A/2z/2|[d/2B/2-]B/2-[e/2B/2-]B/2-[d/2B/2-]B/2- [e/2B/2-]B/2-[e/2B/2-]B/2-[e/2B/2-]B/2-|[f/2B/2]z/2f/2z/2f/2z/2 e2e/2z/2|
+[e3/2G3/2]z/2[e/2G/2]z/2 [d3/2B3/2]z/2B/2z/2|B/2z/2A/2z/2G/2z/2 F3-|F2z E3/2z/2B/2z/2|A3/2z/2G/2z/2 F/2z/2E/2z/2D/2z/2|
+[G/2E/2-]E/2-[F/2E/2-]E/2-[G/2E/2-]E/2- [A/2E/2]z/2G/2z/2F/2z/2|G/2z/2F/2z/2D/2z/2 E2z|E/2z/2E/2z/2E/2z/2 [B/2E/2]z/2B/2z/2B/2z/2|F/2z/2G/2z/2F/2z/2 E3-|
+E2z2[B/2G/2]z/2[d/2B/2]z/2|[e3/2G3/2]z/2[d/2F/2]z/2 [B/2G/2]z/2[c/2A/2]z/2A/2z/2|[d/2B/2-]B/2-[e/2B/2-]B/2-[d/2B/2-]B/2- [e/2B/2-]B/2-[e/2B/2-]B/2-[e/2B/2-]B/2-|[f/2B/2]z/2f/2z/2f/2z/2 e2e/2z/2|
+[e3/2G3/2]z/2[e/2G/2]z/2 [d3/2B3/2]z/2B/2z/2|B/2z/2A/2z/2G/2z/2 F3-|F2z E3/2z/2B/2z/2|A3/2z/2G/2z/2 F/2z/2E/2z/2D/2z/2|
+E6-|E2z4|z3 E-[b-e-E][b-e-]|[b3/2e3/2]
+
+X: 2
+T: Scarborough Fair Begeleiding 1
+N: Instrument Channel 1 ... [Acoustic Grand Piano]
+N: Instrument Channel 2 ... [Xylophone]
+N: Instrument Channel 3 ... [FX 5 (Brightness)]
+N: Instrument Channel 4 ... [Pad 1 (New Age)]
+M: 3/4
+L: 1/8
+Q:1/4=60
+N: Last note suggests Dorian mode tune
+K:D
+%untitled
+%by Sirio
+%%MIDI program 2 13
+z/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|D,/2A,/2D,/2E,/2F,/2A,/2 E,/2B,/2D/2C/2A,/2B,/2|
+E,/2B,/2A,/2B,/2F,/2G,/2 G,/2B,/2D/2B,/2G,/2B,/2|E,/2B,/2E/2B,/2E,/2B,/2 G,/2D/2A,/2C/2E/2=C/2|E,/2B,/2D/2^C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|
+E,/2B,/2E/2B,/2E,/2B,/2 G,/2B,/2D/2B,/2D/2B,/2|G,/2B,/2F,/2A,/2E,/2G,/2 D,/2A,/2D/2A,/2G,/2A,/2|F,/2A,/2E,/2A,/2D,/2A,/2 E,/2G,/2B,/2G,/2E,/2G,/2|D,/2F,/2A,/2F,/2E,/2G,/2 D,/2F,/2E,/2G,/2F,/2A,/2|
+E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|D,/2A,/2E,/2A,/2D,/2A,/2 E,/2B,/2D/2C/2A,/2B,/2|
+E,/2B,/2A,/2B,/2F,/2A,/2 G,/2B,/2D/2B,/2G,/2B,/2|E,/2B,/2E/2B,/2E,/2B,/2 G,/2D/2A,/2C/2E/2=C/2|E,/2B,/2D/2^C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2A,/2|E,/2G,/2A,/2B,/2A,/2F,/2 E,/2G,/2A,/2B,/2A,/2F,/2|
+E,/2B,/2E/2B,/2E,/2B,/2 G,/2B,/2D/2B,/2D/2B,/2|G,/2B,/2F,/2A,/2E,/2G,/2 D,/2A,/2D/2A,/2G,/2A,/2|F,/2A,/2E,/2A,/2D,/2A,/2 E,/2G,/2B,/2G,/2E,/2G,/2|D,/2F,/2A,/2F,/2E,/2G,/2 D,/2F,/2E,/2G,/2F,/2A,/2|
+E,/2B,/2A,/2B,/2G,/2B,/2 F,/2B,/2E,/2B,/2D,/2B,/2|E,/2B,/2F,/2B,/2G,/2B,/2 E,/2G,/2A,/2B,/2A,/2G,/2|E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|D,/2A,/2E,/2A,/2D,/2A,/2 E,/2B,/2D/2C/2A,/2B,/2|
+E,/2B,/2A,/2B,/2F,/2A,/2 G,/2B,/2D/2B,/2G,/2B,/2|E,/2B,/2E/2B,/2E,/2B,/2 G,/2D/2A,/2C/2E/2=C/2|E,/2B,/2D/2^C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2A,/2|E,/2G,/2A,/2B,/2A,/2F,/2 E,/2G,/2A,/2B,/2A,/2F,/2|
+E,/2B,/2E/2B,/2E,/2B,/2 G,/2B,/2D/2B,/2D/2B,/2|G,/2B,/2F,/2A,/2E,/2G,/2 D,/2A,/2D/2A,/2G,/2A,/2|F,/2A,/2E,/2A,/2D,/2A,/2 E,/2G,/2B,/2G,/2E,/2G,/2|D,/2F,/2A,/2F,/2E,/2G,/2 D,/2F,/2E,/2G,/2F,/2A,/2|
+E,/2B,/2A,/2B,/2G,/2B,/2 F,/2B,/2E,/2B,/2D,/2B,/2|E,/2B,/2F,/2B,/2G,/2B,/2 E,/2G,/2A,/2B,/2A,/2G,/2|E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|D,/2A,/2E,/2A,/2D,/2A,/2 E,/2B,/2D/2C/2A,/2B,/2|
+E,/2B,/2A,/2B,/2F,/2A,/2 G,/2B,/2D/2B,/2G,/2B,/2|E,/2B,/2E/2B,/2E,/2B,/2 G,/2D/2A,/2C/2E/2=C/2|E,/2B,/2D/2^C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2A,/2|E,/2G,/2A,/2B,/2A,/2F,/2 E,/2G,/2A,/2B,/2A,/2F,/2|
+E,/2B,/2E/2B,/2E,/2B,/2 G,/2B,/2D/2B,/2D/2B,/2|G,/2B,/2F,/2A,/2E,/2G,/2 D,/2A,/2D/2A,/2G,/2A,/2|F,/2A,/2E,/2A,/2D,/2A,/2 E,/2G,/2B,/2G,/2E,/2G,/2|D,/2F,/2A,/2F,/2E,/2G,/2 D,/2F,/2E,/2G,/2F,/2A,/2|
+E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|E,/2B,/2D/2C/2A,/2B,/2 E,/2B,/2A,/2B,/2F,/2G,/2|E,/2G,/2B,/2G,/2A,/2D/2 [B,2E,2]
+
+X: 3
+T: Scarborough Fair Begeleiding 2 (harp)
+M: 3/4
+L: 1/8
+Q:1/4=60
+N: Last note suggests Dorian mode tune
+K:D
+z6|z6|E3/2z/2E/2z/2 B/2Bz/2B/2B/2|Fz/2G/2F/2z/2 E3-|
+E2z2B/2z/2d/2z/2|e3/2z/2d/2z/2 B/2z/2c/2z/2A/2z/2|B6-|B3- B/2z3/2e/2z/2|
+e3/2z/2e/2z/2 d3/2z/2B/2z/2|B/2z/2A/2z/2G/2z/2 F3-|F2z E3/2z/2B/2z/2|A3/2z/2G/2z/2 F/2z/2E/2z/2D/2z/2|
+E6-|E4-Ez|E/2z/2E/2z/2E/2z/2 B/2z/2B/2z/2B/2z/2|F/2z/2G/2z/2F/2z/2 E3-|
+E2z2B/2z/2d/2z/2|e3/2z/2d/2z/2 B/2z/2c/2z/2A/2z/2|B6-|B2z3e/2z/2|
+e3/2z/2e/2z/2 d3/2z/2B/2z/2|B/2z/2A/2z/2G/2z/2 F3-|F2z E3/2z/2B/2z/2|A3/2z/2G/2z/2 F/2z/2E/2z/2D/2z/2|
+E6-|E4-Ez|E/2z/2E/2z/2E/2z/2 B/2z/2B/2z/2B/2z/2|F/2z/2G/2z/2F/2z/2 E3-|
+E2z2B/2z/2d/2z/2|e3/2z/2d/2z/2 B/2z/2c/2z/2A/2z/2|B6-|B2z3e/2z/2|
+e3/2z/2e/2z/2 d3/2z/2B/2z/2|B/2z/2A/2z/2G/2z/2 F3-|F2z E3/2z/2B/2z/2|A3/2z/2G/2z/2 F/2z/2E/2z/2D/2z/2|
+E6-|E4-Ez|E/2z/2E/2z/2E/2z/2 B/2z/2B/2z/2B/2z/2|F/2z/2G/2z/2F/2z/2 E3-|
+E2z2B/2z/2d/2z/2|e3/2z/2d/2z/2 B/2z/2c/2z/2A/2z/2|B6-|B2z3e/2z/2|
+e3/2z/2e/2z/2 d3/2z/2B/2z/2|B/2z/2A/2z/2G/2z/2 F3-|F2z E3/2z/2B/2z/2|A3/2z/2G/2z/2 F/2z/2E/2z/2D/2z/2|
+E6-|E2
+
+X: 4
+T: Scarborough Fair Begeleiding 3 
+N: Instrument Channel 1 ... [Acoustic Grand Piano]
+N: Instrument Channel 2 ... [Xylophone]
+N: Instrument Channel 3 ... [FX 5 (Brightness)]
+N: Instrument Channel 4 ... [Pad 1 (New Age)]
+M: 3/4
+L: 1/8
+Q:1/4=60
+N: Last note suggests Dorian mode tune
+K:D
+%%MIDI program 4 88
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z4E/2z/2E/2z/2|D/2z/2E/2z/2D/2z/2 G/2z/2F/2z/2E/2z/2|
+E/2z/2E/2z/2D/2z/2 B,2z|z6|d/2z/2e/2z/2d/2z/2 [e/2c/2]z/2[e/2B/2]z/2[e/2c/2]z/2|[f/2d/2]z/2[f/2c/2]z/2[f/2A/2]z/2 [e2B2]z|
+z4d/2z/2d/2z/2|[d/2D/2]z/2[B/2E/2]z/2[d/2E/2]z/2 [A/2D/2D/2]z/2D/2z/2D/2z/2|[D/2D/2]E/2[F/2E/2]z/2[G/2D/2]z/2 E/2z/2E3/2z/2|z6|
+G/2z/2F/2z/2G/2z/2 A/2z/2G/2z/2F/2z/2|G/2z/2F/2z/2D/2z/2 E2z|z4E/2z/2E/2z/2|D/2z/2E/2z/2D/2z/2 G/2z/2F/2z/2E/2z/2|
+E/2z/2E/2z/2D/2z/2 B,2z|z6|d/2z/2e/2z/2d/2z/2 [e/2c/2]z/2[e/2B/2]z/2[e/2c/2]z/2|[f/2d/2]z/2[f/2c/2]z/2[f/2A/2]z/2 [e2B2]z|
+z4d/2z/2d/2z/2|[d/2D/2]z/2[B/2E/2]z/2[d/2E/2]z/2 [A/2D/2D/2]z/2D/2z/2D/2z/2|[D/2D/2]E/2[F/2E/2]z/2[G/2D/2]z/2 E/2z/2E3/2z/2|z6|
+G/2z/2F/2z/2G/2z/2 A/2z/2G/2z/2F/2z/2|G/2z/2F/2z/2D/2z/2 E2z|z4E/2z/2E/2z/2|D/2z/2E/2z/2D/2z/2 G/2z/2F/2z/2E/2z/2|
+E/2z/2E/2z/2D/2z/2 B,2z|z6|d/2z/2e/2z/2d/2z/2 [e/2c/2]z/2[e/2B/2]z/2[e/2c/2]z/2|[f/2d/2]z/2[f/2c/2]z/2[f/2A/2]z/2 [e2B2]z|
+z4d/2z/2d/2z/2|[d/2D/2]z/2[B/2E/2]z/2[d/2E/2]z/2 [A/2D/2D/2]z/2D/2z/2D/2z/2|[D/2D/2]E/2[F/2E/2]z/2[G/2D/2]z/2 E/2z/2E3/2

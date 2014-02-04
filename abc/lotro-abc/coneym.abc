@@ -1,0 +1,128 @@
+X: 1
+T: Coney Stew For Dinner by Branderic (Lute) [v1/Branderic]
+M: 3/4
+L: 1/16
+Q:1/4=90
+K:C % 0 sharps
+x8x3G| \
+AxG AxG edc B2G| \
+BxG BxG dcB A2A| \
+cxA cxA edc B2G|
+BxG BxG A2x A2G| \
+AxG AxG edc B2G| \
+BxG BxG dcB A2A| \
+cxA cxA edc B2G|
+BxG BxG A2x A2G| \
+aee ecc ecc c2c| \
+ecc ccc e2e eee| \
+aee ecc ecc c2G|
+AAA GGG A2A AAA| \
+a3 e2c eee d2c| \
+eee c2c e3 d2d| \
+aaa eec eee d2G|
+AAA G2G A3 A2A| \
+AxG AxG edc B2G| \
+BxG BxG dcB A2A| \
+cxA cxA edc B2G|
+BxG BxG A2x A2G| \
+AxG AxG edc B2G| \
+BxG BxG dcB A2A| \
+cxA cxA edc B2G|
+BxG BxG A2x A2G| \
+aee ecc ecc c2c| \
+ecc ccc e2e eee| \
+aee ecc ecc c2G|
+AAA GGG A2A AAA| \
+a3 e2c eee d2c| \
+eee c2c e3 d2d| \
+aaa eec eee d2G|
+AAA G2G A3 A2A| \
+aee ecc ecc c2c| \
+ecc ccc e2e eee| \
+aee ecc ecc c2G|
+AAA GGG A2A AAA| \
+a3 e2c eee d2c| \
+eee c2c e3 d2d| \
+aaa eec eee d2G|
+AAA G2G A3 A2A| \
+AxG AxG edc B2G| \
+BxG BxG dcB A2A| \
+cxA cxA edc B2G|
+BxG BxG A2x A2G| \
+AxG AxG edc B2G| \
+BxG BxG dcB A2A| \
+cxA cxA edc B2G|
+BxG BxG A2x A2G| \
+aee ecc ecc c2c| \
+ecc ccc e2e eee| \
+aee ecc ecc c2G|
+AAA GGG A2A AAA| \
+a3 e2c eee d2c| \
+eee c2c e3 d2d| \
+aaa eec eee d2G|
+AAA G2G A3 A2A|
+
+X: 2
+T: Coney Stew For Dinner by Branderic (Bass) [v1/Branderic]
+M: 3/4
+L: 1/16
+Q:1/4=90
+K:C % 0 sharps
+x12| \
+E,2E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+[A,E,-]E,E, G,2G, A,A,A, G,2G,| \
+E,2E, G,2G, B,2B, A,2A,| \
+E,2E, G,2G, A,A,A, G,2G,|
+E,2E, G,2G, A,2A, A,2A,| \
+A,

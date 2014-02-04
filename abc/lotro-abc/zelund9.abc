@@ -1,0 +1,43 @@
+X: 1
+T: Zelda Underworld Level 9 (Main)
+Z: Nightwind of Windfola
+G: Nintendo
+I: Lute
+M: 4/4
+L: 1/8
+Q: 1/4=150
+K: C
+
+F,2 z^F,2D, ^D,2|z8|=F,2 z^F,2=D, ^D,2|z8|
+=F,2 z^F,2B, ^A,2|z3=F,2/32^G,2/32=G,2/32^D,|^F,3/2=F,2/32=D,2/32F,2/32E,3/2^C,|B,2 zC2^G, =A,2|
+z8|B,2 zC2^G, A,2|z8|B,2 zC2F E2|
+z3B,2/32D2/32^C2/32A,|=C3/2B,2/32^G,2/32B,2/32^A,3/2=G,|F,2 z^F,2D, ^D,2|z8|
+=F,2 z^F,2=D, ^D,2|z8|=F,2 z^F,2B, ^A,2|z3=F,2/32^G,2/32=G,2/32^D,|
+^F,3/2=F,2/32=D,2/32F,2/32E,3/2^C,|B,2 zC2^G, =A,2|z8|B,2 zC2^G, A,2|
+z8|B,2 zC2F E2|z3B,2/32D2/32^C2/32A,|=C3/2B,2/32^G,2/32B,2/32^A,3/2=G,|
+F,2 z^F,2D, ^D,2|z8|=F,2 z^F,2=D, ^D,2|z8|
+=F,2 z^F,2B, ^A,2|z3=F,2/32^G,2/32=G,2/32^D,|^F,3/2=F,2/32=D,2/32F,2/32E,3/2^C,|B,2 zC2^G, =A,2|
+z8|B,2 zC2^G, A,2|z8|B,2 zC2F E2|
+z3B,2/32D2/32^C2/32A,|=C3/2B,2/32^G,2/32B,2/32^A,3/2=G,|
+
+X: 2
+T: Zelda Underworld Level 9 (Support)
+Z: Nightwind of Windfola
+G: Nintendo
+I: Lute
+M: 4/4
+L: 1/8
+Q: 1/4=150
+K: C
+
+B,2 zC2^G, =A,2|z8|B,2 zC2^G, A,2|z8|
+B,2 zC2F E2|z3B,2/32D2/32^C2/32A,|=C3/2B,2/32^G,2/32B,2/32^A,3/2=G,|F2 z^F2D ^D2|
+z8|=F2 z^F2=D ^D2|z8|=F2 z^F2B ^A2|
+z3=F2/32^G2/32=G2/32^D|^F3/2=F2/32=D2/32F2/32E3/2^C|B,2 z=C2^G, =A,2|z8|
+B,2 zC2^G, A,2|z8|B,2 zC2F E2|z3B,2/32D2/32^C2/32A,|
+=C3/2B,2/32^G,2/32B,2/32^A,3/2=G,|F2 z^F2D ^D2|z8|=F2 z^F2=D ^D2|
+z8|=F2 z^F2B ^A2|z3=F2/32^G2/32=G2/32^D|^F3/2=F2/32=D2/32F2/32E3/2^C|
+B,2 z=C2^G, =A,2|z8|B,2 zC2^G, A,2|z8|
+B,2 zC2F E2|z3B,2/32D2/32^C2/32A,|=C3/2B,2/32^G,2/32B,2/32^A,3/2=G,|F2 z^F2D ^D2|
+z8|=F2 z^F2=D ^D2|z8|=F2 z^F2B ^A2|
+z3=F2/32^G2/32=G2/32^D|^F3/2=F2/32=D2/32F2/32E3/2^C|

@@ -1,0 +1,131 @@
+X:1
+T:Bonnie Portmore Clarinet 1
+Z:Giddily
+M:3/4
+L:1/8
+Q:1/4=83
+K:G
+
+z6|z6|z4GE|D2D2D/2EG/2|
+A4G/2AB/2|c2B2AG|E4GE|D2D2D/2EG/2|
+A2B2AG|E2D2D2|D4G/2AB/2|c2c2BA|
+B2B2AG|c2B2AG|E4G/2AB/2|c2c2BA|
+GBd2BA|G3/2E/2C DE3/2C/2|D6-|D4GE|
+D2D2D/2EG/2|A4G/2AB/2|c2B2AG|E4GE|
+D2D2D/2EG/2|A2B2AG|E2D2D2|D4G/2AB/2|
+c2c2BA|B2B2AG|c2B2AG|E4G/2AB/2|
+c2c2BA|GBd2BA|G3/2E/2C DE3/2C/2|D6-|
+D4z2|B6|c6|G6|
+c6|B6|c2B4|c2B4|
+B6|c6|B6|c2B4|
+c6|c6|B6|c6|
+c6|c6|B6|c6|
+G6|c6|B6|c2B4|
+c2B4|B6|c6|B6|
+c2B4|c6|c6|B6|
+c6|c6|c6|c6-|
+c6|
+
+X:2
+T:Bonnie Portmore clarinet 2
+Z:Giddily
+M:3/4
+L:1/8
+Q:1/4=83
+K:G
+
+z6|z6|z4DC|B,2B,2B,/2B,B,/2|
+C4B,/2CD/2|E2D2CB,|C4CC|B,2B,2B,/2B,B,/2|
+C2D2CB,|C2B,2B,2|B,4B,/2CD/2|E2E2DC|
+D2D2CB,|E2D2CB,|C4B,/2CD/2|E2E2DC|
+B,DG2DC|C3/2C/2A, B,C3/2A,/2|A,6|C4DC|
+B,2B,2B,/2B,B,/2|C4B,/2CD/2|E2D2CB,|C4CC|
+B,2B,2B,/2B,B,/2|C2D2CB,|C2B,2B,2|B,4B,/2CD/2|
+E2E2DC|D2D2CB,|E2D2CB,|C4B,/2CD/2|
+E2E2DC|B,DG2DC|C3/2C/2A, B,C3/2A,/2|A,6-|
+A,4
+
+
+X:3
+T:Bonnie Portmore-Harp
+Z:Giddily
+M:3/4
+L:1/8
+Q:1/4=83
+K:G
+
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+G,G,D, B,D,G,|A,A,E, CD,G,|C,G,E, CG,E,|C,G,E, CE,G,|
+G,G,D, B,D,G,|A,A,E, B,D,D|C,G,D, B,D,G,|G,G,D, B,D,G,|
+C,G,E, CE,C|G,B,F, DE,B,|C,G,E, CE,G,|C,G,E, CD,G,|
+C,G,E, CE,G,|G,G,D, B,D,G,|C,G,E, CE,G,|A,F,D, DD,F,|
+A,F,D, CD,F,|G,G,D, B,D,G,|A,A,E, CD,G,|C,G,E, CE,G,|
+C,G,E, CE,G,|G,G,D, B,D,G,|A,A,E, B,D,D|C,G,D, B,D,G,|
+G,G,D, B,D,G,|C,G,E, CE,C|G,B,F, DE,B,|C,G,E, CE,G,|
+C,G,E, CG,E,|C,G,E, CE,G,|G,G,D, B,D,G,|C,G,E, CE,G,|
+A,F,D, DD,F,|A,F,D, CD,F,|G,G,D, B,D,G,|A,A,E, CD,G,|
+C,G,E, CE,G,|C,G,E, CE,G,|G,G,D, B,D,G,|A,A,E, B,D,D|
+C,G,D, B,D,G,|G,G,D, B,D,G,|C,G,E, CE,C|G,B,F, DE,B,|
+C,G,E, CE,G,|C,G,E, CG,E,|C,G,E, CE,G,|G,G,D, B,D,G,|
+C,G,E, CE,G,|A,F,D, DD,F,|A,F,D, CD,F,|A,F,D, DD,F,|
+D6|
+
+X:4
+T:Bonnie Portmore Flute 1
+Z:Giddily
+M:3/4
+L:1/8
+Q:1/4=83
+K:G
+
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z4GE|D2D2D/2EG/2|A4G/2AB/2|c2B2AG|
+E4GE|D2D2D/2EG/2|A2B2AG|E2D2D2|
+D4G/2AB/2|c2c2BA|B2B2AG|c2B2AG|
+E4G/2AB/2|c2c2BA|GBd2BA|G3/2E/2C DE3/2C/2|
+D6-|D4GE|D2D2D/2EG/2|A4G/2AB/2|
+c2B2AG|E4GE|D2D2D/2EG/2|A2B2AG|
+E2D2D2|D4G/2AB/2|c2c2BA|B2B2AG|
+c2B2AG|E4G/2AB/2|c2c2BA|GBd2BA|
+G3/2E/2C DE3/2C/2|D6-|D6-|D6-|
+D6|
+
+X:5
+T:Bonnie Portmore Flute2
+Z:Giddily
+M:3/4
+L:1/8
+Q:1/4=83
+K:G
+
+GEC3/2D/2EC|D6|F,6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z6|z6|z6|
+z6|z4dc|B2B2B/2BB/2|c4B/2cd/2|
+e2d2cB|c4cc|B2B2B/2BB/2|c2d2cB|
+c2B2B2|B4B/2cd/2|e2e2dc|d2d2cB|
+e2d2cB|c4B/2cd/2|e2e2dc|Bdg2dc|
+c3/2c/2A Bc3/2A/2|A6-|A6-|A6-|
+A6|
