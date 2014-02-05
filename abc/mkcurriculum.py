@@ -25,10 +25,10 @@ def uniq(l):
       yield x
 
 class LanguageModel:
-  substring_freqs = Counter()
-  common_words = []
-  most_frequent_count = 0
   def __init__(self):
+    self.substring_freqs = Counter()
+    self.common_words = []
+    self.most_frequent_count = 0
     for ngram_dict in json.load(open('pitch_8grams.json')):
       for ngram,count in ngram_dict.iteritems():
         self.substring_freqs[ngram] = count
@@ -43,7 +43,8 @@ class LanguageModel:
       self.common_words.append(substring)
 
 class LearnerModel:
-  substrings_practiced = Counter()
+  def __init__(self):
+    self.substrings_practiced = Counter()
   def get_word_difficulty(self, word):
     num_substrings = 0.0
     substrings_learned = 0.0
