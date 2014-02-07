@@ -195,8 +195,12 @@ root.currentLineLog = {};
 root.postToServer = postToServer = function(origdata) {
   var data;
   data = $.extend({}, origdata);
-  data['user'] = 'foobar';
-  data['posttime'] = new Date().toString();
+  if (data['user'] == null) {
+    data['user'] = 'foobar';
+  }
+  if (data['posttime'] == null) {
+    data['posttime'] = new Date().toString();
+  }
   console.log(data);
   return $.ajax({
     type: 'POST',

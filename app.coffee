@@ -18,11 +18,26 @@ app.get '/varTable', (req, res) ->
     vartable[varname] = req.query['set']
   res.send(vartable[varname])
 
+logs = []
+
+app.get '/getlogs', (req, res) ->
+  user = req.query.user
+  if not user?
+    res.send 'need user parameter'
+    return
+  res.send logs[user]
+
 app.post '/postlog', (req, res) ->
   data = req.body
   console.log data
+  if not data.user?
+    return
+  user = data.user
+  if not logs[user]?
+    logs[user] = []
+  logs[user].push data
 
-port = Number(process.env.PORT || 5000)
+port = Number(process.env.PORT || 8080)
 server.listen(port)
 console.log("Server running on port #{server.address().port}")
 

@@ -10,18 +10,19 @@ toHitCode = (taskname) ->
     output += x.charCodeAt(0)
   return output
 
-root.validateform = validateform = ->
-  alert document.getElementById('hitcode').value
-  alert toHitCode(document.getElementById('hitcode').value)
-  #if [x.charCodeAt(0) root.taskname
-  alert 'form did not validate'
-  return false
+root.validateForm = validateForm = ->
+  expected_hitcode = toHitCode(root.taskname).toString()
+  hitcode = document.getElementById('hitcode').value.trim()
+  if hitcode != expected_hitcode
+    alert 'the hitcode you input: "' + hitcode + '" is not correct'
+    return false
+  return true
 
-###
-documentready = ->
-  alert 'foo'
+documentReady = ->
+  submitButton = document.getElementById('submitButton')
+  submitButton.onclick = 'return validateForm()'
 
 document.onreadystatechange = ->
-  if document.readyState === 'complete'
-    documentready()
-###
+  if document.readyState == 'complete'
+    documentReady()
+

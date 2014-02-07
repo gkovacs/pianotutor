@@ -134,8 +134,10 @@ root.currentLineLog = {}
 
 root.postToServer = postToServer = (origdata) ->
   data = $.extend({}, origdata)
-  data['user'] = 'foobar'
-  data['posttime'] = new Date().toString()
+  if not data['user']?
+    data['user'] = 'foobar'
+  if not data['posttime']?
+    data['posttime'] = new Date().toString()
   console.log data
   $.ajax {
     type: 'POST',
