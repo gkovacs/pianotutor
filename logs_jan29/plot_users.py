@@ -59,7 +59,7 @@ class LearnerModel:
     for substring in generate_substrings_music(word):
       self.substrings_practiced[substring] += 1
 
-for user in ['msb', 'chinmay', 'onkur', 'sanjay']:
+for user in ['msb', 'chinmay', 'onkur', 'sanjay', 'meo']:
   print user
   userlog = json.load(open(user + '.json'))
   learner_model = LearnerModel()
@@ -70,6 +70,8 @@ for user in ['msb', 'chinmay', 'onkur', 'sanjay']:
   points_num_unique_notes = []
   points_difficulty_score = []
   for loglineGroup in groupByTask(userlog):
+    if loglineGroup[0]['targetText'].strip() == '':
+      continue
     total_time_spent = sum(timeSpent(line) for line in loglineGroup)
     num_tries = len(loglineGroup)
     avg_time_spent = float(total_time_spent) / num_tries

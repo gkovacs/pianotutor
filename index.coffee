@@ -130,7 +130,22 @@ root.currentLineStartTime = 0
 
 root.lineFinishLogs = []
 
-root.sendLogs = () ->
+root.currentLineLog = {}
+
+root.postToServer = postToServer = (origdata) ->
+  data = $.extend({}, origdata)
+  data['user'] = 'foobar'
+  data['posttime'] = new Date().toString()
+  console.log data
+  $.ajax {
+    type: 'POST',
+    url: '/postlog',
+    data: JSON.stringify(data),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'json'
+  }
+
+root.sendLogs = ->
   startTime = root.lineFinishLogs[0].startedAt
   $.get('/varTable?varname=' + escape(startTime) + '&set=' + escape(JSON.stringify(root.lineFinishLogs)), (data) ->
     $('#logLink').attr('href', '/varTable?varname=' + escape(startTime))
@@ -312,12 +327,19 @@ $(document).ready ->
   showLine()
 
   $('#textInput').focus()
-  $('#textInput').bind 'propertychange keyup input paste', (event) ->
+  $('#textInput').bind 'cut copy paste drop', (event) ->
+    event.preventDefault()
+    return false
+  $('#textInput').bind 'propertychange keyup input', (event) ->
     updateText()
     return false
   $("#textInput").bind 'keydown', (evt) ->
     if evt.which?
         console.log evt.which
+        #if evt.ctrlKey? and evt.ctrlKey
+        #  return true
+        #if evt.altKey? and evt.altKey
+        #  return true
         if evt.which == 8
           root.numTimesDeletePressed += 1
           if root.isMusic
@@ -350,6 +372,8 @@ $(document).ready ->
             # Move the caret
             this.selectionStart = this.selectionEnd = start + transformedChar.length
             return false
+  $('#textInput').blur ->
+    $('#textInput').focus()
   displayKeyboard()
   if root.isMusic
     addNotes()
