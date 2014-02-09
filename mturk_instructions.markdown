@@ -4,7 +4,7 @@ In this task, we will have you try out a "virtual piano tutor", which teaches yo
 
 ### Requirements
 
-Your computer must be able to **play sound**. <button onclick="testPlayNote()">Click here</button> to test; you should hear a note.
+Your computer must be able to **play sound**. <button onclick="testPlayNote()">Click here</button> to test; you should hear a note. <audio id="testNote" src="//pianotutor.herokuapp.com/piano/Piano.ff.C4.m4a"></audio>
 
 ### Instructions
 

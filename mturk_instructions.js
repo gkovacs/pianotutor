@@ -21,7 +21,12 @@
   };
 
   root.testPlayNote = testPlayNote = function() {
-    return console.log('note played!');
+    var audioTag;
+    console.log('note played!');
+    audioTag = document.getElementById('testNote');
+    audioTag.pause();
+    audioTag.currentTime = 0.0;
+    return audioTag.play();
   };
 
   root.codeKeypress = codeKeypress = function(event) {

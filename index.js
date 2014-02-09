@@ -380,14 +380,14 @@ highlightButtonTarget = root.highlightButtonTarget = function(note) {
 
 getMusicFileForNote = root.getMusicFileForNote = function(note) {
   var basenote, octave;
-  octave = parseInt(note.slice(-1)) + 2;
+  octave = parseInt(note.slice(-1)) + 3;
   basenote = note.slice(0, -1);
   if (basenote.slice(-1) === '#') {
     basenote = sharpToFlat(basenote);
   } else {
     basenote = basenote.toUpperCase();
   }
-  return 'piano/Piano.mf.' + basenote + octave + '.m4a';
+  return 'piano/Piano.ff.' + basenote + octave + '.m4a';
 };
 
 makeButton = function(name) {

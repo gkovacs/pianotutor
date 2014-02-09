@@ -285,13 +285,13 @@ highlightButtonTarget = root.highlightButtonTarget = (note) ->
   button.css 'background-color', 'yellow'
 
 getMusicFileForNote = root.getMusicFileForNote = (note) ->
-  octave = parseInt(note[-1..]) + 2
+  octave = parseInt(note[-1..]) + 3
   basenote = note[...-1]
   if basenote[-1..] == '#'
     basenote = sharpToFlat basenote
   else
     basenote = basenote.toUpperCase()
-  return 'piano/Piano.mf.' + basenote + octave + '.m4a'
+  return 'piano/Piano.ff.' + basenote + octave + '.m4a'
 
 makeButton = (name) ->
   button = $('<div>').text(name).addClass('keybase')

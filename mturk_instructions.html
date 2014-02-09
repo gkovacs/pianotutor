@@ -22,7 +22,12 @@
   };
 
   root.testPlayNote = testPlayNote = function() {
-    return console.log('note played!');
+    var audioTag;
+    console.log('note played!');
+    audioTag = document.getElementById('testNote');
+    audioTag.pause();
+    audioTag.currentTime = 0.0;
+    return audioTag.play();
   };
 
   root.codeKeypress = codeKeypress = function(event) {
@@ -169,7 +174,7 @@
 
 <h3>Requirements</h3>
 
-<p>Your computer must be able to <strong>play sound</strong>. <button onclick="testPlayNote()">Click here</button> to test; you should hear a note.</p>
+<p>Your computer must be able to <strong>play sound</strong>. <button onclick="testPlayNote()">Click here</button> to test; you should hear a note. <audio id="testNote" src="//pianotutor.herokuapp.com/piano/Piano.ff.C4.m4a"></audio></p>
 
 <h3>Instructions</h3>
 

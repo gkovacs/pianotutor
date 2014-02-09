@@ -12,6 +12,10 @@ toHitCode = (taskname) ->
 
 root.testPlayNote = testPlayNote = ->
   console.log 'note played!'
+  audioTag = document.getElementById('testNote')
+  audioTag.pause()
+  audioTag.currentTime = 0.0
+  audioTag.play()
 
 root.codeKeypress = codeKeypress = (event) ->
   if event.keyCode == 13 # enter
