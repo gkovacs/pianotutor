@@ -250,14 +250,14 @@ playNote = root.playNote = (note) ->
   audioTagJquery.attr('highlightEnd', currentTime + 100)
   audioTag = audioTagJquery[0]
   audioTag.pause()
-  audioTag.currentTime = 1.0
+  audioTag.currentTime = 0.0
   #audioTag.playbackRate = 1.5
   audioTag.play()
-  setTimeout () ->
-    playEnd = parseInt(audioTagJquery.attr('playEnd'))
-    if (new Date).getTime() >= playEnd
-      audioTagJquery[0].pause()
-  , 501
+  #setTimeout () ->
+  #  playEnd = parseInt(audioTagJquery.attr('playEnd'))
+  #  if (new Date).getTime() >= playEnd
+  #    audioTagJquery[0].pause()
+  #, 501
   setTimeout () ->
     highlightEnd = parseInt(audioTagJquery.attr('highlightEnd'))
     if (new Date).getTime() >= highlightEnd
