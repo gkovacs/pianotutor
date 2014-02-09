@@ -127,7 +127,7 @@ documentReady = ->
     document.getElementById('hitcode').disabled = true
   else
     startTask = document.getElementById('startTask')
-    startTask.href = '//pianotutor.herokuapp.com/mturk_index' + root.taskname + '.html'
+    startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html'
 
 document.onreadystatechange = ->
   if document.readyState == 'complete'

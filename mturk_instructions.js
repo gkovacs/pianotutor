@@ -167,7 +167,7 @@
       return document.getElementById('hitcode').disabled = true;
     } else {
       startTask = document.getElementById('startTask');
-      return startTask.href = '//pianotutor.herokuapp.com/mturk_index' + root.taskname + '.html';
+      return startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html';
     }
   };
 
