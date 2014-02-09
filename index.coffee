@@ -387,7 +387,7 @@ $(document).ready ->
             end = this.selectionEnd
             val = this.value
             newvalue = val.slice(0, start) + transformedChar + val.slice(end)
-            if targetText.indexOf(newvalue.trim()) != 0 and targetText != 'freestyle'
+            if targetText.indexOf(newvalue.trim()) != 0 and targetText != 'freestyle' and targetText.indexOf('You have fininshed this task. Enter this code on the HIT page:') != 0
               numTimesDeletePressed += 1
               return false
             this.value = newvalue

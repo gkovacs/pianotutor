@@ -124,19 +124,12 @@ def main():
   targets.append(target_word)
   target_word = 'e1 d1 c1 d1 | e1 e1 e1 | d1 d1 d1 | e1 g1 g1 | e1 d1 c1 d1 | e1 e1 e1 e1 | d1 d1 e1 d1 c1'
   targets.append(target_word)
-  target_word = 'e2 d#2 e2 d#2 e2 b1 d2 c2 a1'
+  target_word = 'e2 d#2 | e2 d#2 e2 b1 d2 c2'
   targets.append(target_word)
-  target_word = 'e2 d#2 e2 d#2 e2 b1 d2 c2 a1 | c1 e1 a1 b1 | e1 a1 b1 c2'
+  target_word = 'e2 d#2 | e2 d#2 e2 b1 d2 c2 | a1 c1 e1 a1 | b1 e1 g# b1'
   targets.append(target_word)
-  target_word = 'e2 d#2 e2 d#2 e2 b1 d2 c2 a1 | c1 e1 a1 b1 | e1 a1 b1 c2 | e2 d#2 e2 d#2 e2 b1 d2 c2 a1'
+  target_word = 'e2 d#2 | e2 d#2 e2 b1 d2 c2 | a1 c1 e1 a1 | b1 e1 g# b1 | c2 e1 e2 d#2 | e2 d#2 e2 b1 d2 c2'
   targets.append(target_word)
-  target_word = 'c1 e1 a1 b1 | e1 c2 b1 a1'
-  targets.append(target_word)
-  target_word = 'c1 e1 a1 b1 | e1 c2 b1 a1 | b1 c2 d2 e2 | g1 f2 e2 d2'
-  targets.append(target_word)
-  target_word = 'e2 d#2 e2 d#2 e2 b1 d2 c2 a1 | c1 e1 a1 b1 | e1 a1 b1 c2 | e2 d#2 e2 d#2 e2 b1 d2 c2 a1 | c1 e1 a1 b1 | e1 c2 b1 a1 |  b1 c2 d2 e2 | g1 f2 e2 d2 | e1 e2 d2 c2 | e1 d2 c2 b1'
-  targets.append(target_word)
-  #target_word = ' g1 g1 g1 d1 e1 e1 d1 d1 | g1 g1 a1 a1 b1 g1 | b1 b1 c2 c2 c2 | a1 a1 b1 b1 b1 | g1 g1 a1 a1 a1 | g1 f#1 d1 e1 f#1 g1 g1'
   language_model = LanguageModel()
   for target_word in targets:
     language_model.add_word(target_word)
