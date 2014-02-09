@@ -61,5 +61,5 @@ a1 c1 e1 a1 b1 e1 g#1 b1 c2 e1 e2 d#2 e2 d#2 e2 b1 d2 c2
 b1 e1 g#1 b1 c2 e1 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1
 a1 c1 e1 a1 b1 e1 g#1 b1 c2 e1 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1
 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1 b1 e1 g#1 b1 c2 e1 e2 d#2 e2 d#2 e2 b1 d2 c2 a1 c1 e1 a1
-You have fininshed this task. Enter this code on the HIT page: 861
+you have fininshed the task. enter this code on the hit page: 861
 """

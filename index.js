@@ -516,7 +516,7 @@ $(document).ready(function() {
         end = this.selectionEnd;
         val = this.value;
         newvalue = val.slice(0, start) + transformedChar + val.slice(end);
-        if (targetText.indexOf(newvalue.trim()) !== 0 && targetText !== 'freestyle' && targetText.indexOf('You have fininshed this task. Enter this code on the HIT page:') !== 0) {
+        if (targetText.indexOf(newvalue.trim()) !== 0 && targetText !== 'freestyle' && targetText.indexOf('you have finished the task. enter this code on the hit page:') !== 0) {
           numTimesDeletePressed += 1;
           return false;
         }
