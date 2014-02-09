@@ -106,8 +106,13 @@ removeNonAlpha = (text) ->
 root.currentLineNum = 0
 
 nextLine = () ->
-  root.currentLineNum += 1
+  if root.currentLineNum < root.corpus_lines.length
+    root.currentLineNum += 1
   showLine()
+
+updateProgress = (lineNum) ->
+  totalLines = root.corpus_lines.length
+  $('#progressIndicator').text('Progress: ' + lineNum + ' / ' + totalLines)
 
 showLine = () ->
   window.location.hash = '#' + root.currentLineNum
@@ -116,6 +121,7 @@ showLine = () ->
   $('#textDisplay_entered').text('')
   $('#textDisplay_todo').text(root.targetText)
   updateText(true)
+  updateProgress(root.currentLineNum)
   if root.currentLineNum > maxLineReached()
     $.cookie 'maxreached', root.currentLineNum, {expires: 365}
 
