@@ -1,17 +1,115 @@
-On a scale of 1 (no experience) to 7 (extremely experienced), how much experience do you have with performing music?
-<input id="musicexperience"></input>
+<b><a href="http://google.com" id="startTask" target="_blank">Start the task to get a code (will open in a new window)</a></b>
 
 <br/><br/>
 
-On a scale of 1 (no experience) to 7 (extremely experienced), how much experience do you have with playing the piano?
-<input id="pianoexperience"></input>
+Code you got from completing the task: <input id="hitcode" name="hitcode" onkeypress="codeKeypress(event)"></input><button id="checkCodeButton" onclick="checkCode()">Check Code</button><span id="codeCorrect" style="color: green; display: none">Correct! Answer survey below and submit.</span><span id="codeIncorrect" style="color: red; display: none">Incorrect code</span><br/><br/>
+
+<div id="survey" style="display: none">
+
+<h3>Survey</h3>
+
+1) Can you read music? If yes, what is the note shown below?<br/>
+Note name (leave blank if you cannot read music): <input id="notename" name="notename"></input><br/>
+<img src="samplenote.png"></img>
 
 <br/><br/>
 
-Do you have any comments about this task?
+2) List any instruments you can play (list instruments you have the most experience with first):<br/>
+Instrument 1: <input id="instrument1" name="instrument1"></input><br/>
+Instrument 2: <input id="instrument2" name="instrument2"></input><br/>
+Instrument 3: <input id="instrument3" name="instrument3"></input><br/>
+Instrument 4: <input id="instrument4" name="instrument4"></input><br/>
+Instrument 5: <input id="instrument5" name="instrument5"></input>
+
+<br/><br/>
+
+3) How much <b>experience</b> do you have with playing music (on <b>any instrument</b>)?
+<select id="musicexperience" name="musicexperience">
+<option value="0">(select an option)</option>
+<option value="2">less than a month of experience</option>
+<option value="3">1-5 months of experience</option>
+<option value="4">6-11 months of experience</option>
+<option value="5">1 year of experience</option>
+<option value="6">2 years of experience</option>
+<option value="7">3 years of experience</option>
+<option value="8">4 years of experience</option>
+<option value="9">over 4 years of experience</option>
+</select>
+
+<br/><br/>
+
+4) When was the <b>most recent</b> time you have practiced playing music (on <b>any instrument</b>)?
+<select id="musicrecency" name="musicrecency">
+<option value="0">(select an option)</option>
+<option value="2">less than a month ago</option>
+<option value="3">1-5 months ago</option>
+<option value="4">6-11 months ago</option>
+<option value="5">1 ago</option>
+<option value="6">2 years ago</option>
+<option value="7">3 years ago</option>
+<option value="8">4 years ago</option>
+<option value="9">over 4 years ago</option>
+</select>
+
+<br/><br/>
+
+5) How much <b>experience</b> do you have with playing the <b>piano</b>?
+<select id="pianoexperience" name="pianoexperience">
+<option value="0">(select an option)</option>
+<option value="1">have never played the piano</option>
+<option value="2">less than a month of experience</option>
+<option value="3">1-5 months of experience</option>
+<option value="4">6-11 months of experience</option>
+<option value="5">1 year of experience</option>
+<option value="6">2 years of experience</option>
+<option value="7">3 years of experience</option>
+<option value="8">4 years of experience</option>
+<option value="9">over 4 years of experience</option>
+</select>
+
+<br/><br/>
+
+6) When was the <b>most recent</b> time you have practiced playing the <b>piano</b>?
+<select id="pianorecency" name="pianorecency">
+<option value="0">(select an option)</option>
+<option value="1">have never played the piano</option>
+<option value="2">less than a month ago</option>
+<option value="3">1-5 months ago</option>
+<option value="4">6-11 months ago</option>
+<option value="5">1 ago</option>
+<option value="6">2 years ago</option>
+<option value="7">3 years ago</option>
+<option value="8">4 years ago</option>
+<option value="9">over 4 years ago</option>
+</select>
+
+<br/><br/>
+
+7) Have you previously heard/played the pieces you played in this task? Do you know their names?<br/>
+
+Name of Piece 1 (leave blank if you don't know it): <input id="piece1name" name="piece1name"></input><br/>
+Have you ever heard this piece?
+<input type="radio" value="Yes" name="piece1heard" id="piece1heardyes"><label for="piece1heardyes">Yes</label>
+<input type="radio" value="No" name="piece1heard" id="piece1heardno"><label for="piece1heardno">No</label>
 <br/>
-<textarea id="misccomments"></textarea>
-
+Have you ever played this piece?
+<input type="radio" value="Yes" name="piece1played" id="piece1playedyes"><label for="piece1playedyes">Yes</label>
+<input type="radio" value="No" name="piece1played" id="piece1playedno"><label for="piece1playedno">No</label>
 <br/><br/>
+Name of Piece 2 (leave blank if you don't know it): <input id="piece2name" name="piece2name"></input><br/>
+Have you ever heard this piece?
+<input type="radio" value="Yes" name="piece2heard" id="piece2heardyes"><label for="piece2heardyes">Yes</label>
+<input type="radio" value="No" name="piece2heard" id="piece2heardno"><label for="piece2heardno">No</label>
+<br/>
+Have you ever played this piece?
+<input type="radio" value="Yes" name="piece2played" id="piece2playedyes"><label for="piece2playedyes">Yes</label>
+<input type="radio" value="No" name="piece2played" id="piece2playedno"><label for="piece2playedno">No</label>
+<br/>
 
-Code: <input id="hitcode" name="hitcode" ></input>
+<br/>
+
+8) Do you have any comments about this task?
+<br/>
+<textarea id="misccomments" name="misccomments" style="width: 400; height: 80"></textarea>
+
+</div>
