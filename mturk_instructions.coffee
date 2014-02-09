@@ -20,9 +20,12 @@ root.testPlayNote = testPlayNote = ->
 root.codeKeypress = codeKeypress = (event) ->
   if event.keyCode == 13 # enter
     checkCode()
+    event.preventDefault()
+    return false
   else
     document.getElementById('codeCorrect').style.display = 'none'
     document.getElementById('codeIncorrect').style.display = 'none'
+    return true
 
 root.checkCode = checkCode = ->
   expected_hitcode = toHitCode(root.taskname).toString()

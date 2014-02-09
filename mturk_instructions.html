@@ -32,10 +32,13 @@
 
   root.codeKeypress = codeKeypress = function(event) {
     if (event.keyCode === 13) {
-      return checkCode();
+      checkCode();
+      event.preventDefault();
+      return false;
     } else {
       document.getElementById('codeCorrect').style.display = 'none';
-      return document.getElementById('codeIncorrect').style.display = 'none';
+      document.getElementById('codeIncorrect').style.display = 'none';
+      return true;
     }
   };
 
@@ -174,7 +177,7 @@
 
 <h3>Requirements</h3>
 
-<p>Your computer must be able to <strong>play sound</strong>. <button onclick="testPlayNote()">Click here</button> to test; you should hear a note. <audio id="testNote" src="//pianotutor.herokuapp.com/piano/Piano.ff.C4.m4a" style="display: none"></audio></p>
+<p>Your computer must be able to <strong>play sound</strong>. <button onclick="testPlayNote(); return false">Click here</button> to test; you should hear a note. <audio id="testNote" src="//pianotutor.herokuapp.com/piano/Piano.ff.C4.m4a" style="display: none"></audio></p>
 
 <h3>Instructions</h3>
 
@@ -191,7 +194,7 @@ This is what the task looks like:</p>
 
 <br/><br/>
 
-Code you got from completing the task: <input id="hitcode" name="hitcode" onkeypress="codeKeypress(event)"></input><button id="checkCodeButton" onclick="checkCode()">Check Code</button><span id="codeCorrect" style="color: green; display: none">Correct! Answer survey below and submit.</span><span id="codeIncorrect" style="color: red; display: none">Incorrect code</span><br/><br/>
+Code you got from completing the task: <input id="hitcode" name="hitcode" onkeypress="return codeKeypress(event)"></input><button id="checkCodeButton" onclick="checkCode(); return false">Check Code</button><span id="codeCorrect" style="color: green; display: none">Correct! Answer survey below and submit.</span><span id="codeIncorrect" style="color: red; display: none">Incorrect code</span>
 
 <div id="survey" style="display: none">
 
@@ -199,7 +202,7 @@ Code you got from completing the task: <input id="hitcode" name="hitcode" onkeyp
 
 1) Can you read music? If yes, what is the note shown below?<br/>
 Note name (leave blank if you cannot read music): <input id="notename" name="notename"></input><br/>
-<img src="samplenote.png"></img>
+<img src="//pianotutor.herokuapp.com/samplenote.png"></img>
 
 <br/><br/>
 

@@ -31,10 +31,13 @@
 
   root.codeKeypress = codeKeypress = function(event) {
     if (event.keyCode === 13) {
-      return checkCode();
+      checkCode();
+      event.preventDefault();
+      return false;
     } else {
       document.getElementById('codeCorrect').style.display = 'none';
-      return document.getElementById('codeIncorrect').style.display = 'none';
+      document.getElementById('codeIncorrect').style.display = 'none';
+      return true;
     }
   };
 
