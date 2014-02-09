@@ -4,7 +4,7 @@ In this task, we will have you try out a "virtual piano tutor", which teaches yo
 
 ### Requirements
 
-You need to be able to **hear sound** from your computer. <button onclick="testPlayNote()">Click here</button> to test; you should hear a note.
+Your computer must be able to **play sound**. <button onclick="testPlayNote()">Click here</button> to test; you should hear a note.
 
 ### Instructions
 

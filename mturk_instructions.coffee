@@ -58,6 +58,9 @@ root.validateForm = validateForm = ->
   if hitcode != expected_hitcode
     alert 'the code you input: "' + hitcode + '" is not correct'
     return false
+  if not isChrome()
+    alert 'You must use Google Chrome to do this task'
+    return false
   if isComboBoxZero 'musicexperience'
     pleaseAnswer 3
     return false
@@ -84,15 +87,25 @@ root.validateForm = validateForm = ->
     return false
   return true
 
-documentReady = ->
-  isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
-  if not isChrome
-    alert 'you need to '
+isChrome = ->
+  return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
 
+documentReady = ->
   submitButton = document.getElementById('submitButton')
   if submitButton?
     submitButton.onclick = 'return validateForm()'
-    submitButton.style.display = 'none'
+  if not isChrome()
+    document.getElementById('chromewarning').style.display = ''
+    if submitButton?
+      submitButton.disabled = true
+    startTask = document.getElementById('startTask')
+    if startTask.text?
+      startTask.text = 'You must use Google Chrome to do this task'
+    if startTask.textContent?
+      startTask.textContent = 'You must use Google Chrome to do this task' 
+    startTask.href = 'http://www.google.com/chrome'
+    document.getElementById('checkCodeButton').disabled = true
+    document.getElementById('hitcode').disabled = true
 
 document.onreadystatechange = ->
   if document.readyState == 'complete'

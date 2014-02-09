@@ -3,10 +3,10 @@
 coffee -c mturk_instructions.coffee
 markdown mturk_instructions.markdown > mturk_instructions_content.html
 if [ -e mturk_instructions.html ]; then rm mturk_instructions.html; fi
-#cp mturk_instructions_header.html mturk_instructions.html
 echo '<script>' >> mturk_instructions.html
 echo "`cat mturk_instructions.js`" >> mturk_instructions.html
 echo '</script>' >> mturk_instructions.html
+echo "`cat mturk_instructions_front.html`" >> mturk_instructions.html
 echo "`cat mturk_instructions_content.html`" >> mturk_instructions.html
 echo "`cat mturk_instructions_footer.html`" >> mturk_instructions.html
 
