@@ -236,7 +236,7 @@ addNotes = () ->
     note = $(notenode).text()
     noteFile = getMusicFileForNote note
     noteAlpha = note.split('#').join('s')
-    $('#notes').append $('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha)
+    $('#notes').append $('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha).css('display', 'none')
 
 getNoteAlpha = (note) ->
   return note.split('#').join('s')

@@ -321,7 +321,7 @@ addNotes = function() {
     note = $(notenode).text();
     noteFile = getMusicFileForNote(note);
     noteAlpha = note.split('#').join('s');
-    _results.push($('#notes').append($('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha)));
+    _results.push($('#notes').append($('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha).css('display', 'none')));
   }
   return _results;
 };
