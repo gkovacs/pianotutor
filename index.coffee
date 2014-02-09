@@ -116,6 +116,8 @@ showLine = () ->
   $('#textDisplay_entered').text('')
   $('#textDisplay_todo').text(root.targetText)
   updateText(true)
+  if root.currentLineNum > maxLineReached()
+    $.cookie 'maxreached', root.currentLineNum, {expires: 365}
 
 root.formValueIncludesInputted = false
 root.haveCheckedFormValueIncludesInputted = false
@@ -316,8 +318,16 @@ displayKeyboard = ->
     $('#keyboard').append makeButton(transformTypedChar letter)
   console.log 'keyboard displayed'
 
+maxLineReached = root.maxLineReached = ->
+  maxreached = $.cookie 'maxreached'
+  if maxreached?
+    return parseInt maxreached
+  return 0
+
 $(document).ready ->
-  if window.location.hash?
+  maxlinereached = maxLineReached()
+  if window.location.hash? and window.location.hash.trim() != ''
+    console.log 'hash is:' + window.location.hash
     hashstring = window.location.hash.split('#').join('')
     if root.hashname_to_index[hashstring]?
       root.currentLineNum = root.hashname_to_index[hashstring]
@@ -325,7 +335,11 @@ $(document).ready ->
       hashstringAsInt = parseInt(hashstring)
       if not isNaN(hashstringAsInt)
         root.currentLineNum = hashstringAsInt
-  
+    if root.currentLineNum > maxlinereached
+      root.currentLineNum = maxlinereached
+  else
+    root.currentLineNum = maxlinereached
+
   showLine()
 
   $('#textInput').focus()
