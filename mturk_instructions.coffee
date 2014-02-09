@@ -100,9 +100,9 @@ documentReady = ->
       submitButton.disabled = true
     startTask = document.getElementById('startTask')
     if startTask.text?
-      startTask.text = 'You must use Google Chrome to do this task'
+      startTask.text = 'You must use Google Chrome to do this task. Open this HIT in Google Chrome to do the task.'
     if startTask.textContent?
-      startTask.textContent = 'You must use Google Chrome to do this task' 
+      startTask.textContent = 'You must use Google Chrome to do this task. Open this HIT in Google Chrome to do the task.'
     startTask.href = 'http://www.google.com/chrome'
     document.getElementById('checkCodeButton').disabled = true
     document.getElementById('hitcode').disabled = true
