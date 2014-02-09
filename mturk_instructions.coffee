@@ -2,13 +2,25 @@ root = exports ? this
 
 root.taskname = '${taskname}'
 if root.taskname.indexOf('taskname') != -1
-  root.taskname = 'foobarrr' # 861
+  root.taskname = 'foobarrr' # 92293
 
-toHitCode = (taskname) ->
-  output = 0
-  for x in taskname
-    output += x.charCodeAt(0)
-  return output
+#toHitCode = (taskname) ->
+#  output = 0
+#  for x in taskname
+#    output += x.charCodeAt(0)
+#  return output
+
+toHitCode = root.toHitCode = (taskname) ->
+  hash = 0
+  if taskname.length == 0
+    return hash
+  for i in [0...taskname.length]
+    char = taskname.charCodeAt(i)
+    hash = ((hash<<5)-hash)+char
+    hash |= 0 # Convert to 32bit integer
+  if hash < 0
+    return Math.floor(-hash/4096)
+  return Math.floor(hash/4096)
 
 root.testPlayNote = testPlayNote = ->
   console.log 'note played!'
@@ -113,6 +125,9 @@ documentReady = ->
     startTask.href = 'http://www.google.com/chrome'
     document.getElementById('checkCodeButton').disabled = true
     document.getElementById('hitcode').disabled = true
+  else
+    startTask = document.getElementById('startTask')
+    startTask.href = '//pianotutor.herokuapp.com/mturk_index' + root.taskname + '.html'
 
 document.onreadystatechange = ->
   if document.readyState == 'complete'

@@ -10,14 +10,21 @@
     root.taskname = 'foobarrr';
   }
 
-  toHitCode = function(taskname) {
-    var output, x, _i, _len;
-    output = 0;
-    for (_i = 0, _len = taskname.length; _i < _len; _i++) {
-      x = taskname[_i];
-      output += x.charCodeAt(0);
+  toHitCode = root.toHitCode = function(taskname) {
+    var char, hash, i, _i, _ref;
+    hash = 0;
+    if (taskname.length === 0) {
+      return hash;
     }
-    return output;
+    for (i = _i = 0, _ref = taskname.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      char = taskname.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash |= 0;
+    }
+    if (hash < 0) {
+      return Math.floor(-hash / 4096);
+    }
+    return Math.floor(hash / 4096);
   };
 
   root.testPlayNote = testPlayNote = function() {
@@ -158,6 +165,9 @@
       startTask.href = 'http://www.google.com/chrome';
       document.getElementById('checkCodeButton').disabled = true;
       return document.getElementById('hitcode').disabled = true;
+    } else {
+      startTask = document.getElementById('startTask');
+      return startTask.href = '//pianotutor.herokuapp.com/mturk_index' + root.taskname + '.html';
     }
   };
 

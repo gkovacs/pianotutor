@@ -11,14 +11,21 @@
     root.taskname = 'foobarrr';
   }
 
-  toHitCode = function(taskname) {
-    var output, x, _i, _len;
-    output = 0;
-    for (_i = 0, _len = taskname.length; _i < _len; _i++) {
-      x = taskname[_i];
-      output += x.charCodeAt(0);
+  toHitCode = root.toHitCode = function(taskname) {
+    var char, hash, i, _i, _ref;
+    hash = 0;
+    if (taskname.length === 0) {
+      return hash;
     }
-    return output;
+    for (i = _i = 0, _ref = taskname.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      char = taskname.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash |= 0;
+    }
+    if (hash < 0) {
+      return Math.floor(-hash / 4096);
+    }
+    return Math.floor(hash / 4096);
   };
 
   root.testPlayNote = testPlayNote = function() {
@@ -159,6 +166,9 @@
       startTask.href = 'http://www.google.com/chrome';
       document.getElementById('checkCodeButton').disabled = true;
       return document.getElementById('hitcode').disabled = true;
+    } else {
+      startTask = document.getElementById('startTask');
+      return startTask.href = '//pianotutor.herokuapp.com/mturk_index' + root.taskname + '.html';
     }
   };
 
@@ -190,7 +200,7 @@ This is what the task looks like:</p>
 <p>Your objective will be to <strong>play back notes as fast as you can, without making mistakes</strong>. If you make a mistake, you will need to repeat the line. Once you are able to play the line of notes without any mistakes, it will advance to the next line.</p>
 
 <p>Once you are done playing all the lines of notes we give you, you will be given a code that you can enter below, answer a brief survey, and submit the HIT.</p>
-<b><a href="http://google.com" id="startTask" target="_blank">Start the task to get a code (will open in a new window)</a></b>
+<b><a href="http://google.com/chrome" id="startTask" target="_blank">Start the task to get a code (will open in a new window)</a></b>
 
 <br/><br/>
 
