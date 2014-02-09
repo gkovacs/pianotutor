@@ -123,7 +123,7 @@ showLine = () ->
   updateText(true)
   updateProgress(root.currentLineNum)
   if root.currentLineNum > maxLineReached()
-    $.cookie 'maxreached', root.currentLineNum, {expires: 365}
+    $.cookie 'maxreached_' + root.globaltaskname, root.currentLineNum, {expires: 365}
 
 root.formValueIncludesInputted = false
 root.haveCheckedFormValueIncludesInputted = false
@@ -325,7 +325,7 @@ displayKeyboard = ->
   console.log 'keyboard displayed'
 
 maxLineReached = root.maxLineReached = ->
-  maxreached = $.cookie 'maxreached'
+  maxreached = $.cookie 'maxreached_' + root.globaltaskname
   if maxreached?
     return parseInt maxreached
   return 0

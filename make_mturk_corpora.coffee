@@ -74,9 +74,10 @@ main = ->
       new_htmlfile_lines = []
       for line in htmlfile_lines
         if line == '<script src="corpus.js"></script>'
-          new_htmlfile_lines.push '<script src="' + corpus_filename_js + '"></script>'
-        else
-          new_htmlfile_lines.push line
+          line = '<script src="' + corpus_filename_js + '"></script>'
+        if line == 'globaltaskname = "foobarrr"'
+          line = 'globaltaskname = "' + taskname + '"'
+        new_htmlfile_lines.push line
       new_htmlfile = new_htmlfile_lines.join('\n')
       new_htmlfile_filename = 'mturk_index_' + taskname + '.html'
       fs.writeFileSync new_htmlfile_filename, new_htmlfile, 'utf-8'
