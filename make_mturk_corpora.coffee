@@ -58,13 +58,13 @@ main = ->
   #console.log corpus_lines.length
   tasknames = []
   for scramble_size in [1,2,4,8,16,32,64]
-    for iteration in [0...10]
+    for iteration in [0...2]
       blocks = blockify corpus_lines, scramble_size
       lines = []
       for block in blocks
         for line in shuffle(block)
           lines.push line
-      taskname = scramble_size + '_' + iteration + '_' + randstr(4)
+      taskname = scramble_size + '_' + iteration + '_' + randstr(4) + '_v1'
       tasknames.push taskname
       lines.push finishing_line + toHitCode(taskname)
       corpus = lines_to_corpus lines
