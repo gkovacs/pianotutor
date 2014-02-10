@@ -22,14 +22,16 @@ insertScript = root.insertScript = (url) ->
   scriptTag.src = url
   document.documentElement.appendChild(scriptTag)
 
+nextYearDateString = ->
+  nextyear = new Date()
+  nextyear.setFullYear(nextyear.getFullYear() + 1)
+  return nextyear.toGMTString()
+
 taskAcceptedByWorker = root.taskAcceptedByWorker = (accepted_taskname) ->
   if accepted_taskname == '' or accepted_taskname == root.taskname
     console.log 'taskname matches: ' + accepted_taskname 
-    tasknameCookieVal = getCookieValue 'taskname'
-    if (not tasknameCookieVal?) or tasknameCookieVal == ''
-      existing_keys = document.cookie.split(';')
-      existing_keys.push 'taskname=' + root.taskname
-      document.cookie = existing_keys.join(';')
+    setCookieValueIfNotSet 'taskname', root.taskname
+    setCookieValueIfNotSet 'expires', nextYearDateString()
   else
     console.log 'taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname
     document.getElementById('returnwarning').style.display = ''
@@ -146,6 +148,26 @@ root.validateForm = validateForm = ->
 isChrome = ->
   return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
 
+setCookieValue = root.setCookieValue = (targetKey, targetValue) ->
+  existing_keys = []
+  haveSetKey = false
+  if document.cookie?
+    for keyval in document.cookie.split(';')
+      parts = keyval.split('=')
+      if parts[0] and parts[0] == targetKey
+        existing_keys.push targetKey + '=' + targetValue
+        haveSetKey = true
+      else
+        existing_keys.push keyval
+  if not haveSetKey
+    existing_keys.push(targetKey + '=' + targetValue)
+  document.cookie = existing_keys.join(';')
+
+setCookieValueIfNotSet = root.setCookieValueIfNotSet = (targetKey, targetValue) ->
+  existingCookieVal = getCookieValue targetKey
+  if not existingCookieVal?
+    setCookieValue targetKey, targetValue
+
 getCookieValue = root.getCookieValue = (targetKey) ->
   if document.cookie?
     parts = document.cookie.split(';')
@@ -156,7 +178,7 @@ getCookieValue = root.getCookieValue = (targetKey) ->
         val = keyval[1]
         if val?
           return val
-  return ''
+  return null
 
 previewHIT = ->
   acceptedTask = getCookieValue 'taskname'
