@@ -163,6 +163,13 @@ checkIfHITDoneCookies = root.checkIfHITDoneCookies = ->
 documentReady = ->
   $('#submitButton').click ->
     return validateForm()
+  if $.browser.mobile
+    $('#mobilewarning').show()
+    $('#submitButton').attr 'disabled', 'disabled'
+    $('#startTask').text 'You must use a desktop computer or laptop to do this task. Open this HIT on a desktop computer or laptop to do the task.'
+    $('#startTask').attr 'href', 'http://www.google.com/chrome'
+    $('#checkCodeButton').attr 'disabled', 'disabled'
+    $('#hitcode').attr 'disabled', 'disabled'
   if not isChrome()
     $('#chromewarning').show()
     $('#submitButton').attr 'disabled', 'disabled'
