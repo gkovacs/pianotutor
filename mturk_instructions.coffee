@@ -31,12 +31,12 @@ taskAcceptedByWorker = root.taskAcceptedByWorker = (accepted_taskname) ->
   if accepted_taskname == '' or accepted_taskname == root.taskname
     console.log 'taskname matches: ' + accepted_taskname 
     setCookieValueIfNotSet 'taskname', root.taskname
-    setCookieValueIfNotSet 'expires', nextYearDateString()
+    #setCookieValueIfNotSet 'expires', nextYearDateString()
   else
     console.log 'taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname
     document.getElementById('returnwarning').style.display = ''
     setCookieValueIfNotSet 'taskname', accepted_taskname
-    setCookieValueIfNotSet 'expires', nextYearDateString()
+    #setCookieValueIfNotSet 'expires', nextYearDateString()
     #submitButton = document.getElementById('submitButton')
     #if submitButton?
     #  submitButton.disabled = true
@@ -153,16 +153,23 @@ isChrome = ->
 setCookieValue = root.setCookieValue = (targetKey, targetValue) ->
   existing_keys = []
   haveSetKey = false
+  haveExpires = false
   if document.cookie?
     for keyval in document.cookie.split(';')
+      if keyval.strip() == ''
+        continue
       parts = keyval.split('=')
-      if parts[0] and parts[0] == targetKey
+      if parts[0] and parts[0].strip() == 'expires'
+        haveExpires = true
+      if parts[0] and parts[0].strip() == targetKey
         existing_keys.push targetKey + '=' + targetValue
         haveSetKey = true
       else
         existing_keys.push keyval
   if not haveSetKey
     existing_keys.push(targetKey + '=' + targetValue)
+  if not haveExpires
+    existing_keys.push(nextYearDateString())
   document.cookie = existing_keys.join(';')
 
 setCookieValueIfNotSet = root.setCookieValueIfNotSet = (targetKey, targetValue) ->

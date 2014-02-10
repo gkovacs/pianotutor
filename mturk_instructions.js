@@ -46,13 +46,11 @@
   taskAcceptedByWorker = root.taskAcceptedByWorker = function(accepted_taskname) {
     if (accepted_taskname === '' || accepted_taskname === root.taskname) {
       console.log('taskname matches: ' + accepted_taskname);
-      setCookieValueIfNotSet('taskname', root.taskname);
-      return setCookieValueIfNotSet('expires', nextYearDateString());
+      return setCookieValueIfNotSet('taskname', root.taskname);
     } else {
       console.log('taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname);
       document.getElementById('returnwarning').style.display = '';
-      setCookieValueIfNotSet('taskname', accepted_taskname);
-      return setCookieValueIfNotSet('expires', nextYearDateString());
+      return setCookieValueIfNotSet('taskname', accepted_taskname);
     }
   };
 
@@ -196,15 +194,22 @@
   };
 
   setCookieValue = root.setCookieValue = function(targetKey, targetValue) {
-    var existing_keys, haveSetKey, keyval, parts, _i, _len, _ref;
+    var existing_keys, haveExpires, haveSetKey, keyval, parts, _i, _len, _ref;
     existing_keys = [];
     haveSetKey = false;
+    haveExpires = false;
     if (document.cookie != null) {
       _ref = document.cookie.split(';');
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         keyval = _ref[_i];
+        if (keyval.strip() === '') {
+          continue;
+        }
         parts = keyval.split('=');
-        if (parts[0] && parts[0] === targetKey) {
+        if (parts[0] && parts[0].strip() === 'expires') {
+          haveExpires = true;
+        }
+        if (parts[0] && parts[0].strip() === targetKey) {
           existing_keys.push(targetKey + '=' + targetValue);
           haveSetKey = true;
         } else {
@@ -214,6 +219,9 @@
     }
     if (!haveSetKey) {
       existing_keys.push(targetKey + '=' + targetValue);
+    }
+    if (!haveExpires) {
+      existing_keys.push(nextYearDateString());
     }
     return document.cookie = existing_keys.join(';');
   };
