@@ -174,7 +174,7 @@ documentReady = ->
     $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html'
     workerid = getWorkerId()
     if workerid != ''
-      $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid)
+      $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid) + '&taskname=' + encodeURI(root.taskname)
       checkIfHITDoneCookies()
       acceptHIT()
     else # hit is being previewed

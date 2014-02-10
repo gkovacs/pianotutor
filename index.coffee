@@ -138,14 +138,33 @@ root.currentLineStartTime = 0
 
 root.lineFinishLogs = []
 
-root.currentLineLog = {}
+initLineLog = ->
+  data = {}
+  data.keyevents = []
+  return data
 
-root.postToServer = postToServer = (origdata) ->
-  data = $.extend({}, origdata)
-  if not data['user']?
-    data['user'] = 'foobar'
-  if not data['posttime']?
-    data['posttime'] = new Date().toString()
+root.lineLog = initLineLog()
+
+addKeyEvent = root.addKeyEvent = (key_pressed, key_expected)->
+  currentTime = new Date().toString()
+  root.lineLog.keyevents.push {
+    pressed: key_pressed,
+    expected: key_expected,
+    position: root.numNotesEntered,
+    time: currentTime
+  }
+
+sendLineLog = root.sendLineLog = ->
+  root.lineLog['lineNum'] = root.currentLineNum
+  root.lineLog['targetText'] = root.targetText
+  root.lineLog['user'] = root.workerId
+  root.lineLog['taskname'] = root.taskname
+  root.lineLog['posttime'] = new Date().toString()
+  root.lineLog['starttime'] = new Date(root.currentLineStartTime).toString()
+  postToServer root.lineLog
+  root.lineLog = initLineLog()
+
+root.postToServer = postToServer = (data) ->
   console.log data
   $.ajax {
     type: 'POST',
@@ -166,6 +185,9 @@ root.numTimesDeletePressed = 0
 
 root.nextNote = ''
 root.lastText = ''
+
+root.numNotesEntered = 0
+
 updateText = (forced) ->
     if not forced?
       forced = false
@@ -184,6 +206,12 @@ updateText = (forced) ->
     numMatched = matchLength(ntext.trim(), root.targetText)
     reftext_entered = root.targetText[0...numMatched]
     reftext_todo = root.targetText[numMatched..]
+
+    numNotesEntered = 0
+    for chunk in reftext_entered.split()
+      if chunk.trim() != ''
+        numNotesEntered += 1
+    root.numNotesEntered = numNotesEntered
 
     $('#textDisplay_entered').text(reftext_entered)
     $('#textDisplay_todo').text(reftext_todo)
@@ -330,7 +358,35 @@ maxLineReached = root.maxLineReached = ->
     return parseInt maxreached
   return 0
 
+setSelectionRange = root.setSelectionRange = (input, selectionStart, selectionEnd) ->
+  if input.setSelectionRange
+    input.focus()
+    input.setSelectionRange(selectionStart, selectionEnd)
+  else if input.createTextRange
+    range = input.createTextRange()
+    range.collapse(true)
+    range.moveEnd('character', selectionEnd)
+    range.moveStart('character', selectionStart)
+    range.select()
+
+setCaretToPos = root.setCaretToPos = (input, pos) ->
+  setSelectionRange(input, pos, pos)
+
+getUrlParameters = root.getUrlParameters = ->
+  map = {}
+  parts = window.location.href.replace /[?&]+([^=&]+)=([^&]*)/gi, (m,key,value) ->
+    map[key] = decodeURI(value)
+  return map
+
+root.workerId = 'foobar'
+root.taskname = 'sometask'
+
 $(document).ready ->
+  urlparams = getUrlParameters()
+  if urlparams['workerId']?
+    root.workerId = urlparams['workerId']
+  if urlparams['taskname']?
+    root.taskname = urlparams['taskname']
   maxlinereached = maxLineReached()
   if window.location.hash? and window.location.hash.trim() != ''
     console.log 'hash is:' + window.location.hash
@@ -349,6 +405,11 @@ $(document).ready ->
   showLine()
 
   $('#textInput').focus()
+  $('#textInput').bind 'blur', (event) ->
+    $('#textInput').focus()
+    setCaretToPos(document.getElementById('textInput'), $('#textInput').val().length)
+    event.preventDefault()
+    return false
   $('#textInput').bind 'cut copy paste drop', (event) ->
     event.preventDefault()
     return false
@@ -356,6 +417,8 @@ $(document).ready ->
     updateText()
     return false
   $("#textInput").bind 'keydown', (evt) ->
+    $('#textInput').focus()
+    setCaretToPos(document.getElementById('textInput'), $('#textInput').val().length)
     if evt.which?
         console.log evt.which
         #if evt.ctrlKey? and evt.ctrlKey
@@ -394,8 +457,6 @@ $(document).ready ->
             # Move the caret
             this.selectionStart = this.selectionEnd = start + transformedChar.length
             return false
-  $('#textInput').blur ->
-    $('#textInput').focus()
   displayKeyboard()
   if root.isMusic
     addNotes()
