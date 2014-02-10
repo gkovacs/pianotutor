@@ -32,7 +32,7 @@ workerid_to_taskname = {}
 app.get '/getWorkerIdToTasknames', (req, res) ->
   res.json workerid_to_taskname
 
-app.get '/releaseWorker', (Req, res) ->
+app.get '/releaseWorker', (req, res) ->
   workerid = req.query.workerid
   if workerid_to_taskname[workerid]?
     delete workerid_to_taskname[workerid]

@@ -46,7 +46,7 @@ app.get('/getWorkerIdToTasknames', function(req, res) {
   return res.json(workerid_to_taskname);
 });
 
-app.get('/releaseWorker', function(Req, res) {
+app.get('/releaseWorker', function(req, res) {
   var workerid;
   workerid = req.query.workerid;
   if (workerid_to_taskname[workerid] != null) {
