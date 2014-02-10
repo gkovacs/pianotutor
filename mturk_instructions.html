@@ -244,10 +244,10 @@
     return null;
   };
 
-  previewHIT = function() {
+  previewHIT = root.previewHIT = function() {
     var acceptedTask;
     acceptedTask = getCookieValue('taskname');
-    if ((typeof accpetedTask !== "undefined" && accpetedTask !== null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
+    if ((acceptedTask != null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
       return document.getElementById('dontacceptwarning').style.display = '';
     }
   };
@@ -296,7 +296,7 @@
 </script>
 <h1 id="chromewarning" style="display: none; background-color: yellow">You must use the <a href="http://www.google.com/chrome" target="_blank">Google Chrome</a> browser. You will not be able to do this task in other browsers.</h1>
 <h1 id="returnwarning" style="display: none; background-color: yellow">You have already accepted another HIT in this group. You may only do one HIT. Please return this HIT.</h1>
-<h1 id="dontacceptwarning" style="display: none; background-color: yellow">You have already accepted another HIT in this group. You may only do one HIT. Please return this HIT.</h1>
+<h1 id="dontacceptwarning" style="display: none; background-color: yellow">You have already accepted another HIT in this group. You may only do one HIT. Please do NOT accept this HIT</h1>
 <h3>Summary</h3>
 
 <p>In this task, we will have you try out a "virtual piano tutor", which teaches you the basics of playing music using your computer. You do <strong>NOT</strong> need any experience with music to do this task.</p>

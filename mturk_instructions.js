@@ -243,10 +243,10 @@
     return null;
   };
 
-  previewHIT = function() {
+  previewHIT = root.previewHIT = function() {
     var acceptedTask;
     acceptedTask = getCookieValue('taskname');
-    if ((typeof accpetedTask !== "undefined" && accpetedTask !== null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
+    if ((acceptedTask != null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
       return document.getElementById('dontacceptwarning').style.display = '';
     }
   };

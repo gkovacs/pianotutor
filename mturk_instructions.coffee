@@ -180,9 +180,9 @@ getCookieValue = root.getCookieValue = (targetKey) ->
           return val
   return null
 
-previewHIT = ->
+previewHIT = root.previewHIT = ->
   acceptedTask = getCookieValue 'taskname'
-  if accpetedTask? and acceptedTask != '' and acceptedTask != root.taskname
+  if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
     document.getElementById('dontacceptwarning').style.display = ''
 
 documentReady = ->
@@ -208,7 +208,7 @@ documentReady = ->
     if workerid != ''
       startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid)
       acceptHIT()
-    else
+    else # hit is being previewed
       previewHIT()
 
 document.onreadystatechange = ->
