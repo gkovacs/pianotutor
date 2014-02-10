@@ -150,81 +150,31 @@ root.validateForm = validateForm = ->
 isChrome = ->
   return /chrom(e|ium)/.test(navigator.userAgent.toLowerCase())
 
-setCookieValue = root.setCookieValue = (targetKey, targetValue) ->
-  existing_keys = []
-  haveSetKey = false
-  haveExpires = false
-  if document.cookie?
-    for keyval in document.cookie.split(';')
-      if keyval.strip() == ''
-        continue
-      parts = keyval.split('=')
-      if parts[0] and parts[0].strip() == 'expires'
-        haveExpires = true
-      if parts[0] and parts[0].strip() == targetKey
-        existing_keys.push targetKey + '=' + targetValue
-        haveSetKey = true
-      else
-        existing_keys.push keyval
-  if not haveSetKey
-    existing_keys.push(targetKey + '=' + targetValue)
-  if not haveExpires
-    existing_keys.push(nextYearDateString())
-  document.cookie = existing_keys.join(';')
-
-setCookieValueIfNotSet = root.setCookieValueIfNotSet = (targetKey, targetValue) ->
-  existingCookieVal = getCookieValue targetKey
-  if not existingCookieVal?
-    setCookieValue targetKey, targetValue
-
-getCookieValue = root.getCookieValue = (targetKey) ->
-  if document.cookie?
-    parts = document.cookie.split(';')
-    for part in parts
-      keyval = part.split('=')
-      key = keyval[0]
-      if key? and key.trim() == targetKey
-        val = keyval[1]
-        if val?
-          return val
-  return null
-
 previewHIT = root.previewHIT = ->
-  #acceptedTask = getCookieValue 'taskname'
   acceptedTask = $.cookie 'taskname'
   if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
-    document.getElementById('dontacceptwarning').style.display = ''
+    $('#dontacceptwarning').show()
 
 checkIfHITDoneCookies = root.checkIfHITDoneCookies = ->
-  #acceptedTask = getCookieValue 'taskname'
   acceptedTask = $.cookie 'taskname'
   if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
-    document.getElementById('returnwarning').style.display = ''
+    $('#returnwarning').show()
 
 documentReady = ->
   $('#submitButton').click ->
     return validateForm()
-  #submitButton = document.getElementById('submitButton')
-  #if submitButton?
-  #  submitButton.onclick = 'return validateForm()'
   if not isChrome()
-    document.getElementById('chromewarning').style.display = ''
-    if submitButton?
-      submitButton.disabled = true
-    startTask = document.getElementById('startTask')
-    if startTask.text?
-      startTask.text = 'You must use Google Chrome to do this task. Open this HIT in Google Chrome to do the task.'
-    if startTask.textContent?
-      startTask.textContent = 'You must use Google Chrome to do this task. Open this HIT in Google Chrome to do the task.'
-    startTask.href = 'http://www.google.com/chrome'
-    document.getElementById('checkCodeButton').disabled = true
-    document.getElementById('hitcode').disabled = true
+    $('#chromewarning').show()
+    $('#submitButton').attr 'disabled', 'disabled'
+    $('#startTask').text 'You must use Google Chrome to do this task. Open this HIT in Google Chrome to do the task.'
+    $('#startTask').attr 'href', 'http://www.google.com/chrome'
+    $('#checkCodeButton').attr 'disabled', 'disabled'
+    $('#hitcode').attr 'disabled', 'disabled'
   else
-    startTask = document.getElementById('startTask')
-    startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html'
+    $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html'
     workerid = getWorkerId()
     if workerid != ''
-      startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid)
+      $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid)
       checkIfHITDoneCookies()
       acceptHIT()
     else # hit is being previewed
