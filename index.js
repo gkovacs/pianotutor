@@ -214,14 +214,16 @@ initLineLog = function() {
 root.lineLog = initLineLog();
 
 addKeyEvent = root.addKeyEvent = function(key_pressed, key_expected) {
-  var currentTime;
+  var currentTime, keyevent;
   currentTime = new Date().toString();
-  return root.lineLog.keyevents.push({
+  keyevent = {
     pressed: key_pressed,
     expected: key_expected,
     position: root.numNotesEntered,
     time: currentTime
-  });
+  };
+  console.log(keyevent);
+  return root.lineLog.keyevents.push(keyevent);
 };
 
 sendLineLog = root.sendLineLog = function() {
@@ -284,7 +286,7 @@ updateText = function(forced) {
   reftext_entered = root.targetText.slice(0, numMatched);
   reftext_todo = root.targetText.slice(numMatched);
   numNotesEntered = 0;
-  _ref = reftext_entered.split();
+  _ref = reftext_entered.split(' ');
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     chunk = _ref[_i];
     if (chunk.trim() !== '') {
@@ -309,6 +311,7 @@ updateText = function(forced) {
   }
   if (numMatched === root.targetText.length) {
     $('#textInput').val('');
+    sendLineLog();
     root.lineFinishLogs.push({
       'targetText': root.targetText,
       'startedAt': new Date(root.currentLineStartTime).toString(),
@@ -588,6 +591,7 @@ $(document).ready(function() {
       if (transformedChar !== origChar) {
         if (root.isMusic) {
           playNote(transformedChar);
+          addKeyEvent(transformedChar, root.nextNote);
           transformedChar = transformedChar + ' ';
         }
         start = this.selectionStart;

@@ -147,12 +147,14 @@ root.lineLog = initLineLog()
 
 addKeyEvent = root.addKeyEvent = (key_pressed, key_expected)->
   currentTime = new Date().toString()
-  root.lineLog.keyevents.push {
+  keyevent = {
     pressed: key_pressed,
     expected: key_expected,
     position: root.numNotesEntered,
     time: currentTime
   }
+  console.log keyevent
+  root.lineLog.keyevents.push keyevent
 
 sendLineLog = root.sendLineLog = ->
   root.lineLog['lineNum'] = root.currentLineNum
@@ -208,7 +210,7 @@ updateText = (forced) ->
     reftext_todo = root.targetText[numMatched..]
 
     numNotesEntered = 0
-    for chunk in reftext_entered.split()
+    for chunk in reftext_entered.split(' ')
       if chunk.trim() != ''
         numNotesEntered += 1
     root.numNotesEntered = numNotesEntered
@@ -230,6 +232,7 @@ updateText = (forced) ->
 
     if numMatched == root.targetText.length
       $('#textInput').val('')
+      sendLineLog()
       root.lineFinishLogs.push {'targetText': root.targetText, 'startedAt': new Date(root.currentLineStartTime).toString(), 'completedAt': new Date().toString()}
       root.currentLineStartTime = 0
       if root.targetText == 'you are now done typing'
@@ -442,9 +445,11 @@ $(document).ready ->
         console.log origChar
         transformedChar = transformTypedChar(origChar)
         #console.log transformedChar
+
         if transformedChar != origChar
             if root.isMusic
               playNote transformedChar
+              addKeyEvent(transformedChar, root.nextNote)
               transformedChar = transformedChar + ' '
             start = this.selectionStart
             end = this.selectionEnd

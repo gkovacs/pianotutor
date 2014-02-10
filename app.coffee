@@ -20,12 +20,15 @@ app.get '/varTable', (req, res) ->
 
 logs = []
 
+app.get '/listusers', (req, res) ->
+  res.json Object.keys(logs)
+
 app.get '/getlogs', (req, res) ->
   user = req.query.user
   if not user?
     res.send 'need user parameter'
     return
-  res.send logs[user]
+  res.json logs[user]
 
 workerid_to_taskname = {}
 

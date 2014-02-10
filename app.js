@@ -30,6 +30,10 @@ app.get('/varTable', function(req, res) {
 
 logs = [];
 
+app.get('/listusers', function(req, res) {
+  return res.json(Object.keys(logs));
+});
+
 app.get('/getlogs', function(req, res) {
   var user;
   user = req.query.user;
@@ -37,7 +41,7 @@ app.get('/getlogs', function(req, res) {
     res.send('need user parameter');
     return;
   }
-  return res.send(logs[user]);
+  return res.json(logs[user]);
 });
 
 workerid_to_taskname = {};
