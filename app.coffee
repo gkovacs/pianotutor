@@ -18,7 +18,7 @@ app.get '/varTable', (req, res) ->
     vartable[varname] = req.query['set']
   res.send(vartable[varname])
 
-logs = []
+logs = {}
 
 app.get '/listusers', (req, res) ->
   res.json Object.keys(logs)
@@ -26,7 +26,7 @@ app.get '/listusers', (req, res) ->
 app.get '/getlogs', (req, res) ->
   user = req.query.user
   if not user?
-    res.send 'need user parameter'
+    res.send logs
     return
   res.json logs[user]
 

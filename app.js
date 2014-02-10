@@ -28,7 +28,7 @@ app.get('/varTable', function(req, res) {
   return res.send(vartable[varname]);
 });
 
-logs = [];
+logs = {};
 
 app.get('/listusers', function(req, res) {
   return res.json(Object.keys(logs));
@@ -38,7 +38,7 @@ app.get('/getlogs', function(req, res) {
   var user;
   user = req.query.user;
   if (user == null) {
-    res.send('need user parameter');
+    res.send(logs);
     return;
   }
   return res.json(logs[user]);
