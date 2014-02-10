@@ -46,11 +46,19 @@
   taskAcceptedByWorker = root.taskAcceptedByWorker = function(accepted_taskname) {
     if (accepted_taskname === '' || accepted_taskname === root.taskname) {
       console.log('taskname matches: ' + accepted_taskname);
-      return setCookieValueIfNotSet('taskname', root.taskname);
+      if ($.cookie('taskname') == null) {
+        return $.cookie('taskname', root.taskname, {
+          expires: 365
+        });
+      }
     } else {
       console.log('taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname);
       document.getElementById('returnwarning').style.display = '';
-      return setCookieValueIfNotSet('taskname', accepted_taskname);
+      if ($.cookie('taskname') == null) {
+        return $.cookie('taskname', accepted_taskname, {
+          expires: 365
+        });
+      }
     }
   };
 
@@ -255,7 +263,7 @@
 
   previewHIT = root.previewHIT = function() {
     var acceptedTask;
-    acceptedTask = getCookieValue('taskname');
+    acceptedTask = $.cookie('taskname');
     if ((acceptedTask != null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
       return document.getElementById('dontacceptwarning').style.display = '';
     }
@@ -263,7 +271,7 @@
 
   checkIfHITDoneCookies = root.checkIfHITDoneCookies = function() {
     var acceptedTask;
-    acceptedTask = getCookieValue('taskname');
+    acceptedTask = $.cookie('taskname');
     if ((acceptedTask != null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
       return document.getElementById('returnwarning').style.display = '';
     }

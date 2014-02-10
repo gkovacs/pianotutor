@@ -30,12 +30,16 @@ nextYearDateString = ->
 taskAcceptedByWorker = root.taskAcceptedByWorker = (accepted_taskname) ->
   if accepted_taskname == '' or accepted_taskname == root.taskname
     console.log 'taskname matches: ' + accepted_taskname 
-    setCookieValueIfNotSet 'taskname', root.taskname
+    if not $.cookie('taskname')?
+      $.cookie 'taskname', root.taskname, {expires: 365}
+    #setCookieValueIfNotSet 'taskname', root.taskname
     #setCookieValueIfNotSet 'expires', nextYearDateString()
   else
     console.log 'taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname
     document.getElementById('returnwarning').style.display = ''
-    setCookieValueIfNotSet 'taskname', accepted_taskname
+    if not $.cookie('taskname')?
+      $.cookie 'taskname', accepted_taskname, {expires: 365}
+    #setCookieValueIfNotSet 'taskname', accepted_taskname
     #setCookieValueIfNotSet 'expires', nextYearDateString()
     #submitButton = document.getElementById('submitButton')
     #if submitButton?
@@ -190,12 +194,14 @@ getCookieValue = root.getCookieValue = (targetKey) ->
   return null
 
 previewHIT = root.previewHIT = ->
-  acceptedTask = getCookieValue 'taskname'
+  #acceptedTask = getCookieValue 'taskname'
+  acceptedTask = $.cookie 'taskname'
   if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
     document.getElementById('dontacceptwarning').style.display = ''
 
 checkIfHITDoneCookies = root.checkIfHITDoneCookies = ->
-  acceptedTask = getCookieValue 'taskname'
+  #acceptedTask = getCookieValue 'taskname'
+  acceptedTask = $.cookie 'taskname'
   if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
     document.getElementById('returnwarning').style.display = ''
 
