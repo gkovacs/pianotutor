@@ -271,14 +271,13 @@ checkIfHITDoneCookies = root.checkIfHITDoneCookies = function() {
 };
 
 documentReady = function() {
-  var startTask, submitButton, workerid;
-  submitButton = document.getElementById('submitButton');
-  if (submitButton != null) {
-    submitButton.onclick = 'return validateForm()';
-  }
+  var startTask, workerid;
+  $('#submitButton').click(function() {
+    return validateForm();
+  });
   if (!isChrome()) {
     document.getElementById('chromewarning').style.display = '';
-    if (submitButton != null) {
+    if (typeof submitButton !== "undefined" && submitButton !== null) {
       submitButton.disabled = true;
     }
     startTask = document.getElementById('startTask');

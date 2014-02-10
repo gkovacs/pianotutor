@@ -202,9 +202,11 @@ checkIfHITDoneCookies = root.checkIfHITDoneCookies = ->
     document.getElementById('returnwarning').style.display = ''
 
 documentReady = ->
-  submitButton = document.getElementById('submitButton')
-  if submitButton?
-    submitButton.onclick = 'return validateForm()'
+  $('#submitButton').click ->
+    return validateForm()
+  #submitButton = document.getElementById('submitButton')
+  #if submitButton?
+  #  submitButton.onclick = 'return validateForm()'
   if not isChrome()
     document.getElementById('chromewarning').style.display = ''
     if submitButton?
