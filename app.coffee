@@ -27,6 +27,22 @@ app.get '/getlogs', (req, res) ->
     return
   res.send logs[user]
 
+workerid_to_taskname = {}
+
+app.get '/taskAcceptedByWorker.js', (req, res) ->
+  workerid = req.query.workerid
+  taskname = req.query.taskname
+  if not workerid_to_taskname[workerid]
+    workerid_to_taskname[workerid] = taskname
+  res.jsonp workerid_to_taskname[workerid]
+
+app.get '/getTaskNamePreviouslyAcceptedByWorker.js', (req, res) ->
+  workerid = req.query.workerid
+  taskname = ''
+  if workerid? and workerid_to_taskname[workerid]?
+    taskname = workerid_to_taskname[workerid]
+  res.jsonp taskname
+
 app.post '/postlog', (req, res) ->
   data = req.body
   console.log data

@@ -4,6 +4,45 @@ root.taskname = '${taskname}'
 if root.taskname.indexOf('taskname') != -1
   root.taskname = 'foobarrr' # 92293
 
+getUrlParameters = root.getUrlParameters = ->
+  map = {}
+  parts = window.location.href.replace /[?&]+([^=&]+)=([^&]*)/gi, (m,key,value) ->
+    map[key] = decodeURI(value)
+  return map
+
+getWorkerId = root.getWorkerId = ->
+  params = getUrlParameters()
+  if params.workerId?
+    return params.workerId
+  return ''
+
+insertScript = root.insertScript = (url) ->
+  scriptTag = document.createElement('script')
+  scriptTag.type = 'text/javascript'
+  scriptTag.src = url
+  document.documentElement.appendChild(scriptTag)
+
+taskAcceptedByWorker = (accepted_taskname) ->
+  if accepted_taskname == '' or accepted_taskname == root.taskname
+    console.log 'taskname matches: ' + accepted_taskname 
+  else
+    console.log 'taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname
+    document.getElementById('dupwarning').style.display = ''
+    submitButton = document.getElementById('submitButton')
+    if submitButton?
+      submitButton.disabled = true
+
+acceptHIT = root.acceptHIT = ->
+  console.log 'hit accepted'
+  insertScript '//pianotutor.herokuapp.com/taskAcceptedByWorker.js?callback=taskAcceptedByWorker&workerid=' + encodeURI(getWorkerId()) + '&taskname=' + encodeURI(root.taskname)
+  # jsonp thingy
+  #document.
+  previously_accepted_taskname = root.getTaskNamePreviouslyAcceptedByWorker()
+  if previously_accepted_taskname == taskname or previously_accepted_taskname == ''
+    console.log 'previously accepted hit'
+  else
+    console.log 'previously accepted other hit'
+
 #toHitCode = (taskname) ->
 #  output = 0
 #  for x in taskname
@@ -128,6 +167,9 @@ documentReady = ->
   else
     startTask = document.getElementById('startTask')
     startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html'
+    workerid = getWorkerId()
+    if workerid != ''
+      startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid)
 
 document.onreadystatechange = ->
   if document.readyState == 'complete'
