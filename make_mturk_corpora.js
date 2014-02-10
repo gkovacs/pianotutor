@@ -76,7 +76,7 @@
     _ref = [1, 2, 4, 8, 16, 32, 64];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       scramble_size = _ref[_i];
-      for (iteration = _j = 0; _j < 2; iteration = ++_j) {
+      for (iteration = _j = 0; _j < 10; iteration = ++_j) {
         blocks = blockify(corpus_lines, scramble_size);
         lines = [];
         for (_k = 0, _len1 = blocks.length; _k < _len1; _k++) {
@@ -87,7 +87,7 @@
             lines.push(line);
           }
         }
-        taskname = scramble_size + '_' + iteration + '_' + randstr(4) + '_v1';
+        taskname = scramble_size + '_' + iteration + '_' + randstr(4) + '_v2';
         tasknames.push(taskname);
         lines.push(finishing_line + toHitCode(taskname));
         corpus = lines_to_corpus(lines);

@@ -178,6 +178,7 @@ documentReady = ->
     $('#checkCodeButton').attr 'disabled', 'disabled'
     $('#hitcode').attr 'disabled', 'disabled'
     return
+  $('#useragent').val(navigator.userAgent.toString())
   $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?taskname=' + encodeURI(root.taskname)
   workerid = getWorkerId()
   if workerid != ''
