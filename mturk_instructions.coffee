@@ -25,9 +25,14 @@ insertScript = root.insertScript = (url) ->
 taskAcceptedByWorker = root.taskAcceptedByWorker = (accepted_taskname) ->
   if accepted_taskname == '' or accepted_taskname == root.taskname
     console.log 'taskname matches: ' + accepted_taskname 
+    tasknameCookieVal = getCookieValue 'taskname'
+    if (not tasknameCookieVal?) or tasknameCookieVal == ''
+      existing_keys = document.cookie.split(';')
+      existing_keys.push 'taskname=' + root.taskname
+      document.cookie = existing_keys.join(';')
   else
     console.log 'taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname
-    document.getElementById('dupwarning').style.display = ''
+    document.getElementById('returnwarning').style.display = ''
     #submitButton = document.getElementById('submitButton')
     #if submitButton?
     #  submitButton.disabled = true
@@ -141,6 +146,23 @@ root.validateForm = validateForm = ->
 isChrome = ->
   return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
 
+getCookieValue = root.getCookieValue = (targetKey) ->
+  if document.cookie?
+    parts = document.cookie.split(';')
+    for part in parts
+      keyval = part.split('=')
+      key = keyval[0]
+      if key? and key.trim() == targetKey
+        val = keyval[1]
+        if val?
+          return val
+  return ''
+
+previewHIT = ->
+  acceptedTask = getCookieValue 'taskname'
+  if accpetedTask? and acceptedTask != '' and acceptedTask != root.taskname
+    document.getElementById('dontacceptwarning').style.display = ''
+
 documentReady = ->
   submitButton = document.getElementById('submitButton')
   if submitButton?
@@ -164,6 +186,8 @@ documentReady = ->
     if workerid != ''
       startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid)
       acceptHIT()
+    else
+      previewHIT()
 
 document.onreadystatechange = ->
   if document.readyState == 'complete'
