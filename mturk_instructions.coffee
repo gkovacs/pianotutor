@@ -22,26 +22,19 @@ insertScript = root.insertScript = (url) ->
   scriptTag.src = url
   document.documentElement.appendChild(scriptTag)
 
-taskAcceptedByWorker = (accepted_taskname) ->
+taskAcceptedByWorker = root.taskAcceptedByWorker = (accepted_taskname) ->
   if accepted_taskname == '' or accepted_taskname == root.taskname
     console.log 'taskname matches: ' + accepted_taskname 
   else
     console.log 'taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname
     document.getElementById('dupwarning').style.display = ''
-    submitButton = document.getElementById('submitButton')
-    if submitButton?
-      submitButton.disabled = true
+    #submitButton = document.getElementById('submitButton')
+    #if submitButton?
+    #  submitButton.disabled = true
 
 acceptHIT = root.acceptHIT = ->
   console.log 'hit accepted'
   insertScript '//pianotutor.herokuapp.com/taskAcceptedByWorker.js?callback=taskAcceptedByWorker&workerid=' + encodeURI(getWorkerId()) + '&taskname=' + encodeURI(root.taskname)
-  # jsonp thingy
-  #document.
-  previously_accepted_taskname = root.getTaskNamePreviouslyAcceptedByWorker()
-  if previously_accepted_taskname == taskname or previously_accepted_taskname == ''
-    console.log 'previously accepted hit'
-  else
-    console.log 'previously accepted other hit'
 
 #toHitCode = (taskname) ->
 #  output = 0

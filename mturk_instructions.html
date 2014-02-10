@@ -37,30 +37,18 @@
     return document.documentElement.appendChild(scriptTag);
   };
 
-  taskAcceptedByWorker = function(accepted_taskname) {
-    var submitButton;
+  taskAcceptedByWorker = root.taskAcceptedByWorker = function(accepted_taskname) {
     if (accepted_taskname === '' || accepted_taskname === root.taskname) {
       return console.log('taskname matches: ' + accepted_taskname);
     } else {
       console.log('taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname);
-      document.getElementById('dupwarning').style.display = '';
-      submitButton = document.getElementById('submitButton');
-      if (submitButton != null) {
-        return submitButton.disabled = true;
-      }
+      return document.getElementById('dupwarning').style.display = '';
     }
   };
 
   acceptHIT = root.acceptHIT = function() {
-    var previously_accepted_taskname;
     console.log('hit accepted');
-    insertScript('//pianotutor.herokuapp.com/taskAcceptedByWorker.js?callback=taskAcceptedByWorker&workerid=' + encodeURI(getWorkerId()) + '&taskname=' + encodeURI(root.taskname));
-    previously_accepted_taskname = root.getTaskNamePreviouslyAcceptedByWorker();
-    if (previously_accepted_taskname === taskname || previously_accepted_taskname === '') {
-      return console.log('previously accepted hit');
-    } else {
-      return console.log('previously accepted other hit');
-    }
+    return insertScript('//pianotutor.herokuapp.com/taskAcceptedByWorker.js?callback=taskAcceptedByWorker&workerid=' + encodeURI(getWorkerId()) + '&taskname=' + encodeURI(root.taskname));
   };
 
   toHitCode = root.toHitCode = function(taskname) {

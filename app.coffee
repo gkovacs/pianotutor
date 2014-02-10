@@ -29,6 +29,14 @@ app.get '/getlogs', (req, res) ->
 
 workerid_to_taskname = {}
 
+app.get '/getWorkerIdToTasknames', (req, res) ->
+  res.json workerid_to_taskname
+
+app.get '/releaseWorker', (Req, res) ->
+  workerid = req.query.workerid
+  if workerid_to_taskname[workerid]?
+    delete workerid_to_taskname[workerid]
+
 app.get '/taskAcceptedByWorker.js', (req, res) ->
   workerid = req.query.workerid
   taskname = req.query.taskname

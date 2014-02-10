@@ -42,6 +42,18 @@ app.get('/getlogs', function(req, res) {
 
 workerid_to_taskname = {};
 
+app.get('/getWorkerIdToTasknames', function(req, res) {
+  return res.json(workerid_to_taskname);
+});
+
+app.get('/releaseWorker', function(Req, res) {
+  var workerid;
+  workerid = req.query.workerid;
+  if (workerid_to_taskname[workerid] != null) {
+    return delete workerid_to_taskname[workerid];
+  }
+});
+
 app.get('/taskAcceptedByWorker.js', function(req, res) {
   var taskname, workerid;
   workerid = req.query.workerid;
