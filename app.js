@@ -46,6 +46,10 @@ app.get('/taskAcceptedByWorker.js', function(req, res) {
   var taskname, workerid;
   workerid = req.query.workerid;
   taskname = req.query.taskname;
+  if ((workerid == null) || workerid === '') {
+    res.jsonp('');
+    return;
+  }
   if (!workerid_to_taskname[workerid]) {
     workerid_to_taskname[workerid] = taskname;
   }

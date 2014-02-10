@@ -32,6 +32,9 @@ workerid_to_taskname = {}
 app.get '/taskAcceptedByWorker.js', (req, res) ->
   workerid = req.query.workerid
   taskname = req.query.taskname
+  if not workerid? or workerid == ''
+    res.jsonp ''
+    return
   if not workerid_to_taskname[workerid]
     workerid_to_taskname[workerid] = taskname
   res.jsonp workerid_to_taskname[workerid]
