@@ -171,7 +171,7 @@ documentReady = ->
     $('#checkCodeButton').attr 'disabled', 'disabled'
     $('#hitcode').attr 'disabled', 'disabled'
   else
-    $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html'
+    $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?taskname=' + encodeURI(root.taskname)
     workerid = getWorkerId()
     if workerid != ''
       $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid) + '&taskname=' + encodeURI(root.taskname)
