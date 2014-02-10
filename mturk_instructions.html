@@ -1,5 +1,6 @@
 <script src="//pianotutor.herokuapp.com/jquery-1.10.2.min.js"></script>
 <script src="//pianotutor.herokuapp.com/jquery.cookie.js"></script>
+<script src="//pianotutor.herokuapp.com/jquery.browser.js"></script>
 <script src="//pianotutor.herokuapp.com/mturk_instructions.js"></script>
 <script>
 taskname = '${taskname}'
@@ -15,7 +16,7 @@ if (taskname.indexOf('taskname') != -1)
 
 <h3>Requirements</h3>
 
-<p>Your computer must be able to <strong>play sound</strong>. <button onclick="testPlayNote(); return false">Click here</button> to test; you should hear a note. <audio id="testNote" src="//pianotutor.herokuapp.com/piano/Piano.ff.C4.m4a" style="display: none"></audio></p>
+<p>Your computer must be able to <strong>play sound</strong>. <span style="background-color: lightblue" onclick="testPlayNote(); return false">Click here</span> to test; you should hear a note. <audio id="testNote" src="//pianotutor.herokuapp.com/piano/Piano.ff.C4.m4a" style="display: none"></audio></p>
 
 <h3>Instructions</h3>
 
@@ -32,7 +33,7 @@ This is what the task looks like:</p>
 
 <br/><br/>
 
-Code you got from completing the task: <input id="hitcode" name="hitcode" onkeypress="return codeKeypress(event)"></input><button id="checkCodeButton" onclick="checkCode(); return false">Check Code</button><span id="codeCorrect" style="color: green; display: none">Correct! Answer survey below and submit.</span><span id="codeIncorrect" style="color: red; display: none">Incorrect code</span>
+Code you got from completing the task: <input id="hitcode" name="hitcode" onkeypress="return codeKeypress(event)"></input><span style="background-color: lightblue" id="checkCodeButton" onclick="checkCode(); return false">Check Code</span> <span id="codeCorrect" style="color: green; display: none">Correct! Answer survey below and submit.</span><span id="codeIncorrect" style="color: red; display: none">Incorrect code</span>
 
 <div id="survey" style="display: none">
 
