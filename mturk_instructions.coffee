@@ -170,6 +170,7 @@ documentReady = ->
     workerid = getWorkerId()
     if workerid != ''
       startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid)
+      acceptHIT()
 
 document.onreadystatechange = ->
   if document.readyState == 'complete'

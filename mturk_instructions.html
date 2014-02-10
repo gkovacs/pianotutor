@@ -223,7 +223,8 @@
       startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html';
       workerid = getWorkerId();
       if (workerid !== '') {
-        return startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid);
+        startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid);
+        return acceptHIT();
       }
     }
   };
