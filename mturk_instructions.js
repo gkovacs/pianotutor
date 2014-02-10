@@ -110,7 +110,6 @@
       document.getElementById('codeCorrect').style.display = '';
       document.getElementById('codeIncorrect').style.display = 'none';
       document.getElementById('checkCodeButton').disabled = true;
-      document.getElementById('hitcode').disabled = true;
       document.getElementById('survey').style.display = '';
       submitButton = document.getElementById('submitButton');
       if (submitButton != null) {
