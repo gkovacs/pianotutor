@@ -148,7 +148,7 @@ root.validateForm = validateForm = ->
   return true
 
 isChrome = ->
-  return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor)
+  return /chrom(e|ium)/.test(navigator.userAgent.toLowerCase())
 
 setCookieValue = root.setCookieValue = (targetKey, targetValue) ->
   existing_keys = []
