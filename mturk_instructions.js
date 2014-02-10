@@ -4,12 +4,6 @@
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
-  root.taskname = '${taskname}';
-
-  if (root.taskname.indexOf('taskname') !== -1) {
-    root.taskname = 'foobarrr';
-  }
-
   getUrlParameters = root.getUrlParameters = function() {
     var map, parts;
     map = {};

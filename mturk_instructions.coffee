@@ -1,9 +1,5 @@
 root = exports ? this
 
-root.taskname = '${taskname}'
-if root.taskname.indexOf('taskname') != -1
-  root.taskname = 'foobarrr' # 92293
-
 getUrlParameters = root.getUrlParameters = ->
   map = {}
   parts = window.location.href.replace /[?&]+([^=&]+)=([^&]*)/gi, (m,key,value) ->
