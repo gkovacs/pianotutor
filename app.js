@@ -50,8 +50,9 @@ app.get('/releaseWorker', function(req, res) {
   var workerid;
   workerid = req.query.workerid;
   if (workerid_to_taskname[workerid] != null) {
-    return delete workerid_to_taskname[workerid];
+    delete workerid_to_taskname[workerid];
   }
+  return res.send('');
 });
 
 app.get('/taskAcceptedByWorker.js', function(req, res) {

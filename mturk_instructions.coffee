@@ -35,6 +35,8 @@ taskAcceptedByWorker = root.taskAcceptedByWorker = (accepted_taskname) ->
   else
     console.log 'taskname mismatch: ' + accepted_taskname + ' vs ' + root.taskname
     document.getElementById('returnwarning').style.display = ''
+    setCookieValueIfNotSet 'taskname', accepted_taskname
+    setCookieValueIfNotSet 'expires', nextYearDateString()
     #submitButton = document.getElementById('submitButton')
     #if submitButton?
     #  submitButton.disabled = true
@@ -185,6 +187,11 @@ previewHIT = root.previewHIT = ->
   if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
     document.getElementById('dontacceptwarning').style.display = ''
 
+checkIfHITDoneCookies = root.checkIfHITDoneCookies = ->
+  acceptedTask = getCookieValue 'taskname'
+  if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
+    document.getElementById('returnwarning').style.display = ''
+
 documentReady = ->
   submitButton = document.getElementById('submitButton')
   if submitButton?
@@ -207,6 +214,7 @@ documentReady = ->
     workerid = getWorkerId()
     if workerid != ''
       startTask.href = '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid)
+      checkIfHITDoneCookies()
       acceptHIT()
     else # hit is being previewed
       previewHIT()

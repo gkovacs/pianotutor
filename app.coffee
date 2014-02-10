@@ -36,6 +36,7 @@ app.get '/releaseWorker', (req, res) ->
   workerid = req.query.workerid
   if workerid_to_taskname[workerid]?
     delete workerid_to_taskname[workerid]
+  res.send ''
 
 app.get '/taskAcceptedByWorker.js', (req, res) ->
   workerid = req.query.workerid
