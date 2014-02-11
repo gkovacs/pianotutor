@@ -80,14 +80,14 @@ root.codeKeypress = codeKeypress = (event) ->
     event.preventDefault()
     return false
   else
-    checkCode()
+    document.getElementById('codeCorrect').style.display = 'none'
+    document.getElementById('codeIncorrect').style.display = 'none'
     return true
-  #else if isHitCodeCorrect()
-  #  checkCode()
-  #else
-  #  document.getElementById('codeCorrect').style.display = 'none'
-  #  document.getElementById('codeIncorrect').style.display = 'none'
-  #  return true
+
+root.codeKeyup = codeKeyup = (event) ->
+  if isHitCodeCorrect()
+    checkCode()
+  return false
 
 root.checkCode = checkCode = ->
   if isHitCodeCorrect()
@@ -102,6 +102,7 @@ root.checkCode = checkCode = ->
     submitButton = document.getElementById('submitButton')
     if submitButton?
       submitButton.style.display = ''
+  return false
 
 isComboBoxZero = root.isComboBoxZero = (name) ->
   return document.getElementsByName(name)[0].value == '0'
