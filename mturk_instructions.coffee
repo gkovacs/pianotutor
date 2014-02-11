@@ -73,6 +73,7 @@ root.testPlayNote = testPlayNote = ->
 root.isHitCodeCorrect = isHitCodeCorrect = ->
   expected_hitcode = toHitCode(root.taskname).toString()
   hitcode = document.getElementById('hitcode').value.trim()
+  return expected_hitcode == hitcode
 
 root.codeKeypress = codeKeypress = (event) ->
   if event.keyCode == 13 # enter
