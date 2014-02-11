@@ -70,20 +70,24 @@ root.testPlayNote = testPlayNote = ->
   audioTag.currentTime = 0.0
   audioTag.play()
 
+root.isHitCodeCorrect = isHitCodeCorrect = ->
+  expected_hitcode = toHitCode(root.taskname).toString()
+  hitcode = document.getElementById('hitcode').value.trim()
+
 root.codeKeypress = codeKeypress = (event) ->
   if event.keyCode == 13 # enter
     checkCode()
     event.preventDefault()
     return false
+  else if isHitCodeCorrect()
+    checkCode()
   else
     document.getElementById('codeCorrect').style.display = 'none'
     document.getElementById('codeIncorrect').style.display = 'none'
     return true
 
 root.checkCode = checkCode = ->
-  expected_hitcode = toHitCode(root.taskname).toString()
-  hitcode = document.getElementById('hitcode').value.trim()
-  if hitcode != expected_hitcode
+  if isHitCodeCorrect()
     document.getElementById('codeCorrect').style.display = 'none'
     document.getElementById('codeIncorrect').style.display = ''
   else
