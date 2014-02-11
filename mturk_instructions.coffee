@@ -79,12 +79,15 @@ root.codeKeypress = codeKeypress = (event) ->
     checkCode()
     event.preventDefault()
     return false
-  else if isHitCodeCorrect()
-    checkCode()
   else
-    document.getElementById('codeCorrect').style.display = 'none'
-    document.getElementById('codeIncorrect').style.display = 'none'
+    checkCode()
     return true
+  #else if isHitCodeCorrect()
+  #  checkCode()
+  #else
+  #  document.getElementById('codeCorrect').style.display = 'none'
+  #  document.getElementById('codeIncorrect').style.display = 'none'
+  #  return true
 
 root.checkCode = checkCode = ->
   if isHitCodeCorrect()

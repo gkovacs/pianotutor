@@ -98,11 +98,8 @@
       checkCode();
       event.preventDefault();
       return false;
-    } else if (isHitCodeCorrect()) {
-      return checkCode();
     } else {
-      document.getElementById('codeCorrect').style.display = 'none';
-      document.getElementById('codeIncorrect').style.display = 'none';
+      checkCode();
       return true;
     }
   };
