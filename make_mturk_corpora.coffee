@@ -58,13 +58,13 @@ main = ->
   #console.log corpus_lines.length
   tasknames = []
   for scramble_size in [1,2,4,8,16,32,64]
-    for iteration in [0...10]
+    for iteration in [0...2]
       blocks = blockify corpus_lines, scramble_size
       lines = []
       for block in blocks
         for line in shuffle(block)
           lines.push line
-      taskname = scramble_size + '_' + iteration + '_' + randstr(4) + '_v2'
+      taskname = scramble_size + '_' + iteration + '_' + randstr(4) + '_v3'
       tasknames.push taskname
       lines.push finishing_line + toHitCode(taskname)
       corpus = lines_to_corpus lines
@@ -85,6 +85,7 @@ main = ->
   csvfile.push 'taskname'
   for taskname in tasknames
     csvfile.push taskname
+  csvfile = shuffle csvfile
   csvfile = csvfile.join('\n')
   fs.writeFileSync = fs.writeFileSync 'mturk_items.csv', csvfile, 'utf-8'
 main() if require.main is module
