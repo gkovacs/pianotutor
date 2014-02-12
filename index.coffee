@@ -146,7 +146,7 @@ initLineLog = ->
 root.lineLog = initLineLog()
 
 addKeyEvent = root.addKeyEvent = (key_pressed, key_expected)->
-  currentTime = new Date().toString()
+  currentTime = new Date().getTime()
   keyevent = {
     pressed: key_pressed,
     expected: key_expected,
@@ -157,14 +157,23 @@ addKeyEvent = root.addKeyEvent = (key_pressed, key_expected)->
   root.lineLog.keyevents.push keyevent
 
 sendLineLog = root.sendLineLog = ->
+  root.lineLog['logtype'] = 'line'
   root.lineLog['lineNum'] = root.currentLineNum
   root.lineLog['targetText'] = root.targetText
   root.lineLog['user'] = root.workerId
   root.lineLog['taskname'] = root.taskname
-  root.lineLog['posttime'] = new Date().toString()
-  root.lineLog['starttime'] = new Date(root.currentLineStartTime).toString()
+  root.lineLog['posttime'] = new Date().getTime()
+  root.lineLog['starttime'] = new Date(root.currentLineStartTime).getTime()
   postToServer root.lineLog
   root.lineLog = initLineLog()
+
+sendStartLog = root.sendStartLog = ->
+  data = {}
+  data['user'] = root.workerId
+  data['taskname'] = root.taskname
+  data['posttime'] = new Date().getTime()
+  data['logtype'] = 'start'
+  postToServer(data)
 
 root.postToServer = postToServer = (data) ->
   console.log data
@@ -466,6 +475,7 @@ $(document).ready ->
   if root.isMusic
     addNotes()
     updateText(true)
+  sendStartLog()
 
 make_key_mapping = (qwerty_rows, dvorak_rows) ->
   output = {}
