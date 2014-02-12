@@ -165,12 +165,14 @@ previewHIT = root.previewHIT = ->
   if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
     $('#dontacceptwarning').show()
     $('#taskBody').hide()
+    $('#submitButton').hide()
 
 checkIfHITDoneCookies = root.checkIfHITDoneCookies = ->
   acceptedTask = $.cookie 'taskname'
   if acceptedTask? and acceptedTask != '' and acceptedTask != root.taskname
     $('#returnwarning').show()
     $('#taskBody').hide()
+    $('#submitButton').hide()
 
 documentReady = ->
   $('#submitButton').click ->
@@ -178,6 +180,7 @@ documentReady = ->
   if $.browser.mobile
     $('#mobilewarning').show()
     $('#taskBody').hide()
+    $('#submitButton').hide()
     $('#submitButton').attr 'disabled', 'disabled'
     $('#startTask').text 'You must use a desktop computer or laptop to do this task. Open this HIT on a desktop computer or laptop to do the task.'
     $('#startTask').attr 'href', 'http://www.google.com/chrome'
@@ -186,6 +189,7 @@ documentReady = ->
   if not isChrome()
     $('#chromewarning').show()
     $('#taskBody').hide()
+    $('#submitButton').hide()
     $('#submitButton').attr 'disabled', 'disabled'
     $('#startTask').text 'You must use Google Chrome to do this task. Open this HIT in Google Chrome to do the task.'
     $('#startTask').attr 'href', 'http://www.google.com/chrome'

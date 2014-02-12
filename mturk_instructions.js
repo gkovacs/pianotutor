@@ -213,7 +213,8 @@
     acceptedTask = $.cookie('taskname');
     if ((acceptedTask != null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
       $('#dontacceptwarning').show();
-      return $('#taskBody').hide();
+      $('#taskBody').hide();
+      return $('#submitButton').hide();
     }
   };
 
@@ -222,7 +223,8 @@
     acceptedTask = $.cookie('taskname');
     if ((acceptedTask != null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
       $('#returnwarning').show();
-      return $('#taskBody').hide();
+      $('#taskBody').hide();
+      return $('#submitButton').hide();
     }
   };
 
@@ -234,6 +236,7 @@
     if ($.browser.mobile) {
       $('#mobilewarning').show();
       $('#taskBody').hide();
+      $('#submitButton').hide();
       $('#submitButton').attr('disabled', 'disabled');
       $('#startTask').text('You must use a desktop computer or laptop to do this task. Open this HIT on a desktop computer or laptop to do the task.');
       $('#startTask').attr('href', 'http://www.google.com/chrome');
@@ -243,6 +246,7 @@
     if (!isChrome()) {
       $('#chromewarning').show();
       $('#taskBody').hide();
+      $('#submitButton').hide();
       $('#submitButton').attr('disabled', 'disabled');
       $('#startTask').text('You must use Google Chrome to do this task. Open this HIT in Google Chrome to do the task.');
       $('#startTask').attr('href', 'http://www.google.com/chrome');
