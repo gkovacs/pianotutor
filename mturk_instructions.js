@@ -212,7 +212,8 @@
     var acceptedTask;
     acceptedTask = $.cookie('taskname');
     if ((acceptedTask != null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
-      return $('#dontacceptwarning').show();
+      $('#dontacceptwarning').show();
+      return $('#taskBody').hide();
     }
   };
 
@@ -220,7 +221,8 @@
     var acceptedTask;
     acceptedTask = $.cookie('taskname');
     if ((acceptedTask != null) && acceptedTask !== '' && acceptedTask !== root.taskname) {
-      return $('#returnwarning').show();
+      $('#returnwarning').show();
+      return $('#taskBody').hide();
     }
   };
 
@@ -231,6 +233,7 @@
     });
     if ($.browser.mobile) {
       $('#mobilewarning').show();
+      $('#taskBody').hide();
       $('#submitButton').attr('disabled', 'disabled');
       $('#startTask').text('You must use a desktop computer or laptop to do this task. Open this HIT on a desktop computer or laptop to do the task.');
       $('#startTask').attr('href', 'http://www.google.com/chrome');
@@ -239,6 +242,7 @@
     }
     if (!isChrome()) {
       $('#chromewarning').show();
+      $('#taskBody').hide();
       $('#submitButton').attr('disabled', 'disabled');
       $('#startTask').text('You must use Google Chrome to do this task. Open this HIT in Google Chrome to do the task.');
       $('#startTask').attr('href', 'http://www.google.com/chrome');
