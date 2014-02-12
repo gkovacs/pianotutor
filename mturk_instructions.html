@@ -17,7 +17,7 @@ if (taskname.indexOf('taskname') != -1)
 
 <h3>Requirements</h3>
 
-<p>Your computer must be able to <strong>play sound</strong>. <span style="background-color: lightblue" onclick="testPlayNote(); return false">Click here</span> to test; you should hear a note. <audio id="testNote" src="//pianotutor.herokuapp.com/piano/Piano.ff.C4.m4a" style="display: none"></audio></p>
+<p>Your computer must be able to <strong>play sound</strong>. <span style="background-color: lightblue" onclick="return testPlayNote()">Click here</span> to test; you should hear a note. <audio id="testNote" src="//pianotutor.herokuapp.com/piano/Piano.ff.C4.m4a" style="display: none"></audio></p>
 
 <h3>Instructions</h3>
 
@@ -30,11 +30,11 @@ This is what the task looks like:</p>
 <p>Your objective will be to <strong>play back notes as fast as you can, without making mistakes</strong>. If you make a mistake, you will need to repeat the line. Once you are able to play the line of notes without any mistakes, it will advance to the next line.</p>
 
 <p>Once you are done playing all the lines of notes we give you, you will be given a code that you can enter below, answer a brief survey, and submit the HIT.</p>
-<b><a href="http://google.com/chrome" id="startTask" target="_blank">Start the task to get a code (will open in a new window)</a></b>
+<b><a id="startTask" target="_blank">You must accept the HIT before you can start the task to get a code</a></b>
 
 <br/><br/>
 
-Code you got from completing the task: <input id="hitcode" name="hitcode" onkeypress="return codeKeypress(event)" onkeyup="return codeKeyup(event)"></input><span style="background-color: lightblue" id="checkCodeButton" onclick="return checkCode()">Check Code</span> <span id="codeCorrect" style="color: green; display: none">Correct! Answer survey below and submit.</span><span id="codeIncorrect" style="color: red; display: none">Incorrect code</span>
+Code you got from completing the task: <input id="hitcode" name="hitcode" onkeypress="return codeKeypress(event)" onkeyup="return codeKeyup(event)" oninput="return codeKeyup(event)"></input><span style="background-color: lightblue" id="checkCodeButton" onclick="return checkCode()">Check Code</span> <span id="codeCorrect" style="color: green; display: none">Correct! Answer survey below and submit.</span><span id="codeIncorrect" style="color: red; display: none">Incorrect code</span>
 
 <div id="survey" style="display: none">
 

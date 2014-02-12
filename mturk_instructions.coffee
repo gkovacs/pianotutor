@@ -69,6 +69,7 @@ root.testPlayNote = testPlayNote = ->
   audioTag.pause()
   audioTag.currentTime = 0.0
   audioTag.play()
+  return false
 
 root.isHitCodeCorrect = isHitCodeCorrect = ->
   expected_hitcode = toHitCode(root.taskname).toString()
@@ -88,7 +89,7 @@ root.codeKeypress = codeKeypress = (event) ->
 root.codeKeyup = codeKeyup = (event) ->
   if isHitCodeCorrect()
     checkCode()
-  return false
+  return true
 
 root.checkCode = checkCode = ->
   if not isHitCodeCorrect()
@@ -188,9 +189,9 @@ documentReady = ->
     $('#hitcode').attr 'disabled', 'disabled'
     return
   $('#useragent').val(navigator.userAgent.toString())
-  $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?taskname=' + encodeURI(root.taskname)
   workerid = getWorkerId()
   if workerid != ''
+    $('#startTask').text 'Start the task to get a code (will open a new window)'
     $('#startTask').attr 'href', '//pianotutor.herokuapp.com/mturk_index_' + root.taskname + '.html?workerId=' + encodeURI(workerid) + '&taskname=' + encodeURI(root.taskname)
     checkIfHITDoneCookies()
     acceptHIT()
