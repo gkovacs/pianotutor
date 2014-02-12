@@ -83,9 +83,9 @@ main = ->
       fs.writeFileSync new_htmlfile_filename, new_htmlfile, 'utf-8'
   csvfile = []
   csvfile.push 'taskname'
+  shuffle tasknames
   for taskname in tasknames
     csvfile.push taskname
-  csvfile = shuffle csvfile
   csvfile = csvfile.join('\n')
   fs.writeFileSync = fs.writeFileSync 'mturk_items.csv', csvfile, 'utf-8'
 main() if require.main is module

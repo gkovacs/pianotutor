@@ -91,7 +91,7 @@ root.codeKeyup = codeKeyup = (event) ->
   return false
 
 root.checkCode = checkCode = ->
-  if isHitCodeCorrect()
+  if not isHitCodeCorrect()
     document.getElementById('codeCorrect').style.display = 'none'
     document.getElementById('codeIncorrect').style.display = ''
   else
