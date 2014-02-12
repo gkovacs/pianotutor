@@ -1,8 +1,9 @@
 import urllib2
 import csv
-for line in csv.DictReader(open('Batch_1413108_batch_results.csv')):
-  workerid = line['WorkerId']
-  taskname = line['Input.taskname']
-  url = 'http://pianotutor.herokuapp.com/taskAcceptedByWorker.js?workerid=' + workerid + '&taskname=' + taskname
-  response = urllib2.urlopen(url)
-  print response.read()
+for csvfile in ['run0_aborted_Batch_1413108_batch_results.csv', 'run1_14_Batch_1413932_batch_results.csv', 'run2_70_Batch_1414012_batch_results.csv']:
+  for line in csv.DictReader(open(csvfile)):
+    workerid = line['WorkerId']
+    taskname = line['Input.taskname']
+    url = 'http://pianotutor.herokuapp.com/taskAcceptedByWorker.js?workerid=' + workerid + '&taskname=' + taskname
+    response = urllib2.urlopen(url)
+    print response.read()
