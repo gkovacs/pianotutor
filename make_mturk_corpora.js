@@ -66,28 +66,30 @@
   corpus = require('./corpus').corpus;
 
   main = function() {
-    var block, blocks, corpus_filename, corpus_filename_js, corpus_lines, csvfile, finishing_line, htmlfile, htmlfile_lines, iteration, line, lines, new_htmlfile, new_htmlfile_filename, new_htmlfile_lines, scramble_size, taskname, tasknames, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _n, _ref, _ref1;
+    var block, blocks, corpus_filename, corpus_filename_js, corpus_lines, csvfile, finishing_line, htmlfile, htmlfile_lines, iteration, line, lines, new_htmlfile, new_htmlfile_filename, new_htmlfile_lines, scramble_size, taskname, tasknames, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _len5, _m, _n, _ref, _ref1, _ref2;
     htmlfile = fs.readFileSync('index.html', 'utf-8');
     htmlfile_lines = htmlfile.split('\n');
     corpus_lines = corpus.split('\n');
     finishing_line = corpus_lines.slice(-1)[0].split(':')[0] + ': ';
     corpus_lines = corpus_lines.slice(0, -1);
     tasknames = [];
-    _ref = [1, 2, 4, 8, 16, 32, 64];
+    _ref = [2];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       scramble_size = _ref[_i];
-      for (iteration = _j = 0; _j < 10; iteration = ++_j) {
+      _ref1 = [0];
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        iteration = _ref1[_j];
         blocks = blockify(corpus_lines, scramble_size);
         lines = [];
-        for (_k = 0, _len1 = blocks.length; _k < _len1; _k++) {
+        for (_k = 0, _len2 = blocks.length; _k < _len2; _k++) {
           block = blocks[_k];
-          _ref1 = shuffle(block);
-          for (_l = 0, _len2 = _ref1.length; _l < _len2; _l++) {
-            line = _ref1[_l];
+          _ref2 = shuffle(block);
+          for (_l = 0, _len3 = _ref2.length; _l < _len3; _l++) {
+            line = _ref2[_l];
             lines.push(line);
           }
         }
-        taskname = scramble_size + '_' + iteration + '_' + randstr(4) + '_v4';
+        taskname = scramble_size + '_' + iteration + '_' + randstr(4) + '_v5';
         tasknames.push(taskname);
         lines.push(finishing_line + toHitCode(taskname));
         corpus = lines_to_corpus(lines);
@@ -95,7 +97,7 @@
         corpus_filename_js = 'mturk_corpus_' + taskname + '.js';
         fs.writeFileSync(corpus_filename, corpus, 'utf-8');
         new_htmlfile_lines = [];
-        for (_m = 0, _len3 = htmlfile_lines.length; _m < _len3; _m++) {
+        for (_m = 0, _len4 = htmlfile_lines.length; _m < _len4; _m++) {
           line = htmlfile_lines[_m];
           if (line === '<script src="corpus.js"></script>') {
             line = '<script src="' + corpus_filename_js + '"></script>';
@@ -113,7 +115,7 @@
     csvfile = [];
     csvfile.push('taskname');
     shuffle(tasknames);
-    for (_n = 0, _len4 = tasknames.length; _n < _len4; _n++) {
+    for (_n = 0, _len5 = tasknames.length; _n < _len5; _n++) {
       taskname = tasknames[_n];
       csvfile.push(taskname);
     }
