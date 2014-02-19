@@ -35,8 +35,8 @@ addMilestones = ->
     milestone_button.append glyphicon
     milestone_button.append ' '
     milestone_button.append milestone_name
-    numparts = parseInt $.cookie('numparts_' + milestone)
-    maxreached = parseInt $.cookie('maxreached_' + milestone)
+    numparts = $.cookie('numparts_' + milestone)
+    maxreached = $.cookie('maxreached_' + milestone)
     if numparts?
       numparts = parseInt numparts
     else
