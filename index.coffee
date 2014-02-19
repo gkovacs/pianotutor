@@ -112,12 +112,17 @@ nextLine = () ->
 
 updateProgress = (lineNum) ->
   totalLines = root.corpus_lines.length
-  $('#progressIndicator').text('Progress: ' + lineNum + ' / ' + totalLines)
+  songname = window.location.pathname.split('/').join('').split('_').join(' ').split('.html').join('')
+  $('#progressIndicator').css('top', '120px')
+  $('#progressIndicator').css('font-size', '24px')
+  $('#progressIndicator').html('<b>Song:</b> ' + songname + '<br><b>Progress:</b> ' + lineNum + ' / ' + totalLines + '<br><a href="skilltree.html">Return to skill tree</a>')
 
 showLine = () ->
   window.location.hash = '#' + root.currentLineNum
   console.log 'showLine for line' + currentLineNum
   root.targetText = root.corpus_lines[root.currentLineNum].toLowerCase()
+  if root.targetText.indexOf('return to skilltree.html') != -1
+    window.location = 'skilltree.html'
   $('#textDisplay_entered').text('')
   $('#textDisplay_todo').text(root.targetText)
   updateText(true)
