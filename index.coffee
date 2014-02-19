@@ -411,6 +411,8 @@ $(document).ready ->
     root.songname = urlparams.songname
     if root.songname.indexOf('#') != -1
       root.songname = root.songname[...root.songname.indexOf('#')]
+    if root.taskname == 'sometask'
+      root.taskname = root.songname
   maxlinereached = maxLineReached()
   if window.location.hash? and window.location.hash.trim() != ''
     console.log 'hash is:' + window.location.hash
