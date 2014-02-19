@@ -21,6 +21,9 @@ app.get '/varTable', (req, res) ->
 
 logs = {}
 
+app.get '/', (req, res) ->
+  res.redirect('/skilltree.html')
+
 app.get '/practice', (req, res) ->
   songname = req.query.songname
   if not songname?

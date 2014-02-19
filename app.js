@@ -33,6 +33,10 @@
 
   logs = {};
 
+  app.get('/', function(req, res) {
+    return res.redirect('/skilltree.html');
+  });
+
   app.get('/practice', function(req, res) {
     var songname;
     songname = req.query.songname;

@@ -179,15 +179,15 @@
     window.location.hash = '#' + root.currentLineNum;
     console.log('showLine for line' + currentLineNum);
     root.targetText = root.corpus_lines[root.currentLineNum].toLowerCase();
-    if (root.targetText.indexOf('return to skilltree.html') !== -1) {
-      window.location = 'skilltree.html';
-    }
     $('#textDisplay_entered').text('');
     $('#textDisplay_todo').text(root.targetText);
     updateText(true);
     updateProgress(root.currentLineNum);
     if (root.currentLineNum > maxLineReached()) {
-      return $.cookie('maxreached_' + root.globaltaskname, root.currentLineNum, {
+      $.cookie('maxreached_' + root.globaltaskname, root.currentLineNum, {
+        expires: 365
+      });
+      return $.cookie('numparts_' + root.globaltaskname, root.corpus_lines.length - 1, {
         expires: 365
       });
     }
@@ -627,7 +627,7 @@
           end = this.selectionEnd;
           val = this.value;
           newvalue = val.slice(0, start) + transformedChar + val.slice(end);
-          if (targetText.indexOf(newvalue.trim()) !== 0 && targetText !== 'freestyle' && targetText.indexOf('you have finished the task. enter this code on the hit page:') !== 0) {
+          if (targetText.indexOf(newvalue.trim()) !== 0 && targetText !== 'freestyle' && targetText.indexOf('you have finished the task. enter this code on the hit page:') !== 0 && targetText.indexOf('congratulations') !== 0) {
             numTimesDeletePressed += 1;
             return false;
           }

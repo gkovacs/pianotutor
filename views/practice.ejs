@@ -15,13 +15,14 @@
 <script src="substitution.js"></script>
 <script src="<%= songname %>.js"></script>
 <script>
-globaltaskname = "<$= songname %>"
+globaltaskname = "<%= songname %>"
 </script>
 <script src="keypresstochar.js"></script>
 <script src="index.js"></script>
 
 <span id="progressIndicator"></span>
 <button style="float: right" type="button" class="btn btn-default btn-lg" onclick="window.location = 'skilltree.html'"><span class="glyphicon glyphicon-remove"></span> Exit to Skill Tree</button>
+<button style="float: right" type="button" class="btn btn-default btn-lg" onclick="window.location.hash = '#0'; window.location.reload()"><span class="glyphicon glyphicon-repeat"></span> Restart</button>
 
 <br/><br/>
 <span id="textDisplay_entered" style="color: lightgrey; font-size: x-large; font-family: sans-serif"></span><span id="textDisplay_todo" style="font-size: x-large; font-family: sans-serif"></span><br/>
