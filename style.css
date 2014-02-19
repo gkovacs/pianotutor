@@ -1,36 +1,65 @@
+body {
+  background-color: #fff;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  line-height: 1.42857143;
+  color: #333;
+}
+
+#progressIndicator {
+  padding-left: 13px;
+}
+
+#textDisplay_entered {
+  padding-left: 13px;
+}
+
+#textInputWrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+
+#keyboard {
+  padding-left: 10px;
+}
+
 div.keybase {
+  font-size: 16px;
   float: left;
   background-color: white;
   border-color: black;
   border-style: solid;
   border-width: 2px;
-  height: 30px;
-  margin: 3px;
+  height: 34px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 3px;
+  margin-right: 3px;
   text-align: center;
   vertical-align: middle;
   line-height: 30px;
 }
 
 div.key {
-  width: 30px;
+  width: 34px;
 }
 
 div.tab {
-  width: 50px;
+  width: 54px;
 }
 
 div.caps {
-  width: 60px;
+  width: 64px;
 }
 
 div.shift {
-  width: 80px;
+  width: 84px;
 }
 
 div.delete {
-  width: 50px;
+  width: 54px;
 }
 
 div.return {
-  width: 60px;
+  width: 64px;
 }

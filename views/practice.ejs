@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= songname %></title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <script src="jquery-1.10.2.min.js"></script>
+<!--<script src="js/bootstrap.min.js"></script>-->
 <script src="jquery.cookie.js"></script>
 <script src="substitution.js"></script>
 <script src="<%= songname %>.js"></script>
@@ -14,10 +20,15 @@ globaltaskname = "<$= songname %>"
 <script src="keypresstochar.js"></script>
 <script src="index.js"></script>
 
-<span style="position: absolute; right: 0px; top: 0px" id="progressIndicator"></span>
+<span id="progressIndicator"></span>
+<button style="float: right" type="button" class="btn btn-default btn-lg" onclick="window.location = 'skilltree.html'"><span class="glyphicon glyphicon-remove"></span> Exit to Skill Tree</button>
 
-<span id="textDisplay_entered" style="color: lightgrey; font-size: x-large; font-family: sans-serif"></span><span id="textDisplay_todo" style="font-size: x-large; font-family: sans-serif"></span>
+<br/><br/>
+<span id="textDisplay_entered" style="color: lightgrey; font-size: x-large; font-family: sans-serif"></span><span id="textDisplay_todo" style="font-size: x-large; font-family: sans-serif"></span><br/>
+
+<div id="textInputWrapper">
 <textarea id="textInput" lang="en" autocorrect="on" autocapitalize="off" spellcheck="true" type="text" style="width: 100%; font-size: x-large; font-family: sans-serif"></textarea>
+</div>
 
 <div id="lineTimes"></div>
 <!--<button onClick="sendLogs()">Send Logs</button>

@@ -116,7 +116,7 @@ updateProgress = (lineNum) ->
   songname = root.songname.split('_').join(' ')
   $('#progressIndicator').css('top', '120px')
   $('#progressIndicator').css('font-size', '24px')
-  $('#progressIndicator').html('<b>Song:</b> ' + songname + '<br><b>Progress:</b> ' + lineNum + ' / ' + (totalLines-1) + '<br><a href="skilltree.html">Return to skill tree</a>')
+  $('#progressIndicator').html('<b>' + lineNum + '/' + (totalLines-1) + '</b> exercises complete in <b>' + songname + '</b>')
 
 showLine = () ->
   window.location.hash = '#' + root.currentLineNum
@@ -448,7 +448,7 @@ $(document).ready ->
         #  return true
         #if evt.altKey? and evt.altKey
         #  return true
-        if evt.which == 8
+        if evt.which == 8 # delete button
           root.numTimesDeletePressed += 1
           if root.isMusic
             start = this.selectionStart
@@ -460,6 +460,8 @@ $(document).ready ->
                 break
               lastSpace -= 1
             this.value = val.slice(0, lastSpace) + ' ' + val.slice(end)
+            if this.value == ' '
+              this.value = ''
             return false
         origChar = root.mapKeyPressToActualCharacter(evt.shiftKey, evt.which)
         console.log origChar
