@@ -6,6 +6,7 @@ server = http.createServer(app)
 
 app.use(express.static(__dirname + '/'))
 app.use(express.json())
+app.set('view engine', 'ejs')
 
 vartable = {}
 
@@ -19,6 +20,13 @@ app.get '/varTable', (req, res) ->
   res.send(vartable[varname])
 
 logs = {}
+
+app.get '/practice', (req, res) ->
+  songname = req.query.songname
+  if not songname?
+    res.send 'need songname'
+    return
+  res.render('practice', {songname: songname})
 
 app.get '/listusers', (req, res) ->
   res.json Object.keys(logs)

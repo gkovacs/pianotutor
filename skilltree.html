@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Virtual Piano Skilltree</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -78,7 +78,7 @@ li:hover {
   <body>
     <h1>Virtual Piano Skilltree</h1>
     <div>
-    <span style="float: left; font-size: 28px; margin-right: 10px">Target Song: <i>Fur Elise</i> </span>
+    <span style="float: left; font-size: 28px; margin-right: 10px">Goal: <i>Fur Elise</i> </span>
 
     <button type="button" class="btn btn-default btn-lg" style="float: left">
   <span class="glyphicon glyphicon-edit"></span> Change
@@ -94,6 +94,7 @@ li:hover {
     <script src="jquery-1.10.2.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="skilltree.js"></script>
 
 <!--
 <div class="bs-glyphicons">
@@ -136,37 +137,7 @@ li:hover {
 </div>
 -->
 
-<div style="width: 350px">
-
-<button onclick="window.location = 'mary_had_a_little_lamb_chorus.html#0'" type="button" class="btn btn-default btn-lg" style="width: 100%; text-align: left">
-  <span class="glyphicon glyphicon-music"></span> Mary Had a Little Lamb (chorus only)
-</button>
-
-<br/>
-
-<button onclick="window.location = 'mary_had_a_little_lamb_full.html#0'" type="button" class="btn btn-default btn-lg" style="width: 100%; text-align: left">
-  <span class="glyphicon glyphicon-music"></span> Mary Had a Little Lamb (full lesson)
-</button>
-
-<br/>
-
-<button onclick="window.location = 'fur_elise_chorus.html#0'" type="button" class="btn btn-default btn-lg" style="width: 100%; text-align: left">
-  <span class="glyphicon glyphicon-music"></span> Fur Elise (chorus only)
-</button>
-
-<br/>
-
-<button onclick="window.location = 'fur_elise_full.html#0'" type="button" class="btn btn-default btn-lg" style="width: 100%; text-align: left">
-  <span class="glyphicon glyphicon-music"></span> Fur Elise (full lesson)
-</button>
-
-<br/>
-
-<button onclick="window.location = 'fur_elise_complete.html#0'" type="button" class="btn btn-default btn-lg" style="width: 100%; text-align: left">
-  <span class="glyphicon glyphicon-music"></span> Fur Elise (complete song)
-</button>
-
-
+<div style="width: 350px" id="milestones">
 </div>
 
 

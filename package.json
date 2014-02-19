@@ -4,6 +4,7 @@
   "description": "pianotutor",
   "main": "app.js",
   "dependencies": {
-    "express": "~3.4.8"
+    "express": "~3.4.8",
+    "ejs": "~0.8.5"
   }
 }

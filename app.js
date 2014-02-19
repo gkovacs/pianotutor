@@ -14,6 +14,8 @@
 
   app.use(express.json());
 
+  app.set('view engine', 'ejs');
+
   vartable = {};
 
   app.get('/varTable', function(req, res) {
@@ -30,6 +32,18 @@
   });
 
   logs = {};
+
+  app.get('/practice', function(req, res) {
+    var songname;
+    songname = req.query.songname;
+    if (songname == null) {
+      res.send('need songname');
+      return;
+    }
+    return res.render('practice', {
+      songname: songname
+    });
+  });
 
   app.get('/listusers', function(req, res) {
     return res.json(Object.keys(logs));

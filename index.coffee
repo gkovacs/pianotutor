@@ -112,10 +112,11 @@ nextLine = () ->
 
 updateProgress = (lineNum) ->
   totalLines = root.corpus_lines.length
-  songname = window.location.pathname.split('/').join('').split('_').join(' ').split('.html').join('')
+  #songname = window.location.pathname.split('/').join('').split('_').join(' ').split('.html').join('')
+  songname = root.songname.split('_').join(' ')
   $('#progressIndicator').css('top', '120px')
   $('#progressIndicator').css('font-size', '24px')
-  $('#progressIndicator').html('<b>Song:</b> ' + songname + '<br><b>Progress:</b> ' + lineNum + ' / ' + totalLines + '<br><a href="skilltree.html">Return to skill tree</a>')
+  $('#progressIndicator').html('<b>Song:</b> ' + songname + '<br><b>Progress:</b> ' + lineNum + ' / ' + (totalLines-1) + '<br><a href="skilltree.html">Return to skill tree</a>')
 
 showLine = () ->
   window.location.hash = '#' + root.currentLineNum
@@ -397,6 +398,7 @@ getUrlParameters = root.getUrlParameters = ->
 
 root.workerId = 'foobar'
 root.taskname = 'sometask'
+root.songname = 'practice'
 
 $(document).ready ->
   urlparams = getUrlParameters()
@@ -404,6 +406,10 @@ $(document).ready ->
     root.workerId = urlparams['workerId']
   if urlparams['taskname']?
     root.taskname = urlparams['taskname']
+  if urlparams.songname?
+    root.songname = urlparams.songname
+    if root.songname.indexOf('#') != -1
+      root.songname = root.songname[...root.songname.indexOf('#')]
   maxlinereached = maxLineReached()
   if window.location.hash? and window.location.hash.trim() != ''
     console.log 'hash is:' + window.location.hash

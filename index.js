@@ -168,10 +168,10 @@ nextLine = function() {
 updateProgress = function(lineNum) {
   var songname, totalLines;
   totalLines = root.corpus_lines.length;
-  songname = window.location.pathname.split('/').join('').split('_').join(' ').split('.html').join('');
+  songname = root.songname.split('_').join(' ');
   $('#progressIndicator').css('top', '120px');
   $('#progressIndicator').css('font-size', '24px');
-  return $('#progressIndicator').html('<b>Song:</b> ' + songname + '<br><b>Progress:</b> ' + lineNum + ' / ' + totalLines + '<br><a href="skilltree.html">Return to skill tree</a>');
+  return $('#progressIndicator').html('<b>Song:</b> ' + songname + '<br><b>Progress:</b> ' + lineNum + ' / ' + (totalLines - 1) + '<br><a href="skilltree.html">Return to skill tree</a>');
 };
 
 showLine = function() {
@@ -536,6 +536,8 @@ root.workerId = 'foobar';
 
 root.taskname = 'sometask';
 
+root.songname = 'practice';
+
 $(document).ready(function() {
   var hashstring, hashstringAsInt, maxlinereached, urlparams;
   urlparams = getUrlParameters();
@@ -544,6 +546,12 @@ $(document).ready(function() {
   }
   if (urlparams['taskname'] != null) {
     root.taskname = urlparams['taskname'];
+  }
+  if (urlparams.songname != null) {
+    root.songname = urlparams.songname;
+    if (root.songname.indexOf('#') !== -1) {
+      root.songname = root.songname.slice(0, root.songname.indexOf('#'));
+    }
   }
   maxlinereached = maxLineReached();
   if ((window.location.hash != null) && window.location.hash.trim() !== '') {
