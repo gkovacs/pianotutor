@@ -405,6 +405,10 @@ $(document).ready ->
   urlparams = getUrlParameters()
   if urlparams['workerId']?
     root.workerId = urlparams['workerId']
+  else
+    if not $.cookie('username')?
+      $.cookie('username', (Math.floor(Math.random()*10) for i in [0...10]).join(''))
+    root.workerId = $.cookie('username')
   if urlparams['taskname']?
     root.taskname = urlparams['taskname']
   if urlparams.songname?

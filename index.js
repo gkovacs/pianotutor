@@ -540,10 +540,22 @@
   root.songname = 'practice';
 
   $(document).ready(function() {
-    var hashstring, hashstringAsInt, maxlinereached, urlparams;
+    var hashstring, hashstringAsInt, i, maxlinereached, urlparams;
     urlparams = getUrlParameters();
     if (urlparams['workerId'] != null) {
       root.workerId = urlparams['workerId'];
+    } else {
+      if ($.cookie('username') == null) {
+        $.cookie('username', ((function() {
+          var _i, _results;
+          _results = [];
+          for (i = _i = 0; _i < 10; i = ++_i) {
+            _results.push(Math.floor(Math.random() * 10));
+          }
+          return _results;
+        })()).join(''));
+      }
+      root.workerId = $.cookie('username');
     }
     if (urlparams['taskname'] != null) {
       root.taskname = urlparams['taskname'];
