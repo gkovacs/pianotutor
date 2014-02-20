@@ -172,7 +172,7 @@
     songname = root.songname.split('_').join(' ');
     $('#progressIndicator').css('top', '120px');
     $('#progressIndicator').css('font-size', '24px');
-    return $('#progressIndicator').html('<b>' + lineNum + '/' + (totalLines - 1) + '</b> exercises complete in <b>' + songname + '</b>');
+    return $('#progressIndicator').html('Exercise <b>' + (lineNum + 1) + '/' + (totalLines - 1) + '</b> in <b>' + songname + '</b>');
   };
 
   setNotesFromText = function(span, text, startnum) {
@@ -202,10 +202,14 @@
   };
 
   showLine = function() {
-    var notenum;
+    var curitem, curlink, i, notenum, toex, _i, _ref, _results;
     window.location.hash = '#' + root.currentLineNum;
     console.log('showLine for line' + currentLineNum);
     root.targetText = root.corpus_lines[root.currentLineNum].toLowerCase();
+    if (root.targetText.indexOf('congratulations') !== -1) {
+      window.location = 'skilltree.html';
+    }
+    $('#textDisplay_entered').text('');
     notenum = setNotesFromText($('#textDisplay_entered'), '');
     setNotesFromText($('#textDisplay_todo'), root.targetText, notenum);
     updateText(true);
@@ -214,10 +218,27 @@
       $.cookie('maxreached_' + root.globaltaskname, root.currentLineNum, {
         expires: 365
       });
-      return $.cookie('numparts_' + root.globaltaskname, root.corpus_lines.length - 1, {
+      $.cookie('numparts_' + root.globaltaskname, root.corpus_lines.length - 1, {
         expires: 365
       });
     }
+    toex = $('#goto_exercise');
+    toex.empty();
+    _results = [];
+    for (i = _i = 0, _ref = root.corpus_lines.length - 1; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      curitem = $('<li>');
+      curlink = $('<a>');
+      curlink.attr('href', '#');
+      curlink.text('Exercise ' + (i + 1));
+      if (i <= maxLineReached()) {
+        curlink.attr('onclick', 'window.location.hash = "#' + i + '"; window.location.reload()');
+      } else {
+        curitem.addClass('disabled');
+      }
+      curitem.append(curlink);
+      _results.push(toex.append(curitem));
+    }
+    return _results;
   };
 
   root.formValueIncludesInputted = false;

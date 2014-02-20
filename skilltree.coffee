@@ -26,7 +26,7 @@ addMilestones = ->
   for milestone in milestone_list
     milestone_name = milestone_fullnames[milestone]
     milestone_button = $('<button>')
-    milestone_button.attr 'onclick', "window.location = 'practice?songname=#{milestone}'"
+    milestone_button.attr 'onclick', "window.location = 'practice?songname=#{milestone}#0'"
     milestone_button.attr 'type', 'button'
     milestone_button.addClass 'btn btn-default btn-lg'
     milestone_button.css 'width', '100%'

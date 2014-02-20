@@ -116,7 +116,7 @@ updateProgress = (lineNum) ->
   songname = root.songname.split('_').join(' ')
   $('#progressIndicator').css('top', '120px')
   $('#progressIndicator').css('font-size', '24px')
-  $('#progressIndicator').html('<b>' + lineNum + '/' + (totalLines-1) + '</b> exercises complete in <b>' + songname + '</b>')
+  $('#progressIndicator').html('Exercise <b>' + (lineNum+1) + '/' + (totalLines-1) + '</b> in <b>' + songname + '</b>')
 
 setNotesFromText = (span, text, startnum) ->
   if not startnum?
@@ -140,9 +140,9 @@ showLine = () ->
   window.location.hash = '#' + root.currentLineNum
   console.log 'showLine for line' + currentLineNum
   root.targetText = root.corpus_lines[root.currentLineNum].toLowerCase()
-  #if root.targetText.indexOf('return to skilltree.html') != -1
-  #  window.location = 'skilltree.html'
-  #$('#textDisplay_entered').text('')
+  if root.targetText.indexOf('congratulations') != -1
+    window.location = 'skilltree.html'
+  $('#textDisplay_entered').text('')
   notenum = setNotesFromText $('#textDisplay_entered'), ''
   #$('#textDisplay_todo').text(root.targetText)
   setNotesFromText $('#textDisplay_todo'), root.targetText, notenum
@@ -151,6 +151,19 @@ showLine = () ->
   if root.currentLineNum > maxLineReached()
     $.cookie 'maxreached_' + root.globaltaskname, root.currentLineNum, {expires: 365}
     $.cookie 'numparts_' + root.globaltaskname, root.corpus_lines.length-1, {expires: 365}
+  toex = $('#goto_exercise')
+  toex.empty()
+  for i in [0...root.corpus_lines.length-1]
+    curitem = $('<li>')
+    curlink = $('<a>')
+    curlink.attr 'href', '#'
+    curlink.text 'Exercise ' + (i+1)
+    if i <= maxLineReached()
+      curlink.attr('onclick', 'window.location.hash = "#' + i + '"; window.location.reload()')
+    else
+      curitem.addClass 'disabled'
+    curitem.append curlink
+    toex.append curitem
 
 root.formValueIncludesInputted = false
 root.haveCheckedFormValueIncludesInputted = false

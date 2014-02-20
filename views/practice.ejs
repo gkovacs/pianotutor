@@ -10,7 +10,7 @@
 </head>
 <body>
 <script src="jquery-1.10.2.min.js"></script>
-<!--<script src="js/bootstrap.min.js"></script>-->
+<script src="js/bootstrap.min.js"></script>
 <script src="jquery.cookie.js"></script>
 <script src="substitution.js"></script>
 <script src="<%= songname %>.js"></script>
@@ -21,8 +21,14 @@ globaltaskname = "<%= songname %>"
 <script src="index.js"></script>
 
 <span id="progressIndicator"></span>
-<button style="float: right" type="button" class="btn btn-default" onclick="window.location = 'skilltree.html'"><span class="glyphicon glyphicon-remove"></span> Return to Skill Tree</button>
-<button style="float: right" type="button" class="btn btn-default" onclick="window.location.hash = '#0'; window.location.reload()"><span class="glyphicon glyphicon-repeat"></span> Restart</button>
+<button style="float: right" type="button" class="btn btn-default" onclick="window.location = 'skilltree.html'"><span class="glyphicon glyphicon-remove"></span> Leave</button>
+<div class="btn-group" style="float: right">
+<button style="float: right" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ><span class="caret"></span> Go to Exercise</button>
+<ul class="dropdown-menu pull-right" role="menu" id="goto_exercise">
+<li><a href="#">Action</a></li>
+<li><a href="#">Another Action</a></li>
+</ul>
+</div>
 <button style="float: right" type="button" class="btn btn-default" onclick="playNotesInOrder()"><span class="glyphicon glyphicon-play"></span> Playback Exercise</button>
 
 
