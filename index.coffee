@@ -118,14 +118,34 @@ updateProgress = (lineNum) ->
   $('#progressIndicator').css('font-size', '24px')
   $('#progressIndicator').html('<b>' + lineNum + '/' + (totalLines-1) + '</b> exercises complete in <b>' + songname + '</b>')
 
+setNotesFromText = (span, text, startnum) ->
+  if not startnum?
+    startnum = 0
+  notes = text.split(' ')
+  span.empty()
+  isFirst = true
+  notenum = startnum
+  for note in notes
+    if note == ''
+      continue
+    span.append $('<span>').text(note).attr('note', note).addClass('note_' + notenum).addClass('targetnotes')
+    if isFirst
+      isFirst = false
+    else
+    span.append ' '
+    notenum += 1
+  return notenum
+
 showLine = () ->
   window.location.hash = '#' + root.currentLineNum
   console.log 'showLine for line' + currentLineNum
   root.targetText = root.corpus_lines[root.currentLineNum].toLowerCase()
   #if root.targetText.indexOf('return to skilltree.html') != -1
   #  window.location = 'skilltree.html'
-  $('#textDisplay_entered').text('')
-  $('#textDisplay_todo').text(root.targetText)
+  #$('#textDisplay_entered').text('')
+  notenum = setNotesFromText $('#textDisplay_entered'), ''
+  #$('#textDisplay_todo').text(root.targetText)
+  setNotesFromText $('#textDisplay_todo'), root.targetText, notenum
   updateText(true)
   updateProgress(root.currentLineNum)
   if root.currentLineNum > maxLineReached()
@@ -199,6 +219,46 @@ root.sendLogs = ->
     $('#logLink').show()
   )
 
+root.nextNoteToHighlight = 0
+root.highlightNoteSeries = -1
+
+root.playNotesInOrder = playNotesInOrder = ->
+  performOnNotesInOrder (noteSpan) ->
+    if not highlightNote noteSpan
+      return false
+    note = noteSpan.attr 'note'
+    playNote note
+    return true
+
+root.highlightNotesInOrder = highlightNotesInOrder = ->
+  performOnNotesInOrder highlightNote
+
+root.performOnNotesInOrder = performOnNotesInOrder = (fn, seriesid) ->
+  if not seriesid?
+    seriesid = Math.floor(Math.random()*10000)
+    root.highlightNoteSeries = seriesid
+    root.nextNoteToHighlight = 0
+  if seriesid != highlightNoteSeries
+    return
+  nextnote = $('.note_' + root.nextNoteToHighlight)
+  if not fn nextnote
+    return
+  root.nextNoteToHighlight += 1
+  setTimeout ->
+    root.performOnNotesInOrder(fn, seriesid)
+  , 250
+
+root.highlightNote = highlightNote = (note) ->
+  $('.targetnotes').css 'background-color', 'white'
+  if note.length == 0
+    return false
+  note.css 'background-color', 'yellow'
+  return true
+
+root.highlightNoteAtPosition = highlightNoteAtPosition = (position) ->
+  note = $('.note_' + position)
+  return highlightNote note
+
 root.numTimesDeletePressed = 0
 
 root.nextNote = ''
@@ -231,9 +291,11 @@ updateText = (forced) ->
         numNotesEntered += 1
     root.numNotesEntered = numNotesEntered
 
-    $('#textDisplay_entered').text(reftext_entered)
-    $('#textDisplay_todo').text(reftext_todo)
-    
+    #$('#textDisplay_entered').text(reftext_entered)
+    #$('#textDisplay_todo').text(reftext_todo)
+    notenum = setNotesFromText $('#textDisplay_entered'), reftext_entered
+    setNotesFromText $('#textDisplay_todo'), reftext_todo, notenum
+
     if root.isMusic
       console.log reftext_todo
       nextNote = reftext_todo.trim().split(' ')[0]
