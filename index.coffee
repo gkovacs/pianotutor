@@ -128,7 +128,7 @@ setNotesFromText = (span, text, startnum) ->
   for note in notes
     if note == ''
       continue
-    span.append $('<span>').text(note).attr('note', note).addClass('note_' + notenum).addClass('targetnotes')
+    span.append $('<span>').html(note).attr('note', note).addClass('note_' + notenum).addClass('targetnotes')
     if isFirst
       isFirst = false
     else
@@ -256,10 +256,14 @@ root.performOnNotesInOrder = performOnNotesInOrder = (fn, seriesid) ->
   nextnote = $('.note_' + root.nextNoteToHighlight)
   if not fn nextnote
     return
+  nextnote_note_text = nextnote.attr('note')
+  nextnote_note_duration = 1.0
+  if nextnote_note_text.indexOf('_') != -1
+    nextnote_note_duration = parseFloat(nextnote_note_text.split('_')[-1..-1][0])
   root.nextNoteToHighlight += 1
   setTimeout ->
     root.performOnNotesInOrder(fn, seriesid)
-  , 250
+  , 500 * nextnote_note_duration
 
 root.highlightNote = highlightNote = (note) ->
   $('.targetnotes').css 'background-color', 'white'
@@ -372,8 +376,8 @@ getNoteAlpha = (note) ->
   return note.split('#').join('s')
 
 playNote = root.playNote = (note) ->
-  highlightButton note
-  noteAlpha = getNoteAlpha note
+  highlightButton note.split('_')[0..0][0]
+  noteAlpha = getNoteAlpha note.split('_')[0..0][0]
   audioTagJquery = $('#note_' + noteAlpha)
   currentTime = (new Date).getTime()
   audioTagJquery.attr('playEnd', currentTime + 500)
@@ -391,7 +395,7 @@ playNote = root.playNote = (note) ->
   setTimeout () ->
     highlightEnd = parseInt(audioTagJquery.attr('highlightEnd'))
     if (new Date).getTime() >= highlightEnd
-      unhighlightButton note
+      unhighlightButton note.split('_')[0..0][0]
   , 101
 
 unhighlightButton = root.unhighlightButton = (note) ->
@@ -562,6 +566,9 @@ $(document).ready ->
             if targetText.indexOf(newvalue.trim()) != 0 and targetText != 'freestyle' and targetText.indexOf('you have finished the task. enter this code on the hit page:') != 0 and targetText.indexOf('congratulations') != 0
               numTimesDeletePressed += 1
               return false
+            transformedChar = targetText.slice(start).split(' ')[0] + ' '
+            newvalue = val.slice(0, start) + transformedChar + val.slice(end)
+            #console.log 'targetText:' + targetText
             this.value = newvalue
             # Move the caret
             this.selectionStart = this.selectionEnd = start + transformedChar.length
