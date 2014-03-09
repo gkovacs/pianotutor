@@ -109,6 +109,7 @@ nextLine = () ->
   if root.currentLineNum < root.corpus_lines.length
     root.currentLineNum += 1
   showLine()
+  setTimeout playNotesInOrder, 300
 
 updateProgress = (lineNum) ->
   totalLines = root.corpus_lines.length
@@ -578,6 +579,7 @@ $(document).ready ->
     addNotes()
     updateText(true)
   sendStartLog()
+  setTimeout playNotesInOrder, 1000
 
 make_key_mapping = (qwerty_rows, dvorak_rows) ->
   output = {}

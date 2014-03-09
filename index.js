@@ -162,7 +162,8 @@ nextLine = function() {
   if (root.currentLineNum < root.corpus_lines.length) {
     root.currentLineNum += 1;
   }
-  return showLine();
+  showLine();
+  return setTimeout(playNotesInOrder, 300);
 };
 
 updateProgress = function(lineNum) {
@@ -764,7 +765,8 @@ $(document).ready(function() {
     addNotes();
     updateText(true);
   }
-  return sendStartLog();
+  sendStartLog();
+  return setTimeout(playNotesInOrder, 1000);
 });
 
 make_key_mapping = function(qwerty_rows, dvorak_rows) {
