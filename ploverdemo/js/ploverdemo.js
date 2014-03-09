@@ -1,4 +1,4 @@
-﻿// DECLARE GLOBAL VARIABLES
+// DECLARE GLOBAL VARIABLES
 
 /** This object will store the key codes of the keys that are currently being pressed down. Used an object to store the list since we will be removing items by value frequently. */
 var downKeys = {};
@@ -885,8 +885,47 @@ function VerticalNote(timestampParam, strokeParam) {
 	}
 }
 
+function setSelectionRange(input, selectionStart, selectionEnd) {
+  if (input.setSelectionRange) {
+    input.focus();
+    input.setSelectionRange(selectionStart, selectionEnd);
+  }
+  else if (input.createTextRange) {
+    var range = input.createTextRange();
+    range.collapse(true);
+    range.moveEnd('character', selectionEnd);
+    range.moveStart('character', selectionStart);
+    range.select();
+  }
+}
+
+function setCaretToPos (input, pos) {
+  setSelectionRange(input, pos, pos);
+}
+
+function caretPos(el)
+{
+    var pos = 0;
+    // IE Support
+    if (document.selection) 
+    {
+    	el.focus ();
+    	var Sel = document.selection.createRange();
+    	var SelLength = document.selection.createRange().text.length;
+    	Sel.moveStart ('character', -el.value.length);
+    	pos = Sel.text.length - SelLength;
+    }
+    // Firefox support
+    else if (el.selectionStart || el.selectionStart == '0')
+    	pos = el.selectionStart;
+
+    return pos;
+
+}
 
 // EVENT HANDLERS
+
+spaceDown = false
 
 /**
  * This will handle the key down event.
@@ -904,6 +943,24 @@ $(document).keydown(function (event) {
 
 	// Create a new Key Object based on the event.
 	var key = new Key(event.which);
+    
+    if (key.getKeyCode() == 32) { // space pressed
+        console.log('space pressed')
+        if (spaceDown) {
+            //event.preventDefault()
+            return false
+        } else {
+            insertionPoint = caretPos($('#output')[0]) + 1
+            endPoint = caretPos($('#output')[0]) + 1
+            words = []
+            spaceDown = true
+            return true
+        }
+    }
+    
+    if (!spaceDown) {
+        return true
+    }
 
 	// Update the appropriate lists
 	downKeys[key] = key; // add key to the list of keys currently being pressed down
@@ -922,9 +979,15 @@ $(document).keydown(function (event) {
 	
 	// Handle potential conflicts
 	// removed check for isSteno here to prevent "stop working after error" bug --Erika
-	event.preventDefault(); // will prevent potential conflicts with browser hotkeys like firefox's hotkey for quicklinks (')
+	if (spaceDown) {
+        event.preventDefault(); // will prevent potential conflicts with browser hotkeys like firefox's hotkey for quicklinks (')
+    }
+    
 
 });
+
+insertionPoint = 0
+endPoint = 0
 
 /**
  * This will handle the key up event.
@@ -938,20 +1001,32 @@ $(document).keyup(function (event) {
 	// Create a new Key Object based on the event.
 	var key = new Key(event.which);
 
+    console.log(key.getKeyCode())
+    
+    if (key.getKeyCode() == 32) { // space released
+        spaceDown = false
+        console.log('space released')
+        event.preventDefault()
+        return false
+    }
+    
 	// Update the appropriate lists
 	delete downKeys[key]; // remove key from the list of keys currently being pressed down
 
 	// Update the display
 	$('.stdKey.code' + event.which).css('background-color', '#000000'); // color the qwerty keyboard
 
-	if (isSteno) {
-		// Check to see if this is the end of the stroke.
+    console.log('isSteno:' + isSteno)
+    console.log('spaceDown:' + spaceDown)
+    
+	if (isSteno && spaceDown) {
+        // Check to see if this is the end of the stroke.
 		if ($.isEmptyObject(downKeys)) { // if no more keys are being pressed down, this is the end of the stroke.
 			var timestamp = new Date();
 			var chord = new Chord(chordKeys);
 			var verticalNote = new VerticalNote(timestamp, chord);
 			var word = new Word([chord]);
-
+            
 			chords.push(chord);
 			verticalNotes.push(verticalNote);
 
@@ -973,15 +1048,33 @@ $(document).keyup(function (event) {
 			for (i = 0; i < words.length; i++) {
 				translatedString += words[i].toEnglish() + ' ';
 			}
-			$('#output').html(demetafy(translatedString));
+            
+            translatedString = translatedString.trim()
+            
+            console.log(demetafy(translatedString))
+            
+            existing = $('#output').val()
+            before = existing.substring(0, insertionPoint)
+            after = existing.substring(endPoint)
+            newpart = demetafy(translatedString)
+            
+            endPoint = before.length + newpart.length
+            console.log('endPoint is:' + endPoint)
+            
+			$('#output').val(before + newpart + after);
 			document.getElementById('output').scrollTop = document.getElementById('output').scrollHeight; //scroll the textarea to the bottom
+            
+            setCaretToPos($('#output')[0], endPoint)
+            
 		}
 
 	
 		// Handle potential conflicts
 		event.preventDefault();	// will prevent potential conflicts with browser hotkeys like firefox's hotkey for quicklinks (')
 		//event.stopPropagation();
-	}
+	} else if (!spaceDown) {
+        //return true;
+    }
 });
 
 /**

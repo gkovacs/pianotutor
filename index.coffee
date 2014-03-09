@@ -344,7 +344,7 @@ updateText = (forced) ->
 
 root.hashname_to_index = {}
 
-corpus_lines = root.corpus_lines = root.corpus.split('\n')
+#corpus_lines = root.corpus_lines = root.corpus.split('\n')
 do () ->
   for idx in [0...corpus_lines.length]
     line = corpus_lines[idx]

@@ -13,7 +13,26 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="jquery.cookie.js"></script>
 <script src="substitution.js"></script>
+<script>
+corpus = ''
+corpus_lines = []
+
+function setCurriculum(curriculum) {
+  for (var i = 0; i < curriculum.length; ++i) {
+    var goal = curriculum[i]
+    for (var j = 0; j < goal.exercises.length; ++j) {
+      corpus_lines.push(goal.exercises[j])
+    }
+  }
+  corpus = corpus_lines.join('\n')
+}
+</script>
 <script src="<%= songname %>.js"></script>
+<script>
+if (corpus_lines.length == 0) {
+  corpus_lines = corpus.split('\n')
+}
+</script>
 <script>
 globaltaskname = "<%= songname %>"
 </script>
