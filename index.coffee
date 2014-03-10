@@ -119,7 +119,7 @@ updateProgress = (lineNum) ->
   $('#progressIndicator').css('font-size', '24px')
   $('#progressIndicator').html('Exercise <b>' + (lineNum+1) + '/' + (totalLines-1) + '</b> in <b>' + songname + '</b>')
 
-setNotesFromText = (span, text, startnum) ->
+setNotesFromText = (span, text, durationMap, startnum) ->
   if not startnum?
     startnum = 0
   notes = text.split(' ')
@@ -129,7 +129,14 @@ setNotesFromText = (span, text, startnum) ->
   for note in notes
     if note == ''
       continue
-    span.append $('<span>').html(note).attr('note', note).addClass('note_' + notenum).addClass('targetnotes')
+    notebase = note
+    duration = 1.0
+    if durationMap[notenum]?
+      duration = durationMap[notenum]
+    #durationspan = $('<span>').text(duration)
+    notespan = $('<span>').text(notebase).attr('note', notebase).attr('duration', duration).attr('notenum', notenum).addClass('note_' + notenum).addClass('targetnotes')
+    #curspan = $('<span>').append(durationspan).append(notespan)
+    span.append notespan
     if isFirst
       isFirst = false
     else
@@ -140,13 +147,15 @@ setNotesFromText = (span, text, startnum) ->
 showLine = () ->
   window.location.hash = '#' + root.currentLineNum
   console.log 'showLine for line' + currentLineNum
-  root.targetText = root.corpus_lines[root.currentLineNum].toLowerCase()
+  targetTextWithDurations = root.corpus_lines[root.currentLineNum].toLowerCase()
+  root.targetText = noDurations(targetTextWithDurations)
+  root.targetDurations = toDurationMap(targetTextWithDurations)
   if root.targetText.indexOf('congratulations') != -1
     window.location = 'skilltree.html'
   $('#textDisplay_entered').text('')
-  notenum = setNotesFromText $('#textDisplay_entered'), ''
+  notenum = setNotesFromText $('#textDisplay_entered'), '', root.targetDurations, 0
   #$('#textDisplay_todo').text(root.targetText)
-  setNotesFromText $('#textDisplay_todo'), root.targetText, notenum
+  setNotesFromText $('#textDisplay_todo'), root.targetText, root.targetDurations, notenum
   updateText(true)
   updateProgress(root.currentLineNum)
   if root.currentLineNum > maxLineReached()
@@ -239,6 +248,7 @@ root.highlightNoteSeries = -1
 root.playNotesInOrder = playNotesInOrder = ->
   performOnNotesInOrder (noteSpan) ->
     if not highlightNote noteSpan
+      updateText(true)
       return false
     note = noteSpan.attr 'note'
     playNote note
@@ -259,8 +269,8 @@ root.performOnNotesInOrder = performOnNotesInOrder = (fn, seriesid) ->
     return
   nextnote_note_text = nextnote.attr('note')
   nextnote_note_duration = 1.0
-  if nextnote_note_text.indexOf('_') != -1
-    nextnote_note_duration = parseFloat(nextnote_note_text.split('_')[-1..-1][0])
+  if nextnote.attr('duration')
+    nextnote_note_duration = parseFloat(nextnote.attr('duration'))
   root.nextNoteToHighlight += 1
   setTimeout ->
     root.performOnNotesInOrder(fn, seriesid)
@@ -273,6 +283,16 @@ root.highlightNote = highlightNote = (note) ->
   note.css 'background-color', 'yellow'
   return true
 
+root.highlightNotesClearAll = highlightNotesClearAll = ->
+  $('.targetnotes').css 'background-color', 'white'
+
+root.highlightNoteRedNoClear = highlightNoteRedNoClear = (note) ->
+  #$('.targetnotes').css 'background-color', 'white'
+  if note.length == 0
+    return false
+  note.css 'background-color', '#F08080'
+  return true
+
 root.highlightNoteAtPosition = highlightNoteAtPosition = (position) ->
   note = $('.note_' + position)
   return highlightNote note
@@ -283,6 +303,8 @@ root.nextNote = ''
 root.lastText = ''
 
 root.numNotesEntered = 0
+
+root.errorIndexes = []
 
 updateText = (forced) ->
     if not forced?
@@ -311,8 +333,12 @@ updateText = (forced) ->
 
     #$('#textDisplay_entered').text(reftext_entered)
     #$('#textDisplay_todo').text(reftext_todo)
-    notenum = setNotesFromText $('#textDisplay_entered'), reftext_entered
-    setNotesFromText $('#textDisplay_todo'), reftext_todo, notenum
+    notenum = setNotesFromText $('#textDisplay_entered'), reftext_entered, root.targetDurations, 0
+    setNotesFromText $('#textDisplay_todo'), reftext_todo, root.targetDurations, notenum
+
+    highlightNotesClearAll()
+    for errorIndex in root.errorIndexes
+      highlightNoteRedNoClear $('.note_' + errorIndex)
 
     if root.isMusic
       console.log reftext_todo
@@ -333,9 +359,11 @@ updateText = (forced) ->
       root.currentLineStartTime = 0
       if root.targetText == 'you are now done typing'
         root.sendLogs()
-      if root.numTimesDeletePressed >= 1
+      if root.errorIndexes.length >= 1
         root.numTimesDeletePressed = 0
+        root.errorIndexes = []
         showLine()
+        #setTimeout (-> updateText(true)), 100
       #else if root.numTimesDeletePressed > 1
       #  root.numTimesDeletePressed = 0
       #  root.currentLineNum = Math.max(0, root.currentLineNum - 1)
@@ -400,6 +428,7 @@ playNote = root.playNote = (note) ->
   , 101
 
 unhighlightButton = root.unhighlightButton = (note) ->
+  note = note.split('_')[0..0][0]
   button = $('#button_' + getNoteAlpha(note))
   button.attr 'highlighted', false
   if note == root.nextNote
@@ -409,12 +438,15 @@ unhighlightButton = root.unhighlightButton = (note) ->
     button.removeClass 'targetButton'
 
 highlightButton = root.highlightButton = (note) ->
+  note = note.split('_')[0..0][0]
   button = $('#button_' + getNoteAlpha(note))
   button.attr 'highlighted', true
   button.attr 'isTarget', false
   button.css 'background-color', 'lightblue'
 
 highlightButtonTarget = root.highlightButtonTarget = (note) ->
+  console.log 'highlighted:' + note
+  note = note.split('_')[0..0][0]
   button = $('#button_' + getNoteAlpha(note))
   button.addClass 'targetButton'
   button.css 'background-color', 'yellow'
@@ -477,6 +509,22 @@ getUrlParameters = root.getUrlParameters = ->
     map[key] = decodeURI(value)
   return map
 
+noDurations = (musicstring) ->
+  output = []
+  for x in musicstring.split(' ')
+    x = x.split('_')[0]
+    output.push(x)
+  return output.join(' ')
+
+toDurationMap = (musicstring) ->
+  output = {}
+  for x,idx in musicstring.split(' ')
+    duration = 1.0
+    if x.indexOf('_') != -1
+      duration = parseFloat(x.split('_')[-1..-1][0])
+    output[idx] = duration
+  return output
+
 root.workerId = 'foobar'
 root.taskname = 'sometask'
 root.songname = 'practice'
@@ -536,6 +584,7 @@ $(document).ready ->
         #if evt.altKey? and evt.altKey
         #  return true
         if evt.which == 8 # delete button
+          #return false
           root.numTimesDeletePressed += 1
           if root.isMusic
             start = this.selectionStart
@@ -564,10 +613,14 @@ $(document).ready ->
             end = this.selectionEnd
             val = this.value
             newvalue = val.slice(0, start) + transformedChar + val.slice(end)
-            if targetText.indexOf(newvalue.trim()) != 0 and targetText != 'freestyle' and targetText.indexOf('you have finished the task. enter this code on the hit page:') != 0 and targetText.indexOf('congratulations') != 0
+            #targetTextNoDurations = noDurations(targetText)
+            if root.targetText.indexOf(newvalue.trim()) != 0 and root.targetText != 'freestyle' and root.targetText.indexOf('you have finished the task. enter this code on the hit page:') != 0 and root.targetText.indexOf('congratulations') != 0
               numTimesDeletePressed += 1
+              errorIndex = parseInt $($('#textDisplay_todo').find('.targetnotes')[0]).attr('notenum')
+              root.errorIndexes.push errorIndex
+              highlightNoteRedNoClear $('.note_' + errorIndex)
               return false
-            transformedChar = targetText.slice(start).split(' ')[0] + ' '
+            #transformedChar = targetText.slice(start).split(' ')[0] + ' '
             newvalue = val.slice(0, start) + transformedChar + val.slice(end)
             #console.log 'targetText:' + targetText
             this.value = newvalue
