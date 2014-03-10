@@ -111,13 +111,79 @@ nextLine = () ->
   showLine()
   setTimeout playNotesInOrder, 300
 
+cleanSubgoalName = (name) ->
+  basename = name.split('.xml')[0..0][0]
+  basenameNoDigits = basename.replace(/[0-9]/g, '');
+  nameParts = name.split('.xml')
+  nameParts[0] = basenameNoDigits
+  name = nameParts.join('').split('_').join(' ').split('part0').join('').split('verse').join('verse ')
+  return name
+
 updateProgress = (lineNum) ->
   totalLines = root.corpus_lines.length
   #songname = window.location.pathname.split('/').join('').split('_').join(' ').split('.html').join('')
   songname = root.songname.split('_').join(' ')
-  $('#progressIndicator').css('top', '120px')
+  
+  numExercisesFromPriorSubgoals = 0
+  
+  $('#progressIndicator').html('')
+  for subgoal in root.curriculum
+    progressInSubgoal = 0
+    isCurrent = false
+    isFuture = false
+    isComplete = false
+    if lineNum >= numExercisesFromPriorSubgoals + subgoal.exercises.length
+      progressInSubgoal = subgoal.exercises.length
+      isComplete = true
+    else if lineNum >= numExercisesFromPriorSubgoals
+      isCurrent = true
+      progressInSubgoal = lineNum - numExercisesFromPriorSubgoals
+    else
+      isFuture = true
+      progressInSubgoal = 0
+    name = cleanSubgoalName subgoal.name
+    namespan = $('<span>').text(' ' + name)
+    if isCurrent
+      namespan.css('font-weight', 'bold')
+    else if isFuture
+      namespan.css('color', 'grey')
+    glyphspan = $('<span class="glyphicon">')
+    if isCurrent
+      glyphspan.addClass 'glyphicon-music'
+    else if isComplete
+      glyphspan.addClass 'glyphicon-ok'
+    curdiv = $('<div class="btn-group" style="float: left; padding-left: 10px; padding-right: 10px">').append(glyphspan).append(namespan).append('<br>')
+    #curdiv.append('<br>').append('Exercise ' + progressInSubgoal + ' / ' + subgoal.exercises.length)
+    exerciseNum = progressInSubgoal
+    if isCurrent
+      exerciseNum += 1
+    curbtn = $('<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" ><span class="caret"></span> Exercise ' + exerciseNum + '/' + subgoal.exercises.length + '</button>')
+    if isCurrent
+      curbtn.addClass 'btn-primary'
+    else
+      curbtn.addClass 'btn-default'
+    curdiv.append(curbtn)
+    toex = $('<ul class="dropdown-menu" role="menu">')
+    toex.empty()
+    for i in [0...subgoal.exercises.length]
+      curitem = $('<li>')
+      curlink = $('<a>')
+      curlink.attr 'href', '#'
+      curlink.text 'Exercise ' + (i+1)
+      #if i <= maxLineReached()
+      curlink.attr('onclick', 'window.location.hash = "#' + (i + numExercisesFromPriorSubgoals) + '"; window.location.reload()')
+      #else
+      #  curitem.addClass 'disabled'
+      curitem.append curlink
+      toex.append curitem
+    numExercisesFromPriorSubgoals += subgoal.exercises.length
+    curdiv.append toex
+    $('#progressIndicator').append curdiv
+
+  '''
   $('#progressIndicator').css('font-size', '24px')
   $('#progressIndicator').html('Exercise <b>' + (lineNum+1) + '/' + (totalLines-1) + '</b> in <b>' + songname + '</b>')
+  '''
 
 setNotesFromText = (span, text, durationMap, startnum) ->
   if not startnum?

@@ -16,10 +16,12 @@
 <script>
 corpus = ''
 corpus_lines = []
+curriculum = {}
 
-function setCurriculum(curriculum) {
-  for (var i = 0; i < curriculum.length; ++i) {
-    var goal = curriculum[i]
+function setCurriculum(newcurriculum) {
+  curriculum = newcurriculum
+  for (var i = 0; i < newcurriculum.length; ++i) {
+    var goal = newcurriculum[i]
     for (var j = 0; j < goal.exercises.length; ++j) {
       corpus_lines.push(goal.exercises[j])
     }
@@ -39,22 +41,24 @@ globaltaskname = "<%= songname %>"
 <script src="keypresstochar.js"></script>
 <script src="index.js"></script>
 
-<span id="progressIndicator"></span>
+<div id="progressIndicator" style="float: left"></div>
 
-<button style="float: right; top: 0" type="button" class="btn btn-default" onclick="window.location = 'skilltree.html'"><span class="glyphicon glyphicon-remove"></span> Leave</button>
+<button style="float: right; top: 0" type="button" class="btn btn-danger" onclick="window.location = 'skilltree.html'"><span class="glyphicon glyphicon-remove"></span> Quit</button>
+<!--
 <div class="btn-group" style="float: right; top: 0">
 <button style="float: right; top: 0" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ><span class="caret"></span> Go to Exercise</button>
 <ul class="dropdown-menu pull-right" role="menu" id="goto_exercise">
 <li><a href="#">Action</a></li>
 <li><a href="#">Another Action</a></li>
 </ul>
-</div>
-<button style="float: right; top: 0" type="button" class="btn btn-default" onclick="playNotesInOrder()"><span class="glyphicon glyphicon-play"></span> Playback Exercise</button>
+</div>-->
 
 
-<br/><br/>
+<br/><br/><br/><br/>
+
 <span id="textDisplay_entered" style="color: lightgrey; font-size: x-large; font-family: sans-serif"></span>
 <span id="textDisplay_todo" style="font-size: x-large; font-family: sans-serif"></span>
+<button style="display: inline-block" type="button" class="btn btn-success btn-xs" onclick="playNotesInOrder()"><span class="glyphicon glyphicon-play"></span> Play</button>
 
 <br/>
 
