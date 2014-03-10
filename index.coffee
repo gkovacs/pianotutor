@@ -312,6 +312,7 @@ root.nextNoteToHighlight = 0
 root.highlightNoteSeries = -1
 
 root.playNotesInOrder = playNotesInOrder = ->
+  highlightButtonClearAll()
   performOnNotesInOrder (noteSpan) ->
     if not highlightNote noteSpan
       updateText(true)
@@ -502,6 +503,9 @@ unhighlightButton = root.unhighlightButton = (note) ->
   else
     button.css 'background-color', 'white'
     button.removeClass 'targetButton'
+
+highlightButtonClearAll = ->
+  $('.targetButton').css('background-color', 'white').removeClass('targetButton').attr('highlighted', false)
 
 highlightButton = root.highlightButton = (note) ->
   note = note.split('_')[0..0][0]
