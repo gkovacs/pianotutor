@@ -152,7 +152,7 @@ updateProgress = (lineNum) ->
       glyphspan.addClass 'glyphicon-music'
     else if isComplete
       glyphspan.addClass 'glyphicon-ok'
-    curdiv = $('<div class="btn-group" style="float: left; padding-left: 10px; padding-right: 10px">').append(glyphspan).append(namespan).append('<br>')
+    curdiv = $('<div class="btn-group" style="padding-left: 10px; padding-right: 10px">').append(glyphspan).append(namespan).append('<br>')
     #curdiv.append('<br>').append('Exercise ' + progressInSubgoal + ' / ' + subgoal.exercises.length)
     exerciseNum = progressInSubgoal
     if isCurrent
@@ -311,11 +311,19 @@ root.sendLogs = ->
 root.nextNoteToHighlight = 0
 root.highlightNoteSeries = -1
 
+root.autoPlayback = false
+
 root.playNotesInOrder = playNotesInOrder = ->
+  #console.log 'clearing button highlights'
   highlightButtonClearAll()
+  root.autoPlayback = true
+  $('#textInput').prop 'disabled', true
   performOnNotesInOrder (noteSpan) ->
     if not highlightNote noteSpan
+      root.autoPlayback = false
       updateText(true)
+      $('#textInput').prop 'disabled', false
+      $('#textInput').focus()
       return false
     note = noteSpan.attr 'note'
     playNote note
@@ -477,7 +485,7 @@ playNote = root.playNote = (note) ->
   audioTagJquery = $('#note_' + noteAlpha)
   currentTime = (new Date).getTime()
   audioTagJquery.attr('playEnd', currentTime + 500)
-  audioTagJquery.attr('highlightEnd', currentTime + 100)
+  audioTagJquery.attr('highlightEnd', currentTime + 200)
   audioTag = audioTagJquery[0]
   audioTag.pause()
   audioTag.currentTime = 0.0
@@ -492,20 +500,20 @@ playNote = root.playNote = (note) ->
     highlightEnd = parseInt(audioTagJquery.attr('highlightEnd'))
     if (new Date).getTime() >= highlightEnd
       unhighlightButton note.split('_')[0..0][0]
-  , 101
+  , 201
 
 unhighlightButton = root.unhighlightButton = (note) ->
   note = note.split('_')[0..0][0]
   button = $('#button_' + getNoteAlpha(note))
   button.attr 'highlighted', false
-  if note == root.nextNote
+  if note == root.nextNote and !root.autoPlayback
     button.css 'background-color', 'yellow'
   else
     button.css 'background-color', 'white'
     button.removeClass 'targetButton'
 
-highlightButtonClearAll = ->
-  $('.targetButton').css('background-color', 'white').removeClass('targetButton').attr('highlighted', false)
+highlightButtonClearAll = root.highlightButtonClearAll = ->
+  $('.targetButton').css('background-color', 'white').removeClass('targetButton').attr('highlighted', false).attr('isTarget', false)
 
 highlightButton = root.highlightButton = (note) ->
   note = note.split('_')[0..0][0]
@@ -518,6 +526,8 @@ highlightButtonTarget = root.highlightButtonTarget = (note) ->
   console.log 'highlighted:' + note
   note = note.split('_')[0..0][0]
   button = $('#button_' + getNoteAlpha(note))
+  if root.autoPlayback
+    return
   button.addClass 'targetButton'
   button.css 'background-color', 'yellow'
 
