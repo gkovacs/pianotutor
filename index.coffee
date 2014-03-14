@@ -109,7 +109,7 @@ nextLine = () ->
   if root.currentLineNum < root.corpus_lines.length
     root.currentLineNum += 1
   showLine()
-  setTimeout playNotesInOrder, 300
+  setTimeout (-> playNotesInOrder(true)), 300
 
 cleanSubgoalName = (name) ->
   basename = name.split('.xml')[0..0][0]
@@ -335,6 +335,36 @@ sendStartLog = root.sendStartLog = ->
   data['logtype'] = 'start'
   postToServer(data)
 
+sendPlaybackStart = root.sendPlaybackStart = (automatic) ->
+  data = {}
+  data['logtype'] = 'playbackstart'
+  data['automatic'] = automatic
+  data['lineNum'] = root.currentLineNum
+  data['targetText'] = root.targetText
+  data['typedSoFar'] = $('#textInput').val()
+  data['keyevents'] = root.lineLog.keyevents
+  data['user'] = root.workerId
+  data['taskname'] = root.taskname
+  data['layout'] = root.layout
+  data['posttime'] = new Date().getTime()
+  data['starttime'] = new Date(root.currentLineStartTime).getTime()
+  postToServer data
+
+sendPlaybackEnd = root.sendPlaybackEnd = (automatic) ->
+  data = {}
+  data['logtype'] = 'playbackend'
+  data['automatic'] = automatic
+  data['lineNum'] = root.currentLineNum
+  data['targetText'] = root.targetText
+  data['typedSoFar'] = $('#textInput').val()
+  data['keyevents'] = root.lineLog.keyevents
+  data['user'] = root.workerId
+  data['taskname'] = root.taskname
+  data['layout'] = root.layout
+  data['posttime'] = new Date().getTime()
+  data['starttime'] = new Date(root.currentLineStartTime).getTime()
+  postToServer data
+
 root.postToServer = postToServer = (data) ->
   console.log data
   $.ajax {
@@ -357,17 +387,19 @@ root.highlightNoteSeries = -1
 
 root.autoPlayback = false
 
-root.playNotesInOrder = playNotesInOrder = ->
+root.playNotesInOrder = playNotesInOrder = (automatic) ->
   #console.log 'clearing button highlights'
   highlightButtonClearAll()
   root.autoPlayback = true
   $('#textInput').prop 'disabled', true
+  sendPlaybackStart(automatic)
   performOnNotesInOrder (noteSpan) ->
     if not highlightNote noteSpan
       root.autoPlayback = false
       updateText(true)
       $('#textInput').prop 'disabled', false
       $('#textInput').focus()
+      sendPlaybackEnd(automatic)
       return false
     note = noteSpan.attr 'note'
     playNote note
@@ -775,7 +807,7 @@ $(document).ready ->
     addNotes()
     updateText(true)
   sendStartLog()
-  setTimeout playNotesInOrder, 1000
+  setTimeout (-> playNotesInOrder(true)), 1000
 
 make_key_mapping = (qwerty_rows, dvorak_rows) ->
   output = {}
