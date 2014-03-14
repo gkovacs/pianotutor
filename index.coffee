@@ -119,6 +119,41 @@ cleanSubgoalName = (name) ->
   name = nameParts.join('').split('_').join(' ').split('part0').join('').split('verse').join('verse ')
   return name
 
+updateProgress = root.updateProgress = (lineNum) ->
+  totalLines = root.corpus_lines.length
+  #songname = window.location.pathname.split('/').join('').split('_').join(' ').split('.html').join('')
+  songname = root.songname.split('_').join(' ')
+  
+  numExercisesFromPriorSubgoals = 0
+  
+  $('#progressIndicator').html('')
+  for subgoal,subgoal_idx in root.curriculum
+    progressInSubgoal = 0
+    isCurrent = false
+    isFuture = false
+    isComplete = false
+    if lineNum >= numExercisesFromPriorSubgoals + subgoal.exercises.length
+      progressInSubgoal = subgoal.exercises.length
+      isComplete = true
+    else if lineNum >= numExercisesFromPriorSubgoals
+      isCurrent = true
+      progressInSubgoal = lineNum - numExercisesFromPriorSubgoals
+    else
+      isFuture = true
+      progressInSubgoal = 0
+    goalstatus = '<i>Not Started</i>'
+    if isComplete
+      goalstatus = '<i>Complete</i>'
+    if isCurrent
+      goalstatus = '<b>Exercise ' + (progressInSubgoal+1) + '/' + subgoal.exercises.length + '</b>'
+    name = cleanSubgoalName subgoal.name
+    newspan = $('<span>').html(name + ': ' + goalstatus)
+    if isCurrent
+      newspan.addClass 'active'
+    numExercisesFromPriorSubgoals += subgoal.exercises.length
+    $('#progressIndicator').append newspan
+
+###
 updateProgress = (lineNum) ->
   totalLines = root.corpus_lines.length
   #songname = window.location.pathname.split('/').join('').split('_').join(' ').split('.html').join('')
@@ -191,6 +226,7 @@ updateProgress = (lineNum) ->
   $('#progressIndicator').css('font-size', '24px')
   $('#progressIndicator').html('Exercise <b>' + (lineNum+1) + '/' + (totalLines-1) + '</b> in <b>' + songname + '</b>')
   '''
+###
 
 setNotesFromText = (span, text, durationMap, startnum) ->
   if not startnum?

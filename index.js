@@ -176,13 +176,14 @@ cleanSubgoalName = function(name) {
   return name;
 };
 
-updateProgress = function(lineNum) {
-  var curbtn, curdiv, curitem, curlink, exerciseNum, glyphspan, i, isComplete, isCurrent, isFuture, leftdiv, leftdivclass, name, namespan, numExercisesFromPriorSubgoals, progressInSubgoal, rightdiv, songname, subgoal, subgoal_idx, toex, totalLines, _i, _j, _len, _ref, _ref1;
+updateProgress = root.updateProgress = function(lineNum) {
+  var goalstatus, isComplete, isCurrent, isFuture, name, newspan, numExercisesFromPriorSubgoals, progressInSubgoal, songname, subgoal, subgoal_idx, totalLines, _i, _len, _ref, _results;
   totalLines = root.corpus_lines.length;
   songname = root.songname.split('_').join(' ');
   numExercisesFromPriorSubgoals = 0;
   $('#progressIndicator').html('');
   _ref = root.curriculum;
+  _results = [];
   for (subgoal_idx = _i = 0, _len = _ref.length; _i < _len; subgoal_idx = ++_i) {
     subgoal = _ref[subgoal_idx];
     progressInSubgoal = 0;
@@ -199,54 +200,99 @@ updateProgress = function(lineNum) {
       isFuture = true;
       progressInSubgoal = 0;
     }
+    goalstatus = '<i>Not Started</i>';
+    if (isComplete) {
+      goalstatus = '<i>Complete</i>';
+    }
+    if (isCurrent) {
+      goalstatus = '<b>Exercise ' + (progressInSubgoal + 1) + '/' + subgoal.exercises.length + '</b>';
+    }
     name = cleanSubgoalName(subgoal.name);
-    namespan = $('<span>').text(' ' + name);
+    newspan = $('<span>').html(name + ': ' + goalstatus);
     if (isCurrent) {
-      namespan.css('font-weight', 'bold');
-    } else if (isFuture) {
-      namespan.css('color', 'grey');
-    }
-    glyphspan = $('<span class="glyphicon">');
-    if (isCurrent) {
-      glyphspan.addClass('glyphicon-music');
-    } else if (isComplete) {
-      glyphspan.addClass('glyphicon-ok');
-    }
-    rightdiv = $('<div class="btn-group">').append(glyphspan).append(namespan).append('<br>');
-    leftdivclass = 'numberCircleInactive';
-    if (isCurrent) {
-      leftdivclass = 'numberCircleActive';
-    }
-    leftdiv = '<div class="numberCircle ' + leftdivclass + '" style="float: left"><div class="height_fix"></div><div class="content">' + (subgoal_idx + 1) + '</div></div>';
-    curdiv = $('<div style="padding-left: 10px; padding-right: 10px; float: left">').append(leftdiv).append(rightdiv);
-    exerciseNum = progressInSubgoal;
-    if (isCurrent) {
-      exerciseNum += 1;
-    }
-    curbtn = $('<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" ><span class="caret"></span> Exercise ' + exerciseNum + '/' + subgoal.exercises.length + '</button>');
-    if (isCurrent) {
-      curbtn.addClass('btn-primary');
-    } else {
-      curbtn.addClass('btn-default');
-    }
-    rightdiv.append(curbtn);
-    toex = $('<ul class="dropdown-menu" role="menu">');
-    toex.empty();
-    for (i = _j = 0, _ref1 = subgoal.exercises.length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; i = 0 <= _ref1 ? ++_j : --_j) {
-      curitem = $('<li>');
-      curlink = $('<a>');
-      curlink.attr('href', '#');
-      curlink.text('Exercise ' + (i + 1));
-      curlink.attr('onclick', 'window.location.hash = "#' + (i + numExercisesFromPriorSubgoals) + '"; window.location.reload()');
-      curitem.append(curlink);
-      toex.append(curitem);
+      newspan.addClass('active');
     }
     numExercisesFromPriorSubgoals += subgoal.exercises.length;
-    rightdiv.append(toex);
-    $('#progressIndicator').append(curdiv);
+    _results.push($('#progressIndicator').append(newspan));
   }
-  return '$(\'#progressIndicator\').css(\'font-size\', \'24px\')\n$(\'#progressIndicator\').html(\'Exercise <b>\' + (lineNum+1) + \'/\' + (totalLines-1) + \'</b> in <b>\' + songname + \'</b>\')';
+  return _results;
 };
+
+/*
+updateProgress = (lineNum) ->
+  totalLines = root.corpus_lines.length
+  #songname = window.location.pathname.split('/').join('').split('_').join(' ').split('.html').join('')
+  songname = root.songname.split('_').join(' ')
+  
+  numExercisesFromPriorSubgoals = 0
+  
+  $('#progressIndicator').html('')
+  for subgoal,subgoal_idx in root.curriculum
+    progressInSubgoal = 0
+    isCurrent = false
+    isFuture = false
+    isComplete = false
+    if lineNum >= numExercisesFromPriorSubgoals + subgoal.exercises.length
+      progressInSubgoal = subgoal.exercises.length
+      isComplete = true
+    else if lineNum >= numExercisesFromPriorSubgoals
+      isCurrent = true
+      progressInSubgoal = lineNum - numExercisesFromPriorSubgoals
+    else
+      isFuture = true
+      progressInSubgoal = 0
+    name = cleanSubgoalName subgoal.name
+    namespan = $('<span>').text(' ' + name)
+    if isCurrent
+      namespan.css('font-weight', 'bold')
+    else if isFuture
+      namespan.css('color', 'grey')
+    glyphspan = $('<span class="glyphicon">')
+    if isCurrent
+      glyphspan.addClass 'glyphicon-music'
+    else if isComplete
+      glyphspan.addClass 'glyphicon-ok'
+    rightdiv = $('<div class="btn-group">').append(glyphspan).append(namespan).append('<br>')
+    #leftdiv = $('<div style="float: left; padding-right: 25px; width: 50px; height: 50px; border-radius: 25px/25px; background-color: grey">')
+    #leftdiv.append $('<span style="font-size: 40px; padding-left: 10px; padding-top: 0px">').text(subgoal_idx+1)
+    leftdivclass = 'numberCircleInactive'
+    if isCurrent
+      leftdivclass = 'numberCircleActive'
+    leftdiv = '<div class="numberCircle ' + leftdivclass + '" style="float: left"><div class="height_fix"></div><div class="content">' + (subgoal_idx+1) + '</div></div>'
+    curdiv = $('<div style="padding-left: 10px; padding-right: 10px; float: left">').append(leftdiv).append(rightdiv)
+    #curdiv.append('<br>').append('Exercise ' + progressInSubgoal + ' / ' + subgoal.exercises.length)
+    exerciseNum = progressInSubgoal
+    if isCurrent
+      exerciseNum += 1
+    curbtn = $('<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" ><span class="caret"></span> Exercise ' + exerciseNum + '/' + subgoal.exercises.length + '</button>')
+    if isCurrent
+      curbtn.addClass 'btn-primary'
+    else
+      curbtn.addClass 'btn-default'
+    rightdiv.append(curbtn)
+    toex = $('<ul class="dropdown-menu" role="menu">')
+    toex.empty()
+    for i in [0...subgoal.exercises.length]
+      curitem = $('<li>')
+      curlink = $('<a>')
+      curlink.attr 'href', '#'
+      curlink.text 'Exercise ' + (i+1)
+      #if i <= maxLineReached()
+      curlink.attr('onclick', 'window.location.hash = "#' + (i + numExercisesFromPriorSubgoals) + '"; window.location.reload()')
+      #else
+      #  curitem.addClass 'disabled'
+      curitem.append curlink
+      toex.append curitem
+    numExercisesFromPriorSubgoals += subgoal.exercises.length
+    rightdiv.append toex
+    $('#progressIndicator').append curdiv
+
+  '''
+  $('#progressIndicator').css('font-size', '24px')
+  $('#progressIndicator').html('Exercise <b>' + (lineNum+1) + '/' + (totalLines-1) + '</b> in <b>' + songname + '</b>')
+  '''
+*/
+
 
 setNotesFromText = function(span, text, durationMap, startnum) {
   var duration, isFirst, note, notebase, notenum, notes, notespan, _i, _len;

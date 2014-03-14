@@ -13,6 +13,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="jquery.cookie.js"></script>
 <script src="substitution.js"></script>
+
 <script>
 corpus = ''
 corpus_lines = []
@@ -41,9 +42,22 @@ globaltaskname = "<%= songname %>"
 <script src="keypresstochar.js"></script>
 <script src="index.js"></script>
 
-<div id="progressIndicator" style="float: left"></div>
+<!--<div id="progressIndicator" style="float: left"></div>-->
 
-<button style="float: right; top: 0" type="button" class="btn btn-danger" onclick="window.location = 'skilltree.html'"><span class="glyphicon glyphicon-remove"></span> Quit</button>
+<!-- another version - flat style with animated hover effect -->
+<div id="progressIndicator" class="breadcrumbN flatN">
+<!--
+  <span class="active">Browse</span>
+  <span href="#">Compare</span>
+  <span href="#">Order Confirmation</span>
+  <span href="#">Checkout</span>
+-->
+</div>
+
+
+<!--
+<button style="float: right; top: 0" type="button" class="btn btn-danger" onclick="window.location = 'skilltree.html'"><span class="glyphicon glyphicon-remove"></span> Quit</button>-->
+
 <!--
 <div class="btn-group" style="float: right; top: 0">
 <button style="float: right; top: 0" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ><span class="caret"></span> Go to Exercise</button>
@@ -54,10 +68,10 @@ globaltaskname = "<%= songname %>"
 </div>-->
 
 
-<br/><br/><br/><br/>
+<br/><br/>
 
-<span id="textDisplay_entered" style="color: lightgrey; font-size: x-large; font-family: sans-serif"></span>
-<span id="textDisplay_todo" style="font-size: x-large; font-family: sans-serif"></span>
+<span id="textDisplay_entered" style="cursor: default; color: lightgrey; font-size: x-large; font-family: sans-serif"></span>
+<span id="textDisplay_todo" style="cursor: default; font-size: x-large; font-family: sans-serif"></span>
 <button style="display: inline-block" type="button" class="btn btn-success btn-xs" onclick="playNotesInOrder()"><span class="glyphicon glyphicon-play"></span> Play</button>
 
 <br/>
@@ -76,5 +90,8 @@ globaltaskname = "<%= songname %>"
 </div>
 <!--<img src="dvorak.png" />-->
 </body>
+
+<script src="prefixfree-1.0.7.js"></script>
+
 </html>
 
