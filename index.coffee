@@ -551,6 +551,9 @@ addNotes = () ->
     noteFile = getMusicFileForNote note
     noteAlpha = note.split('#').join('s')
     $('#notes').append $('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha).css('display', 'none')
+    $('#note_' + noteAlpha).bind 'canplay loadeddata canplaythrough', ->
+      $(this).attr('canstartplaying', true)
+    $('#note_' + noteAlpha).load()
 
 getNoteAlpha = (note) ->
   return note.split('#').join('s')
@@ -564,10 +567,12 @@ playNote = root.playNote = (note) ->
   audioTagJquery.attr('playEnd', currentTime + 500)
   audioTagJquery.attr('highlightEnd', currentTime + 200)
   audioTag = audioTagJquery[0]
-  audioTag.pause()
-  audioTag.currentTime = 0.0
-  #audioTag.playbackRate = 1.5
-  audioTag.play()
+  if audioTag? and audioTagJquery.attr('canstartplaying') == 'true'
+    audioTag.pause()
+    if audioTag.currentTime?
+      audioTag.currentTime = 0.0
+    #audioTag.playbackRate = 1.5
+    audioTag.play()
   #setTimeout () ->
   #  playEnd = parseInt(audioTagJquery.attr('playEnd'))
   #  if (new Date).getTime() >= playEnd
