@@ -321,6 +321,7 @@ sendLineLog = root.sendLineLog = ->
   root.lineLog['targetText'] = root.targetText
   root.lineLog['user'] = root.workerId
   root.lineLog['taskname'] = root.taskname
+  root.lineLog['layout'] = root.layout
   root.lineLog['posttime'] = new Date().getTime()
   root.lineLog['starttime'] = new Date(root.currentLineStartTime).getTime()
   postToServer root.lineLog
@@ -658,6 +659,7 @@ toDurationMap = (musicstring) ->
 root.workerId = 'foobar'
 root.taskname = 'sometask'
 root.songname = 'practice'
+root.layout = 0
 
 $(document).ready ->
   urlparams = getUrlParameters()
@@ -675,6 +677,8 @@ $(document).ready ->
       root.songname = root.songname[...root.songname.indexOf('#')]
     if root.taskname == 'sometask'
       root.taskname = root.songname
+  if urlparams.layout?
+    root.layout = parseInt(urlparams.layout)
   maxlinereached = maxLineReached()
   if window.location.hash? and window.location.hash.trim() != ''
     console.log 'hash is:' + window.location.hash
@@ -728,6 +732,7 @@ $(document).ready ->
             this.value = val.slice(0, lastSpace) + ' ' + val.slice(end)
             if this.value == ' '
               this.value = ''
+            evt.preventDefault()
             return false
         origChar = root.mapKeyPressToActualCharacter(evt.shiftKey, evt.which)
         console.log origChar
@@ -735,10 +740,13 @@ $(document).ready ->
         #console.log transformedChar
 
         if transformedChar != origChar
-            if root.isMusic
+            if root.isMusic and transformedChar in allNotesRange
               playNote transformedChar
               addKeyEvent(transformedChar, root.nextNote)
               transformedChar = transformedChar + ' '
+            else
+              evt.preventDefault()
+              return false
             start = this.selectionStart
             end = this.selectionEnd
             val = this.value
@@ -749,6 +757,7 @@ $(document).ready ->
               errorIndex = parseInt $($('#textDisplay_todo').find('.targetnotes')[0]).attr('notenum')
               root.errorIndexes.push errorIndex
               highlightNoteRedNoClear $('.note_' + errorIndex)
+              evt.preventDefault()
               return false
             #transformedChar = targetText.slice(start).split(' ')[0] + ' '
             newvalue = val.slice(0, start) + transformedChar + val.slice(end)
@@ -756,7 +765,11 @@ $(document).ready ->
             this.value = newvalue
             # Move the caret
             this.selectionStart = this.selectionEnd = start + transformedChar.length
+            evt.preventDefault()
             return false
+        else if root.isMusic
+          evt.preventDefault()
+          return false
   displayKeyboard()
   if root.isMusic
     addNotes()
@@ -794,7 +807,84 @@ q_rows = [
   'ASDFGHJKL:"'.split(''),
   'ZXCVBNM<>?'.split('')
 ]
-m_rows = [
+
+allNotesRange = ['d0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'a0', 'a#0', 'b0', 'c1', 'c#1', 'd1', 'd#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'a#1', 'b1', 'c2', 'c#2', 'd2', 'd#2', 'e2', 'f2', 'f#2', 'g2', 'g#2', 'a2', 'a#2', 'b2', 'c3', 'c#3', 'd3', 'd#3', 'e3', 'f3', 'f#3', 'g3', 'g#3', 'a3', 'a#3', 'b3', 'c4', 'd0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'a0', 'a#0', 'b0', 'c1', 'c#1', 'd1', 'd#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'a#1', 'b1', 'c2', 'c#2', 'd2', 'd#2', 'e2', 'f2', 'f#2', 'g2', 'g#2', 'a2', 'a#2', 'b2', 'c3', 'c#3', 'd3', 'd#3', 'e3', 'f3', 'f#3', 'g3', 'g#3', 'a3', 'a#3', 'b3', 'c4']
+allNotesRange = allNotesRange[allNotesRange.indexOf('c1')..]
+
+enabledNotes = [
+  ['xx', 'xx', 'xx', 'xxx', 'xx', 'xx', 'xxx', 'xx', 'xxx', 'xx', 'xxx', 'xx', 'xx'],
+  ['b1', 'c2', 'c#2', 'd2', 'd#2', 'e2', 'f2', 'f#2', 'g2', 'g#2', 'xx', 'xxx', 'xx'],
+  ['c1', 'c#1', 'd1', 'd#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'xxx'],
+  ['d0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'xx', 'xxx', 'xx']
+]
+
+reversed = (arr) ->
+  narr = arr[..]
+  narr.reverse()
+  return narr
+
+reversedKeepingEmptyStrings = root.reversedKeepingEmptyStrings = (arr) ->
+  output = []
+  arrNoEmpty = (x for x in arr when x != '')
+  arrNoEmptyReversed = reversed arrNoEmpty
+  idx = 0
+  for x in arr
+    if x == ''
+      output.push x
+    else
+      output.push arrNoEmptyReversed[idx]
+      idx += 1
+  return output
+
+
+duplicateMatrixRows = (matrix) ->
+  output = []
+  for row in matrix
+    output.push row[..]
+  for row in matrix
+    output.push row[..]
+  return output
+
+left_to_right_bottom_to_top_reduced = []
+left_to_right_top_to_bottom_reduced = []
+right_to_left_bottom_to_top_reduced = []
+right_to_left_top_to_bottom_reduced = []
+do ->
+  numEnabledNotes = 0
+  for note in enabledNotes
+    if note != 'xx' and note != 'xxx'
+      numEnabledNotes += 1
+
+  nextNoteIdx = 0
+  for row in reversed(enabledNotes)
+    nrow = []
+    for note in row
+      if note == 'xx' or note == 'xxx'
+        nrow.push ''
+      else
+        nrow.push allNotesRange[nextNoteIdx]
+        nextNoteIdx += 1
+    left_to_right_bottom_to_top_reduced.push nrow
+  left_to_right_bottom_to_top_reduced = reversed left_to_right_bottom_to_top_reduced
+  left_to_right_bottom_to_top_reduced = duplicateMatrixRows left_to_right_bottom_to_top_reduced
+
+  nextNoteIdx = 0
+  for row in enabledNotes
+    nrow = []
+    for note in row
+      if note == 'xx' or note == 'xxx'
+        nrow.push ''
+      else
+        nrow.push allNotesRange[nextNoteIdx]
+        nextNoteIdx += 1
+    left_to_right_top_to_bottom_reduced.push nrow
+  left_to_right_top_to_bottom_reduced = duplicateMatrixRows left_to_right_top_to_bottom_reduced
+
+  right_to_left_bottom_to_top_reduced = (reversedKeepingEmptyStrings(row) for row in left_to_right_bottom_to_top_reduced)
+  right_to_left_top_to_bottom_reduced = (reversedKeepingEmptyStrings(row) for row in left_to_right_top_to_bottom_reduced)
+
+
+left_to_right_bottom_to_top = [
   ['c3', 'c#3', 'd3', 'd#3', 'e3', 'f3', 'f#3', 'g3', 'g#3', 'a3', 'a#3', 'b3', 'c4'],
   ['b1', 'c2', 'c#2', 'd2', 'd#2', 'e2', 'f2', 'f#2', 'g2', 'g#2', 'a2', 'a#2', 'b2'],
   ['c1', 'c#1', 'd1', 'd#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'a#1'],
@@ -804,6 +894,37 @@ m_rows = [
   ['c1', 'c#1', 'd1', 'd#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'a#1'],
   ['d0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'a0', 'a#0', 'b0']
 ]
+left_to_right_top_to_bottom = [
+  ['d0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'a0', 'a#0', 'b0', 'c1', 'c#1', 'd1'],
+  ['d#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'a#1', 'b1', 'c2', 'c#2', 'd2', 'd#2'],
+  ['e2', 'f2', 'f#2', 'g2', 'g#2', 'a2', 'a#2', 'b2', 'c3', 'c#3', 'd3'],
+  ['d#3', 'e3', 'f3', 'f#3', 'g3', 'g#3', 'a3', 'a#3', 'b3', 'c4'],
+  ['d0', 'd#0', 'e0', 'f0', 'f#0', 'g0', 'g#0', 'a0', 'a#0', 'b0', 'c1', 'c#1', 'd1'],
+  ['d#1', 'e1', 'f1', 'f#1', 'g1', 'g#1', 'a1', 'a#1', 'b1', 'c2', 'c#2', 'd2', 'd#2'],
+  ['e2', 'f2', 'f#2', 'g2', 'g#2', 'a2', 'a#2', 'b2', 'c3', 'c#3', 'd3'],
+  ['d#3', 'e3', 'f3', 'f#3', 'g3', 'g#3', 'a3', 'a#3', 'b3', 'c4']
+]
+right_to_left_bottom_to_top = [
+  ['c4', 'b3', 'a#3', 'a3', 'g#3', 'g3', 'f#3', 'f3', 'e3', 'd#3', 'd3', 'c#3', 'c3'],
+  ['b2', 'a#2', 'a2', 'g#2', 'g2', 'f#2', 'f2', 'e2', 'd#2', 'd2', 'c#2', 'c2', 'b1'],
+  ['a#1', 'a1', 'g#1', 'g1', 'f#1', 'f1', 'e1', 'd#1', 'd1', 'c#1', 'c1'],
+  ['b0', 'a#0', 'a0', 'g#0', 'g0', 'f#0', 'f0', 'e0', 'd#0', 'd0'],
+  ['c4', 'b3', 'a#3', 'a3', 'g#3', 'g3', 'f#3', 'f3', 'e3', 'd#3', 'd3', 'c#3', 'c3'],
+  ['b2', 'a#2', 'a2', 'g#2', 'g2', 'f#2', 'f2', 'e2', 'd#2', 'd2', 'c#2', 'c2', 'b1'],
+  ['a#1', 'a1', 'g#1', 'g1', 'f#1', 'f1', 'e1', 'd#1', 'd1', 'c#1', 'c1'],
+  ['b0', 'a#0', 'a0', 'g#0', 'g0', 'f#0', 'f0', 'e0', 'd#0', 'd0']
+]
+right_to_left_top_to_bottom = [
+  ['d1', 'c#1', 'c1', 'b0', 'a#0', 'a0', 'g#0', 'g0', 'f#0', 'f0', 'e0', 'd#0', 'd0'],
+  ['d#2', 'd2', 'c#2', 'c2', 'b1', 'a#1', 'a1', 'g#1', 'g1', 'f#1', 'f1', 'e1', 'd#1'],
+  ['d3', 'c#3', 'c3', 'b2', 'a#2', 'a2', 'g#2', 'g2', 'f#2', 'f2', 'e2'],
+  ['c4', 'b3', 'a#3', 'a3', 'g#3', 'g3', 'f#3', 'f3', 'e3', 'd#3'],
+  ['d1', 'c#1', 'c1', 'b0', 'a#0', 'a0', 'g#0', 'g0', 'f#0', 'f0', 'e0', 'd#0', 'd0'],
+  ['d#2', 'd2', 'c#2', 'c2', 'b1', 'a#1', 'a1', 'g#1', 'g1', 'f#1', 'f1', 'e1', 'd#1'],
+  ['d3', 'c#3', 'c3', 'b2', 'a#2', 'a2', 'g#2', 'g2', 'f#2', 'f2', 'e2'],
+  ['c4', 'b3', 'a#3', 'a3', 'g#3', 'g3', 'f#3', 'f3', 'e3', 'd#3']
+]
+
 d_rows = [
   '`1234567890[]'.split(''),
   "',.pyfgcrl/=\\".split(''),
@@ -815,13 +936,18 @@ d_rows = [
   ':QJKXBMWVZ'.split('')
 ]
 to_dvorak = make_key_mapping(q_rows, d_rows)
-to_piano = make_key_mapping(q_rows, m_rows)
-substitution_table = to_piano
+substitution_tables = root.substitution_tables = []
+
+for m_rows in [left_to_right_bottom_to_top, left_to_right_top_to_bottom, right_to_left_bottom_to_top, right_to_left_top_to_bottom]
+  substitution_tables.push make_key_mapping(q_rows, m_rows)
+
+for m_rows in [left_to_right_bottom_to_top_reduced, left_to_right_top_to_bottom_reduced, right_to_left_bottom_to_top_reduced, right_to_left_top_to_bottom_reduced]
+  substitution_tables.push make_key_mapping(q_rows, m_rows)
 
 root.isMusic = true
 
 transformTypedChar = (origChar) ->
   #return origChar
-  if substitution_table[origChar]?
-    return substitution_table[origChar]
+  if substitution_tables[root.layout][origChar]?
+    return substitution_tables[root.layout][origChar]
   return origChar
