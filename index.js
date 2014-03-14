@@ -177,14 +177,14 @@ cleanSubgoalName = function(name) {
 };
 
 updateProgress = function(lineNum) {
-  var curbtn, curdiv, curitem, curlink, exerciseNum, glyphspan, i, isComplete, isCurrent, isFuture, name, namespan, numExercisesFromPriorSubgoals, progressInSubgoal, songname, subgoal, toex, totalLines, _i, _j, _len, _ref, _ref1;
+  var curbtn, curdiv, curitem, curlink, exerciseNum, glyphspan, i, isComplete, isCurrent, isFuture, leftdiv, leftdivclass, name, namespan, numExercisesFromPriorSubgoals, progressInSubgoal, rightdiv, songname, subgoal, subgoal_idx, toex, totalLines, _i, _j, _len, _ref, _ref1;
   totalLines = root.corpus_lines.length;
   songname = root.songname.split('_').join(' ');
   numExercisesFromPriorSubgoals = 0;
   $('#progressIndicator').html('');
   _ref = root.curriculum;
-  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-    subgoal = _ref[_i];
+  for (subgoal_idx = _i = 0, _len = _ref.length; _i < _len; subgoal_idx = ++_i) {
+    subgoal = _ref[subgoal_idx];
     progressInSubgoal = 0;
     isCurrent = false;
     isFuture = false;
@@ -212,7 +212,13 @@ updateProgress = function(lineNum) {
     } else if (isComplete) {
       glyphspan.addClass('glyphicon-ok');
     }
-    curdiv = $('<div class="btn-group" style="padding-left: 10px; padding-right: 10px">').append(glyphspan).append(namespan).append('<br>');
+    rightdiv = $('<div class="btn-group">').append(glyphspan).append(namespan).append('<br>');
+    leftdivclass = 'numberCircleInactive';
+    if (isCurrent) {
+      leftdivclass = 'numberCircleActive';
+    }
+    leftdiv = '<div class="numberCircle ' + leftdivclass + '" style="float: left"><div class="height_fix"></div><div class="content">' + (subgoal_idx + 1) + '</div></div>';
+    curdiv = $('<div style="padding-left: 10px; padding-right: 10px; float: left">').append(leftdiv).append(rightdiv);
     exerciseNum = progressInSubgoal;
     if (isCurrent) {
       exerciseNum += 1;
@@ -223,7 +229,7 @@ updateProgress = function(lineNum) {
     } else {
       curbtn.addClass('btn-default');
     }
-    curdiv.append(curbtn);
+    rightdiv.append(curbtn);
     toex = $('<ul class="dropdown-menu" role="menu">');
     toex.empty();
     for (i = _j = 0, _ref1 = subgoal.exercises.length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; i = 0 <= _ref1 ? ++_j : --_j) {
@@ -236,7 +242,7 @@ updateProgress = function(lineNum) {
       toex.append(curitem);
     }
     numExercisesFromPriorSubgoals += subgoal.exercises.length;
-    curdiv.append(toex);
+    rightdiv.append(toex);
     $('#progressIndicator').append(curdiv);
   }
   return '$(\'#progressIndicator\').css(\'font-size\', \'24px\')\n$(\'#progressIndicator\').html(\'Exercise <b>\' + (lineNum+1) + \'/\' + (totalLines-1) + \'</b> in <b>\' + songname + \'</b>\')';

@@ -1,3 +1,39 @@
+.numberCircle {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 56px;
+    padding: 8px;
+    font-size: 32px;
+    position: relative;
+}
+
+.numberCircleActive {
+    background-color: #3276b1;
+    color: white;
+    border: 2px solid white;
+    border: 2px solid #357ebd;
+}
+
+.numberCircleInactive {
+    color: #666;
+    border: 2px solid #666;*/
+    border: 2px solid white;
+}
+
+.numberCircle .height_fix {
+    margin-top: 100%;
+}
+.numberCircle .content {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin-top: -22px; /* Note, this must be half the font size */
+}
+
 body {
   background-color: #fff;
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;

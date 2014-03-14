@@ -127,7 +127,7 @@ updateProgress = (lineNum) ->
   numExercisesFromPriorSubgoals = 0
   
   $('#progressIndicator').html('')
-  for subgoal in root.curriculum
+  for subgoal,subgoal_idx in root.curriculum
     progressInSubgoal = 0
     isCurrent = false
     isFuture = false
@@ -152,7 +152,14 @@ updateProgress = (lineNum) ->
       glyphspan.addClass 'glyphicon-music'
     else if isComplete
       glyphspan.addClass 'glyphicon-ok'
-    curdiv = $('<div class="btn-group" style="padding-left: 10px; padding-right: 10px">').append(glyphspan).append(namespan).append('<br>')
+    rightdiv = $('<div class="btn-group">').append(glyphspan).append(namespan).append('<br>')
+    #leftdiv = $('<div style="float: left; padding-right: 25px; width: 50px; height: 50px; border-radius: 25px/25px; background-color: grey">')
+    #leftdiv.append $('<span style="font-size: 40px; padding-left: 10px; padding-top: 0px">').text(subgoal_idx+1)
+    leftdivclass = 'numberCircleInactive'
+    if isCurrent
+      leftdivclass = 'numberCircleActive'
+    leftdiv = '<div class="numberCircle ' + leftdivclass + '" style="float: left"><div class="height_fix"></div><div class="content">' + (subgoal_idx+1) + '</div></div>'
+    curdiv = $('<div style="padding-left: 10px; padding-right: 10px; float: left">').append(leftdiv).append(rightdiv)
     #curdiv.append('<br>').append('Exercise ' + progressInSubgoal + ' / ' + subgoal.exercises.length)
     exerciseNum = progressInSubgoal
     if isCurrent
@@ -162,7 +169,7 @@ updateProgress = (lineNum) ->
       curbtn.addClass 'btn-primary'
     else
       curbtn.addClass 'btn-default'
-    curdiv.append(curbtn)
+    rightdiv.append(curbtn)
     toex = $('<ul class="dropdown-menu" role="menu">')
     toex.empty()
     for i in [0...subgoal.exercises.length]
@@ -177,7 +184,7 @@ updateProgress = (lineNum) ->
       curitem.append curlink
       toex.append curitem
     numExercisesFromPriorSubgoals += subgoal.exercises.length
-    curdiv.append toex
+    rightdiv.append toex
     $('#progressIndicator').append curdiv
 
   '''
