@@ -648,7 +648,7 @@ addNotes = function() {
   _results = [];
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     notenode = _ref[_i];
-    note = $(notenode).text();
+    note = $(notenode).attr('note');
     noteFile = getMusicFileForNote(note);
     noteAlpha = note.split('#').join('s');
     _results.push($('#notes').append($('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha).css('display', 'none')));
@@ -662,6 +662,7 @@ getNoteAlpha = function(note) {
 
 playNote = root.playNote = function(note) {
   var audioTag, audioTagJquery, currentTime, noteAlpha;
+  console.log('playing:' + note);
   highlightButton(note.split('_').slice(0, 1)[0]);
   noteAlpha = getNoteAlpha(note.split('_').slice(0, 1)[0]);
   audioTagJquery = $('#note_' + noteAlpha);
@@ -731,9 +732,17 @@ getMusicFileForNote = root.getMusicFileForNote = function(note) {
   return 'piano/Piano.ff.' + basenote + octave + '.m4a';
 };
 
-makeButton = function(name) {
-  var button;
-  button = $('<div>').text(name).addClass('keybase');
+makeButton = function(name, origkey) {
+  var button, displayname;
+  if (origkey == null) {
+    origkey = '';
+  }
+  displayname = name;
+  if (name === 'tab' || name === 'caps' || name === 'shift' || name === 'delete' || name === 'return') {
+    displayname = '';
+  }
+  button = $('<div>').html('<div style="color: #174691; font-size: 12px; margin-top: 5; margin-bottom: 0; line-height: 14px; height: 14px">' + origkey + '</div> <div style="font-size: 16px; height: 20px; line-height: 20px; margin-top: 0; margin-bottom: 0">' + displayname + '</div>').addClass('keybase');
+  button.attr('note', name);
   button.attr('id', 'button_' + getNoteAlpha(name));
   if (name === 'tab' || name === 'caps' || name === 'shift' || name === 'delete' || name === 'return') {
     button.addClass(name);
@@ -748,25 +757,25 @@ displayKeyboard = function() {
   _ref = ['`'].concat('1234567890'.split('').concat('-='.split('').concat(['delete'])));
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     letter = _ref[_i];
-    $('#keyboard').append(makeButton(transformTypedChar(letter)));
+    $('#keyboard').append(makeButton(transformTypedChar(letter), letter));
   }
   $('#keyboard').append($('<div>').css('clear', 'both'));
   _ref1 = ['tab'].concat('QWERTYUIOP'.split('').concat('[]\\'.split('')));
   for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
     letter = _ref1[_j];
-    $('#keyboard').append(makeButton(transformTypedChar(letter)));
+    $('#keyboard').append(makeButton(transformTypedChar(letter), letter));
   }
   $('#keyboard').append($('<div>').css('clear', 'both'));
   _ref2 = ['caps'].concat('ASDFGHJKL'.split('').concat(";'".split('').concat(['return'])));
   for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
     letter = _ref2[_k];
-    $('#keyboard').append(makeButton(transformTypedChar(letter)));
+    $('#keyboard').append(makeButton(transformTypedChar(letter), letter));
   }
   $('#keyboard').append($('<div>').css('clear', 'both'));
   _ref3 = ['shift'].concat('ZXCVBNM'.split('').concat(',./'.split('').concat(['shift'])));
   for (_l = 0, _len3 = _ref3.length; _l < _len3; _l++) {
     letter = _ref3[_l];
-    $('#keyboard').append(makeButton(transformTypedChar(letter)));
+    $('#keyboard').append(makeButton(transformTypedChar(letter), letter));
   }
   return console.log('keyboard displayed');
 };

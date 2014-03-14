@@ -514,7 +514,7 @@ sharpToFlat = (basenote) ->
 
 addNotes = () ->
   for notenode in $('.key')
-    note = $(notenode).text()
+    note = $(notenode).attr('note')
     noteFile = getMusicFileForNote note
     noteAlpha = note.split('#').join('s')
     $('#notes').append $('<audio>').attr('src', noteFile).attr('id', 'note_' + noteAlpha).css('display', 'none')
@@ -523,6 +523,7 @@ getNoteAlpha = (note) ->
   return note.split('#').join('s')
 
 playNote = root.playNote = (note) ->
+  console.log 'playing:' + note
   highlightButton note.split('_')[0..0][0]
   noteAlpha = getNoteAlpha note.split('_')[0..0][0]
   audioTagJquery = $('#note_' + noteAlpha)
@@ -583,8 +584,14 @@ getMusicFileForNote = root.getMusicFileForNote = (note) ->
     basenote = basenote.toUpperCase()
   return 'piano/Piano.ff.' + basenote + octave + '.m4a'
 
-makeButton = (name) ->
-  button = $('<div>').text(name).addClass('keybase')
+makeButton = (name, origkey) ->
+  if not origkey?
+    origkey = ''
+  displayname = name
+  if name in ['tab', 'caps', 'shift', 'delete', 'return']
+    displayname = ''
+  button = $('<div>').html('<div style="color: #174691; font-size: 12px; margin-top: 5; margin-bottom: 0; line-height: 14px; height: 14px">' + origkey + '</div> <div style="font-size: 16px; height: 20px; line-height: 20px; margin-top: 0; margin-bottom: 0">' + displayname + '</div>').addClass('keybase')
+  button.attr 'note', name
   button.attr 'id', 'button_' + getNoteAlpha(name)
   if name in ['tab', 'caps', 'shift', 'delete', 'return']
     button.addClass name
@@ -594,16 +601,16 @@ makeButton = (name) ->
 
 displayKeyboard = ->
   for letter in ['`'].concat '1234567890'.split('').concat '-='.split('').concat ['delete']
-    $('#keyboard').append makeButton(transformTypedChar letter)
+    $('#keyboard').append makeButton(transformTypedChar(letter), letter)
   $('#keyboard').append $('<div>').css('clear', 'both')
   for letter in ['tab'].concat 'QWERTYUIOP'.split('').concat '[]\\'.split('')
-    $('#keyboard').append makeButton(transformTypedChar letter)
+    $('#keyboard').append makeButton(transformTypedChar(letter), letter)
   $('#keyboard').append $('<div>').css('clear', 'both')
   for letter in ['caps'].concat 'ASDFGHJKL'.split('').concat ";'".split('').concat ['return']
-    $('#keyboard').append makeButton(transformTypedChar letter)
+    $('#keyboard').append makeButton(transformTypedChar(letter), letter)
   $('#keyboard').append $('<div>').css('clear', 'both')
   for letter in ['shift'].concat 'ZXCVBNM'.split('').concat ',./'.split('').concat ['shift']
-    $('#keyboard').append makeButton(transformTypedChar letter)
+    $('#keyboard').append makeButton(transformTypedChar(letter), letter)
   console.log 'keyboard displayed'
 
 maxLineReached = root.maxLineReached = ->
